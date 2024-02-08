@@ -1,0 +1,63 @@
+<main class="login-modal">
+  <h1>Log in</h1>
+
+  <form
+    [formGroup]="loginForm"
+    class="user-form"
+    id="login-form"
+    (ngSubmit)="login()"
+  >
+    <div class="input-wrapper">
+      <input
+        required
+        type="text"
+        placeholder="Username"
+        formControlName="username"
+      />
+      <img src="./assets/img/icons/login-email.svg" alt="" />
+      <div id="errorTagEmail" class="error-msg d-none">
+        This user doesn't exists.
+      </div>
+    </div>
+    <div class="input-wrapper">
+      <input
+        required
+        formControlName="password"
+        type="password"
+        placeholder="Password"
+      />
+      <img
+        onclick="togglePasswordVisibility()"
+        id="loginPwImg"
+        src="./assets/img/icons/login-password.svg"
+        alt=""
+      />
+      <div id="errorTagPw" class="error-msg d-none">Wrong password</div>
+    </div>
+    <input type="submit" id="submit-form" class="d-none" />
+  </form>
+
+  <div class="reset-password-container">
+    <label class="container">
+      <input id="rememberMe" class="checkmark" type="checkbox" />
+      Remember me
+    </label>
+    <a href="html/forgot_Password.html" class="forgot-password"
+      >Forgot my password</a
+    >
+  </div>
+
+  <div class="btn-container">
+    <label id="loginBtn" for="submit-form" class="button-wo-icon" tabindex="0"
+      >Log In</label
+    >
+    <a class="button-secondary-wo-icon" (click)="guestLogin()">Guest Log in</a>
+  </div>
+</main>
+
+<section id="registerSuccessBox" class=""></section>
+
+<section class="signup-container">
+  <span>Not a Join user?</span>
+  <a class="button-wo-icon" href="sign_Up.html">Sign up</a>
+</section>
