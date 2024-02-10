@@ -24,6 +24,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
           router.navigateByUrl('login');
         }
       }
+
       return throwError(() => {
         err;
       });
