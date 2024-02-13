@@ -34,8 +34,15 @@
     />
   </svg>
 </div>
-
+@if(router.url === '/login'){
 <div class="signup-container">
   <span>Not a Join user?</span>
-  <a class="button-wo-icon" href="sign_Up.html">Sign up</a> Button Componente
+  <app-button-wo-icon
+    [colorStyle]="'main-color-style'"
+    [fontSize]="'16px'"
+    [fontWeight]="'700'"
+    [content]="'sign up'"
+    [height]="'51px'"
+  ></app-button-wo-icon>
 </div>
+}
