@@ -8,14 +8,22 @@ import {
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 
-import { LoginResponse } from '../../../interfaces/login-response-interface';
-import { AuthService } from '../../../shared/services/auth.service';
+import { LoginResponse } from '../../interfaces/login-response-interface';
+
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
+import { AuthBaseComponent } from '../auth-base/auth-base.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, CommonModule, RouterModule],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+    RouterModule,
+    AuthBaseComponent,
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })

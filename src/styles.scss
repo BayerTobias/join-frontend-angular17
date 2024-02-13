@@ -3,6 +3,13 @@
   box-sizing: border-box;
 }
 
+body {
+  width: 100vw;
+  width: 100svw;
+  height: 100vh;
+  height: 100svh;
+}
+
 p {
   text-wrap: pretty;
 }
