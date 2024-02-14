@@ -34,6 +34,7 @@
     />
   </svg>
 </div>
+
 @if(router.url === '/login'){
 <div class="signup-container">
   <span>Not a Join user?</span>
@@ -43,6 +44,12 @@
     [fontWeight]="'700'"
     [content]="'sign up'"
     [height]="'51px'"
+    [routerLink]="'/sign-up'"
   ></app-button-wo-icon>
 </div>
 }
+
+<div class="legal-wrapper">
+  <a [routerLink]="'/login'">Privacy Policy</a>
+  <a [routerLink]="'/login'">Legal notice</a>
+</div>

@@ -1,4 +1,5 @@
 @import "./../../../../styles.scss";
+@import "./../../../../mixin.scss";
 
 /* ===== General Styling ===== */
 .wrapper {
@@ -11,30 +12,73 @@
   scale: 1 !important;
 }
 
-.login-modal {
-  display: flex;
+main {
+  @include dFlex($gp: 35px);
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  padding: 35px;
-  gap: 35px;
   min-width: 653px;
   width: max-content;
   height: max-content;
   background-color: white;
   border-radius: 30px;
   box-shadow: $shadoe-backlog-box;
-}
+  padding: 35px;
 
-.login-modal p {
-  text-align: center;
-  font-size: 21px;
+  @media screen and (max-width: 850px) {
+    width: 90%;
+    min-width: 0;
+    padding: 35px;
+  }
+
+  p {
+    text-align: center;
+    font-size: 21px;
+  }
+
+  > h1 {
+    position: relative;
+    font-size: 61px;
+    margin-top: 0;
+    margin-bottom: 24px;
+
+    @media screen and (max-width: 850px) {
+      font-size: 40px;
+      text-align: center;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -24px;
+      width: 150px;
+      height: 3px;
+      background-color: $secondary-color;
+    }
+  }
+
+  .reset-password-container {
+    @include dFlex($gp: 35px, $ai: "flex-start");
+
+    input {
+      cursor: pointer;
+    }
+
+    a {
+      cursor: pointer;
+      color: $secondary-color;
+      text-decoration: none;
+    }
+  }
+
+  .btn-container {
+    @include dFlex($gp: 35px);
+
+    @media screen and (max-width: 850px) {
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
 }
 
 .password-modal {
@@ -107,25 +151,6 @@
   z-index: -1 !important;
 }
 
-/* ===== Headline =====  */
-.login-modal h1 {
-  position: relative;
-  font-size: 61px;
-  margin-top: 0;
-  margin-bottom: 24px;
-}
-
-.login-modal h1::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: -24px;
-  width: 150px;
-  height: 3px;
-  background-color: $secondary-color;
-}
-
 /* ===== Form ===== */
 .user-form {
   display: flex;
@@ -167,49 +192,7 @@ input[type="password"] + img {
   outline: none;
 }
 
-/* ===== Forgot Password Frame ===== */
-.reset-password-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 35px;
-}
-
-.forgot-password {
-  cursor: pointer;
-  color: $secondary-color;
-  text-decoration: none;
-}
-
-.checkmark {
-  cursor: pointer;
-}
-
 /* ===== Log in ===== */
-.btn-container {
-  display: flex;
-  justify-content: center;
-  gap: 35px;
-}
-
-/* ===== Buttons ===== */
-.button-wo-icon {
-  height: 51px;
-  width: 145px;
-  font-size: 21px;
-  font-weight: bold;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.button-secondary-wo-icon {
-  height: 51px;
-  text-decoration: none;
-  white-space: nowrap;
-  font-size: 21px;
-  font-weight: 700;
-  width: auto;
-}
 
 .password-btn {
   width: max-content;
@@ -262,12 +245,6 @@ input[type="password"] + img {
     width: 100%;
   }
 
-  .login-modal {
-    width: 90%;
-    min-width: 0;
-    padding: 35px;
-  }
-
   .user-form input {
     width: 100%;
     padding: 8px 41px 8px 21px;
@@ -282,11 +259,6 @@ input[type="password"] + img {
     top: 22.5px;
   }
 
-  .login-modal h1 {
-    font-size: 40px;
-    text-align: center;
-  }
-
   .reset-password-container {
     flex-direction: column-reverse;
     align-self: center;
@@ -294,12 +266,6 @@ input[type="password"] + img {
 
   .checkmark {
     margin: 0 20px 0 0;
-  }
-
-  .btn-container {
-    align-items: center;
-    flex-direction: column;
-    gap: 20px;
   }
 
   .btn-container > * {

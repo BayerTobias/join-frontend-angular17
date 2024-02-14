@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import {
   ReactiveFormsModule,
   FormsModule,
@@ -13,6 +13,7 @@ import { LoginResponse } from '../../interfaces/login-response-interface';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { AuthBaseComponent } from '../auth-base/auth-base.component';
+import { ButtonWoIconComponent } from '../../../shared/components/button-wo-icon/button-wo-icon.component';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +24,7 @@ import { AuthBaseComponent } from '../auth-base/auth-base.component';
     CommonModule,
     RouterModule,
     AuthBaseComponent,
+    ButtonWoIconComponent,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
@@ -32,6 +34,11 @@ export class LoginComponent {
   startAnimation: boolean = false;
   endAnimation: boolean = false;
   passwordIsHidden: boolean = true;
+
+  loginButtonWidth: string = '145px';
+  guestLoginButtonWidth: string = 'auto';
+  buttonHeight: string = '51px';
+  buttonFontSize: string = '21px';
 
   constructor(
     private fb: FormBuilder,
@@ -46,6 +53,28 @@ export class LoginComponent {
 
   ngOnInit() {
     this.animateLogo();
+    this.updateButtonSize();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.updateButtonSize();
+  }
+
+  updateButtonSize() {
+    const width = window.innerWidth;
+
+    if (width < 850) {
+      this.buttonFontSize = '16px';
+      this.buttonHeight = '45px';
+      this.loginButtonWidth = '100%';
+      this.guestLoginButtonWidth = '100%';
+    } else {
+      this.buttonFontSize = '21px';
+      this.buttonHeight = '51px';
+      this.loginButtonWidth = '145px';
+      this.guestLoginButtonWidth = 'auto';
+    }
   }
 
   /**
