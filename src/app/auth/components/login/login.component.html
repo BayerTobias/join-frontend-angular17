@@ -32,6 +32,7 @@
           id="loginPwImg"
           src="./assets/img/icons/login-password-show.svg"
           alt=""
+          [style.cursor]="'pointer'"
         />
         } @else if (password?.value.length > 0) {
         <img
@@ -39,6 +40,7 @@
           id="loginPwImg"
           src="./assets/img/icons/login-password-hidden.svg"
           alt=""
+          [style.cursor]="'pointer'"
         />
         }@else {
         <img
@@ -71,6 +73,7 @@
         [content]="'Log In'"
         [height]="buttonHeight"
         [width]="loginButtonWidth"
+        (click)="login()"
       ></app-button-wo-icon>
 
       <app-button-wo-icon

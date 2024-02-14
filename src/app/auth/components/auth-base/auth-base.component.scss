@@ -3,46 +3,58 @@
 
 section {
   position: relative;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  width: 100svw;
+  min-height: 100vh;
+  min-height: 100svh;
   background-color: $bg-color;
-  @include dFlex();
+  @include dFlex($jc: space-between);
+  flex-direction: column;
 }
 
-#openImg {
-  position: absolute;
-  top: 50px !important;
-  left: 80px !important;
-  scale: 0.8;
-  transform: translate(-50%, -50%);
+header {
+  @include dFlex($jc: space-between);
+  padding: 0 16px;
+  width: 100%;
+
+  #openImg {
+    scale: 0.8;
+
+    @media screen and (max-height: 830px) {
+      height: 10vh;
+      margin: 0 !important;
+    }
+  }
+}
+
+.legal-sign-up-wrapper {
+  @include dFlex($gp: 8px);
+  flex-direction: column;
 }
 
 .signup-container {
   @include dFlex($gp: 35px, $jc: flex-start);
-  position: absolute;
-  top: 67px;
-  right: 114px;
 
   span {
     font-size: 21px;
   }
+}
 
+.desktop {
   @media screen and (max-width: 850px) {
-    top: auto;
-    right: auto;
-    bottom: 45px;
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
+    display: none !important;
+  }
+}
+
+.mobile {
+  @media screen and (min-width: 850px) {
+    display: none;
   }
 }
 
 .legal-wrapper {
   @include dFlex($gp: 8px);
-  position: absolute;
-  bottom: 16px;
-  left: 0;
-  right: 0;
+  padding-bottom: 16px;
 
   a {
     font-size: 16px;

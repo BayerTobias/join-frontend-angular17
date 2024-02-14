@@ -67,8 +67,8 @@ export class LoginComponent {
     if (width < 850) {
       this.buttonFontSize = '16px';
       this.buttonHeight = '45px';
-      this.loginButtonWidth = '100%';
-      this.guestLoginButtonWidth = '100%';
+      this.loginButtonWidth = '200px';
+      this.guestLoginButtonWidth = '200px';
     } else {
       this.buttonFontSize = '21px';
       this.buttonHeight = '51px';
