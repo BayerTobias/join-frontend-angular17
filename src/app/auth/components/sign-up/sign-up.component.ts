@@ -10,6 +10,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { passwordMatchValidator } from './../../custom-validators/password-match-validator';
 
 @Component({
   selector: 'app-sign-up',
@@ -37,12 +38,15 @@ export class SignUpComponent {
     private router: Router,
     private auth: AuthService
   ) {
-    this.signUpForm = this.fb.group({
-      username: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-      passwordRepeat: ['', Validators.required],
-    });
+    this.signUpForm = this.fb.group(
+      {
+        username: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', Validators.required],
+        passwordRepeat: ['', Validators.required],
+      },
+      { validators: [passwordMatchValidator] }
+    );
   }
 
   @HostListener('window:resize', ['$event'])
@@ -89,6 +93,22 @@ export class SignUpComponent {
   }
 
   signUp() {
-    console.log(this.signUpForm.value);
+    const username = this.signUpForm.value.username;
+    const email = this.signUpForm.value.email;
+    const password = this.signUpForm.value.password;
+
+    if (this.signUpForm.valid) {
+      console.log(username, email, password);
+    } else {
+      console.log('nicht valid');
+    }
+
+    try {
+    } catch (err) {
+      console.error(err);
+      this.handleError(err);
+    }
   }
+
+  handleError(err: any) {}
 }
