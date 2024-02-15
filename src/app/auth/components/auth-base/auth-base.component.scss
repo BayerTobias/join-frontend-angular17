@@ -14,15 +14,19 @@ section {
 
 header {
   @include dFlex($jc: space-between);
-  padding: 0 16px;
+  padding: 16px 16px 0 16px;
   width: 100%;
 
-  #openImg {
-    scale: 0.8;
+  .logo-wrapper {
+    height: 90px;
 
     @media screen and (max-height: 830px) {
       height: 10vh;
       margin: 0 !important;
+    }
+
+    #openImg {
+      height: 100%;
     }
   }
 }
@@ -47,6 +51,7 @@ header {
 }
 
 .mobile {
+  gap: 16px;
   @media screen and (min-width: 850px) {
     display: none;
   }

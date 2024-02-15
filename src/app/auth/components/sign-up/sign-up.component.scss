@@ -1,2 +1,11 @@
 @import "./../../../../styles.scss";
 @import "./../login/login.component.scss";
+
+main {
+  position: relative;
+}
+a {
+  position: absolute;
+  left: 35px;
+  top: 35px;
+}

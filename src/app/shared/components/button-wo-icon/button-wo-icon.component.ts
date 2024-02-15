@@ -15,6 +15,7 @@ export class ButtonWoIconComponent {
   @Input() width: string = '';
   @Input() fontSize: string = '16px';
   @Input() fontWeight: string = '';
+  @Input() type: string = 'button';
 
   getStyle(): any {
     return {
