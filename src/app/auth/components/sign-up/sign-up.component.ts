@@ -1,6 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { AuthBaseComponent } from '../auth-base/auth-base.component';
 import { ButtonWoIconComponent } from '../../../shared/components/button-wo-icon/button-wo-icon.component';
+import { SuccessMessageComponent } from '../../../shared/components/success-message/success-message.component';
 import {
   FormBuilder,
   FormGroup,
@@ -21,6 +22,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   imports: [
     AuthBaseComponent,
     ButtonWoIconComponent,
+    SuccessMessageComponent,
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
@@ -42,6 +44,8 @@ export class SignUpComponent {
   emailHttpErrorCode: number | null = null;
 
   loading: boolean = false;
+  animationOverlay: boolean = false;
+  animationStarted: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -125,6 +129,8 @@ export class SignUpComponent {
     user.password = this.password?.value;
 
     if (this.signUpForm.valid) {
+      this.loading = true;
+      this.signUpForm.disable();
       try {
         await this.auth.createUserWithUsernameAndPassword(user);
         this.animateAndRoute();
@@ -135,7 +141,15 @@ export class SignUpComponent {
   }
 
   animateAndRoute() {
-    this.router.navigateByUrl('/login');
+    this.animationOverlay = true;
+
+    setTimeout(() => {
+      this.animationStarted = true;
+    }, 10);
+
+    setTimeout(() => {
+      this.router.navigateByUrl('/login');
+    }, 700);
   }
 
   handleError(err: HttpErrorResponse) {
@@ -144,5 +158,8 @@ export class SignUpComponent {
     } else if (err.error.message.includes('email')) {
       this.emailHttpErrorCode = err.status;
     } else console.error(err);
+
+    this.loading = false;
+    this.signUpForm.enable();
   }
 }
