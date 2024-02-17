@@ -11,6 +11,8 @@ import {
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CustomValidators } from '../../custom-validators';
+import { CommonModule } from '@angular/common';
+import { User } from '../../../classes/user.class';
 
 @Component({
   selector: 'app-sign-up',
@@ -20,6 +22,7 @@ import { CustomValidators } from '../../custom-validators';
     ButtonWoIconComponent,
     FormsModule,
     ReactiveFormsModule,
+    CommonModule,
   ],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss',
@@ -32,6 +35,8 @@ export class SignUpComponent {
 
   passwordIsHidden: boolean = true;
   passwordRepeatIsHidden: boolean = true;
+
+  httpErrorCode: number | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -98,21 +103,22 @@ export class SignUpComponent {
     this.passwordRepeatIsHidden = !this.passwordRepeatIsHidden;
   }
 
-  signUp() {
-    const username = this.signUpForm.value.username;
-    const email = this.signUpForm.value.email;
-    const password = this.signUpForm.value.password;
+  async signUp() {
+    const user = new User();
+    user.username = this.username?.value;
+    user.email = this.email?.value;
+    user.password = this.password?.value;
 
     if (this.signUpForm.valid) {
-      console.log(username, email, password);
+      try {
+        await this.auth.createUserWithUsernameAndPassword(user);
+        console.log(user.toJson);
+      } catch (err) {
+        console.error(err);
+        this.handleError(err);
+      }
     } else {
-      console.log('nicht valid');
-    }
-
-    try {
-    } catch (err) {
-      console.error(err);
-      this.handleError(err);
+      this.signUpForm.markAllAsTouched();
     }
   }
 

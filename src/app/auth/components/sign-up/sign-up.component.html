@@ -25,6 +25,11 @@
           placeholder="Name"
         />
         <img src="assets/img/icons/sign-up-name.svg" alt="" />
+        @if (username?.touched && username?.value.length === 0) {
+        <div class="error-msg">Error</div>
+        } @else if (httpErrorCode) {
+        <div class="error-msg">HTTP Error</div>
+        }
       </div>
       <div class="input-wrapper">
         <input
