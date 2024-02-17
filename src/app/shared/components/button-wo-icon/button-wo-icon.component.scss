@@ -10,6 +10,11 @@ button {
   border-radius: 8px;
   font-size: 16px;
   transition: all ease-in-out 100ms;
+
+  &:disabled {
+    background-color: lightgrey;
+    pointer-events: none;
+  }
 }
 
 .main-color-style {

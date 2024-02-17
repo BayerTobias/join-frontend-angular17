@@ -23,6 +23,7 @@
           formControlName="username"
           type="text"
           placeholder="Name"
+          (input)="resetError('username')"
         />
         <img src="assets/img/icons/sign-up-name.svg" alt="" />
 
@@ -38,6 +39,7 @@
           formControlName="email"
           type="email"
           placeholder="Email"
+          (input)="resetError('email')"
         />
         <img src="assets/img/icons/login-email.svg" alt="" />
 
@@ -115,6 +117,15 @@
         <div class="error-msg">This does not match password.</div>
         }
       </div>
+
+      <div class="privacy-wrapper">
+        <input formControlName="privacyAccepted" type="checkbox" />
+        <span
+          >I accept the
+          <a [routerLink]="'/login'" target="_blank">Privacy Policy</a>
+        </span>
+      </div>
+
       <div class="btn-container">
         <app-button-wo-icon
           [colorStyle]="'main-color-style'"
@@ -124,6 +135,7 @@
           [height]="buttonHeight"
           [width]="buttonWidth"
           [type]="'submit'"
+          [diasbled]="!privacyAccepted?.valid || loading"
         ></app-button-wo-icon>
       </div>
     </form>

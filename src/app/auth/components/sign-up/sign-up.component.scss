@@ -13,6 +13,12 @@ main {
   padding: 35px;
   position: relative;
 
+  > a {
+    position: absolute;
+    left: 35px;
+    top: 35px;
+  }
+
   @media screen and (max-width: 850px) {
     width: 90%;
     min-width: 0;
@@ -70,53 +76,63 @@ main {
     gap: 20px;
   }
 
-  input {
-    width: 422px;
-    padding: 13px 41px 13px 21px;
-    border-radius: 10px;
-    font-size: 21px;
-    border: 1px solid $sidebar-text-color;
+  .input-wrapper {
+    position: relative;
 
-    @media screen and (max-width: 850px) {
-      width: 100%;
-      padding: 8px 41px 8px 21px;
+    img {
+      position: absolute;
+      top: 26.5px;
+      right: 21px;
+      transform: translateY(-50%);
+
+      @media screen and (max-width: 850px) {
+        top: 22.5px;
+      }
     }
 
-    &:focus {
-      outline: none;
+    .error-msg {
+      position: absolute;
+      margin-top: 2px;
+      font-size: 12px;
+      color: $error-color;
     }
 
-    &::placeholder {
+    input {
+      width: 422px;
+      padding: 13px 41px 13px 21px;
+      border-radius: 10px;
       font-size: 21px;
-      color: $sidebar-text-color;
+      border: 1px solid $sidebar-text-color;
+
+      @media screen and (max-width: 850px) {
+        width: 100%;
+        padding: 8px 41px 8px 21px;
+      }
+
+      &:focus {
+        outline: none;
+      }
+
+      &::placeholder {
+        font-size: 21px;
+        color: $sidebar-text-color;
+      }
     }
   }
 }
 
-.input-wrapper {
-  position: relative;
+.privacy-wrapper {
+  display: flex;
+  gap: 8px;
 
-  img {
-    position: absolute;
-    top: 26.5px;
-    right: 21px;
-    transform: translateY(-50%);
-
-    @media screen and (max-width: 850px) {
-      top: 22.5px;
-    }
+  > span {
+    font-size: 16px;
+    color: rgba(168, 168, 168, 1);
   }
 
-  .error-msg {
-    position: absolute;
-    margin-top: 2px;
-    font-size: 12px;
-    color: $error-color;
+  a {
+    font-size: 16px;
+    text-decoration: none;
+    color: $secondary-color;
   }
-}
-
-a {
-  position: absolute;
-  left: 35px;
-  top: 35px;
 }

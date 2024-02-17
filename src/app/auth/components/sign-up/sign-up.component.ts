@@ -8,7 +8,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CustomValidators } from '../../custom-validators';
 import { CommonModule } from '@angular/common';
@@ -24,6 +24,7 @@ import { HttpErrorResponse } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
+    RouterModule,
   ],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss',
@@ -39,6 +40,8 @@ export class SignUpComponent {
 
   usernameHttpErrorCode: number | null = null;
   emailHttpErrorCode: number | null = null;
+
+  loading: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -57,6 +60,7 @@ export class SignUpComponent {
           '',
           [Validators.required, CustomValidators.passwordLengthValidator(6)],
         ],
+        privacyAccepted: [false, Validators.requiredTrue],
       },
       { validators: [CustomValidators.passwordMatchValidator] }
     );
@@ -97,12 +101,21 @@ export class SignUpComponent {
     return this.signUpForm.get('passwordRepeat');
   }
 
+  get privacyAccepted() {
+    return this.signUpForm.get('privacyAccepted');
+  }
+
   togglePasswordVisibility() {
     this.passwordIsHidden = !this.passwordIsHidden;
   }
 
   togglePasswordRepeatVisibility() {
     this.passwordRepeatIsHidden = !this.passwordRepeatIsHidden;
+  }
+
+  resetError(type: string) {
+    if (type === 'username') this.usernameHttpErrorCode = null;
+    if (type === 'email') this.emailHttpErrorCode = null;
   }
 
   async signUp() {
@@ -128,10 +141,8 @@ export class SignUpComponent {
   handleError(err: HttpErrorResponse) {
     if (err.error.message.includes('username')) {
       this.usernameHttpErrorCode = err.status;
-      console.log('username found');
     } else if (err.error.message.includes('email')) {
       this.emailHttpErrorCode = err.status;
-      console.log('email found');
     } else console.error(err);
   }
 }

@@ -1,3 +1,8 @@
-<button [type]="type" [ngClass]="colorStyle" [ngStyle]="getStyle()">
+<button
+  [type]="type"
+  [ngClass]="colorStyle"
+  [disabled]="diasbled"
+  [ngStyle]="getStyle()"
+>
   {{ content }}
 </button>
