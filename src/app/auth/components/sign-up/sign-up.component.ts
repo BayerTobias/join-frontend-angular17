@@ -13,6 +13,7 @@ import { AuthService } from '../../services/auth.service';
 import { CustomValidators } from '../../custom-validators';
 import { CommonModule } from '@angular/common';
 import { User } from '../../../classes/user.class';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-sign-up',
@@ -36,7 +37,8 @@ export class SignUpComponent {
   passwordIsHidden: boolean = true;
   passwordRepeatIsHidden: boolean = true;
 
-  httpErrorCode: number | null = null;
+  usernameHttpErrorCode: number | null = null;
+  emailHttpErrorCode: number | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -112,15 +114,24 @@ export class SignUpComponent {
     if (this.signUpForm.valid) {
       try {
         await this.auth.createUserWithUsernameAndPassword(user);
-        console.log(user.toJson);
-      } catch (err) {
-        console.error(err);
+        this.animateAndRoute();
+      } catch (err: any) {
         this.handleError(err);
       }
-    } else {
-      this.signUpForm.markAllAsTouched();
-    }
+    } else this.signUpForm.markAllAsTouched();
   }
 
-  handleError(err: any) {}
+  animateAndRoute() {
+    this.router.navigateByUrl('/login');
+  }
+
+  handleError(err: HttpErrorResponse) {
+    if (err.error.message.includes('username')) {
+      this.usernameHttpErrorCode = err.status;
+      console.log('username found');
+    } else if (err.error.message.includes('email')) {
+      this.emailHttpErrorCode = err.status;
+      console.log('email found');
+    } else console.error(err);
+  }
 }

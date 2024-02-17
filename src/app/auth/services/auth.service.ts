@@ -23,4 +23,10 @@ export class AuthService {
 
     return lastValueFrom(this.http.post(url, body));
   }
+
+  async deleteUser() {
+    const url = environment.baseUrl + '/delete_user/';
+
+    return lastValueFrom(this.http.get(url));
+  }
 }

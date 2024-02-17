@@ -25,10 +25,11 @@
           placeholder="Name"
         />
         <img src="assets/img/icons/sign-up-name.svg" alt="" />
+
         @if (username?.touched && username?.value.length === 0) {
-        <div class="error-msg">Error</div>
-        } @else if (httpErrorCode) {
-        <div class="error-msg">HTTP Error</div>
+        <div class="error-msg">Please enter a username</div>
+        } @else if (usernameHttpErrorCode === 409) {
+        <div class="error-msg">This username is already taken</div>
         }
       </div>
       <div class="input-wrapper">
@@ -39,9 +40,12 @@
           placeholder="Email"
         />
         <img src="assets/img/icons/login-email.svg" alt="" />
-        <div id="errorTagEmail" class="error-msg d-none">
-          This user already exists.
-        </div>
+
+        @if (email?.touched && email?.value.length === 0) {
+        <div class="error-msg">Please enter an email address.</div>
+        } @else if (emailHttpErrorCode === 409) {
+        <div class="error-msg">This email address already exists</div>
+        }
       </div>
       <div class="input-wrapper">
         <input
@@ -70,6 +74,11 @@
           src="./assets/img/icons/login-password.svg"
           alt=""
         />
+        } @if(password?.touched && password?.value.length === 0){
+        <div class="error-msg">Please enter a password</div>
+        }@else if (password?.touched && !password?.valid &&
+        password?.value.length > 0 ) {
+        <div class="error-msg">must be at least 6 characters.</div>
         }
       </div>
       <div class="input-wrapper">
@@ -99,6 +108,11 @@
           src="./assets/img/icons/login-password.svg"
           alt=""
         />
+        } @if(passwordRepeat?.touched && passwordRepeat?.value.length === 0){
+        <div class="error-msg">Please repeat your password</div>
+        }@else if (passwordRepeat?.touched && passwordRepeat?.value.length > 0
+        && passwordRepeat?.value !== password?.value) {
+        <div class="error-msg">This does not match password.</div>
         }
       </div>
       <div class="btn-container">
