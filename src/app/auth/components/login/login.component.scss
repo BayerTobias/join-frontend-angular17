@@ -134,6 +134,40 @@ main {
   }
 }
 
+.logo-animation-overlay {
+  @include dFlex();
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: $bg-color;
+  z-index: 2;
+  transition: all 425ms ease;
+
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-40%, -50%);
+    transition: all 425ms ease;
+    z-index: 3;
+    scale: 1.5;
+  }
+}
+
+.logo-animation {
+  top: 16px !important;
+  left: 16px !important;
+  height: 90px;
+  scale: 1 !important;
+  transform: translate(0) !important;
+}
+
+.logo-animation-bg {
+  background-color: rgba(246, 247, 248, 0) !important;
+}
+
 // .password-modal {
 //   padding: 35px 85px;
 // }

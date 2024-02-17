@@ -2,15 +2,12 @@
   <header>
     <div class="logo-wrapper">
       <svg
+        [ngClass]="hideLogo ? 'hide' : ''"
         id="openImg"
         width="101"
         height="122"
         viewBox="0 0 101 122"
         fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        [ngClass]="{
-          'logo-animation': startAnimation
-        }"
       >
         <path
           d="M38.2137 30.1318H16.0559V52.3884H38.2137V30.1318Z"

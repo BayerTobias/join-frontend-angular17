@@ -52,8 +52,11 @@ export class LoginComponent {
   }
 
   ngOnInit() {
-    this.animateLogo();
     this.updateButtonSize();
+  }
+
+  ngAfterViewInit() {
+    this.animateLogo();
   }
 
   @HostListener('window:resize', ['$event'])
@@ -84,11 +87,11 @@ export class LoginComponent {
   animateLogo() {
     setTimeout(() => {
       this.startAnimation = true;
-    }, 425);
+    }, 300);
 
     setTimeout(() => {
       this.endAnimation = true;
-    }, 650);
+    }, 450 + 300);
   }
 
   /**

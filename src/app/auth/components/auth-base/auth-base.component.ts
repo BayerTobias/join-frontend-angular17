@@ -11,11 +11,19 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './auth-base.component.scss',
 })
 export class AuthBaseComponent {
-  startAnimation: boolean = false;
+  hideLogo: boolean = false;
 
   constructor(public router: Router) {}
 
   ngOnInit() {
+    if (this.router.url === '/login') {
+      this.hideLogo = true;
+
+      setTimeout(() => {
+        this.hideLogo = false;
+      }, 750);
+    }
+
     console.log(this.router.url);
   }
 }
