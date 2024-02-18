@@ -8,6 +8,8 @@ import { SummaryComponent } from './home/components/summary/summary.component';
 import { BoardComponent } from './home/components/board/board.component';
 import { AddTaskComponent } from './home/components/add-task/add-task.component';
 import { ContactsComponent } from './home/components/contacts/contacts.component';
+import { HelpComponent } from './home/components/help/help.component';
+import { LegalNoticeComponent } from './legal/components/legal-notice/legal-notice.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -24,6 +26,8 @@ export const routes: Routes = [
       { path: 'board', component: BoardComponent },
       { path: 'add-task', component: AddTaskComponent },
       { path: 'contacts', component: ContactsComponent },
+      { path: 'help', component: HelpComponent },
+      { path: 'legal-notice', component: LegalNoticeComponent },
     ],
   },
 ];

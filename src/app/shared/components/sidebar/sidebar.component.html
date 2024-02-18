@@ -1,0 +1,45 @@
+<nav class="sidebar">
+  <!-- Logo -->
+  <img
+    class="logo"
+    src="../assets/img/logos/logo_Light.png"
+    alt="Logo of Join"
+  />
+
+  <!-- Menu -->
+  <div class="nav-menu">
+    <app-sidebar-menue-item
+      [content]="'Summary'"
+      [imgSrc]="'./assets/img/icons/sidebar-summary.svg'"
+      [routerTarget]="'summary'"
+    ></app-sidebar-menue-item>
+
+    <app-sidebar-menue-item
+      [content]="'Board'"
+      [imgSrc]="'./assets/img/icons/sidebar-board.svg'"
+      [routerTarget]="'board'"
+    ></app-sidebar-menue-item>
+
+    <app-sidebar-menue-item
+      [content]="'Add Task'"
+      [imgSrc]="'./assets/img/icons/sidebar-add_task.svg'"
+      [routerTarget]="'add-task'"
+    ></app-sidebar-menue-item>
+
+    <app-sidebar-menue-item
+      [content]="'Contacts'"
+      [imgSrc]="'./assets/img/icons/sidebar-contacts.svg'"
+      [routerTarget]="'contacts'"
+    ></app-sidebar-menue-item>
+  </div>
+
+  <!-- Legal -->
+
+  <div class="legal-wrapper">
+    <app-sidebar-menue-item
+      [content]="'Legal notice'"
+      [imgSrc]="'./assets/img/icons/sidebar-legal.svg'"
+      [routerTarget]="'legal-notice'"
+    ></app-sidebar-menue-item>
+  </div>
+</nav>
