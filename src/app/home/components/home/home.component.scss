@@ -1,2 +1,14 @@
 @import "../../../../styles.scss";
 @import "../../../../mixin.scss";
+
+.router-wrapper {
+  position: absolute;
+  left: 232px;
+  top: 95px;
+  width: calc(100vw - 232px);
+  width: calc(100svw - 232px);
+  min-height: calc(100vh - 95px);
+  min-height: calc(100svh - 95px);
+
+  //  MEDIA QUERRY WIDTH UND HEIGHT FÜR MOBILE
+}

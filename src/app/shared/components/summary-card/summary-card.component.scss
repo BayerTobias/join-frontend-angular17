@@ -1,0 +1,65 @@
+@import "../../../../styles.scss";
+
+a {
+  text-decoration: none;
+}
+
+.card {
+  background-color: white;
+  color: $main-color;
+  border: 2px solid rgba(205, 205, 205, 0.25);
+  border-radius: 20px;
+  width: 130px;
+  height: 130px;
+  padding: 20px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: 400;
+
+  &:hover {
+    transform: scale(1.1);
+    background-color: rgba(42, 54, 71, 1);
+    color: white;
+  }
+
+  .numbers {
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+  }
+}
+
+.second-line {
+  display: flex;
+  align-items: center;
+  width: 420px;
+}
+
+.summary-hr2 {
+  border-color: rgba(209, 209, 209, 1);
+  background-color: rgba(209, 209, 209, 1);
+  border: none;
+  border-radius: 10px;
+  width: 2px;
+  height: 80px;
+  margin: 42px;
+}
+
+.arrow-img,
+.pencil-img,
+.checkmark-summary-img {
+  width: 50px;
+  height: auto;
+  margin: 0 20px;
+}
+
+.card-third-line {
+  width: 202.5px;
+  height: 115px;
+  display: flex;
+}
+
+.card-third-line:hover img {
+  filter: invert(100%) brightness(150%);
+}

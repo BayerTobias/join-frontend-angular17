@@ -5,8 +5,8 @@
   @include dFlex();
   color: $sidebar-text-color;
   padding: 8px;
-
   width: 100%;
+  cursor: pointer;
 
   div {
     @include dFlex($gp: 20px, $jc: flex-start);
