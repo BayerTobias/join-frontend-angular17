@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from '../../../shared/components/header/header.component';
 import { SidebarComponent } from '../../../shared/components/sidebar/sidebar.component';
+import { DataManagerService } from '../../services/data-manager.service';
 
 @Component({
   selector: 'app-home',
@@ -11,4 +12,18 @@ import { SidebarComponent } from '../../../shared/components/sidebar/sidebar.com
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {}
+export class HomeComponent {
+  todos: any;
+
+  dataManger = inject(DataManagerService);
+
+  ngOnInit() {
+    this.getData();
+  }
+
+  async getData() {
+    this.todos = await this.dataManger.getTodos();
+
+    console.log(this.todos);
+  }
+}

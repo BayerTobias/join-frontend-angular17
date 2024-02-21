@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import {
   ReactiveFormsModule,
   FormsModule,
@@ -40,11 +40,11 @@ export class LoginComponent {
   buttonHeight: string = '51px';
   buttonFontSize: string = '21px';
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private auth: AuthService
-  ) {
+  private fb = inject(FormBuilder);
+  private router = inject(Router);
+  private auth = inject(AuthService);
+
+  constructor() {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
@@ -119,7 +119,7 @@ export class LoginComponent {
         this.password?.value
       )) as LoginResponse;
       localStorage.setItem('token', resp.token);
-      this.router.navigateByUrl('');
+      this.router.navigateByUrl('/home');
     } catch (err) {
       console.error(err);
     }
@@ -132,7 +132,7 @@ export class LoginComponent {
         'Test123'
       )) as LoginResponse;
       localStorage.setItem('token', resp.token);
-      this.router.navigateByUrl('');
+      this.router.navigateByUrl('/home');
     } catch (err) {
       console.error(err);
     }

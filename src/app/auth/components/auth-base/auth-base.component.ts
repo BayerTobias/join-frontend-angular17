@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ButtonWoIconComponent } from '../../../shared/components/button-wo-icon/button-wo-icon.component';
 import { Router, RouterModule } from '@angular/router';
 
@@ -13,7 +13,9 @@ import { Router, RouterModule } from '@angular/router';
 export class AuthBaseComponent {
   hideLogo: boolean = false;
 
-  constructor(public router: Router) {}
+  public router = inject(Router);
+
+  constructor() {}
 
   ngOnInit() {
     if (this.router.url === '/login') {
