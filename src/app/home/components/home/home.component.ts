@@ -23,7 +23,5 @@ export class HomeComponent {
 
   async getData() {
     await this.dataManger.getTasks();
-
-    console.log(this.dataManger.tasks);
   }
 }

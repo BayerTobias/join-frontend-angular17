@@ -10,10 +10,8 @@ import { RouterModule } from '@angular/router';
 })
 export class SummaryCardComponent {
   @Input() number: number = 0;
-
   @Input() type: string = '';
   @Input() imgPath: string = '';
-
   @Input() content: string = '';
   @Input() routeTo: string = '';
   @Input() deadline: string = ' 2023-08-25';
