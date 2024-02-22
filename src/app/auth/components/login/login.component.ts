@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 
-import { LoginResponse } from '../../interfaces/login-response-interface';
+import { LoginResponse } from '../../../interfaces/auth/login-response-interface';
 
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';

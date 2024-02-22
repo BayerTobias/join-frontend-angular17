@@ -22,8 +22,8 @@ export class HomeComponent {
   }
 
   async getData() {
-    this.todos = await this.dataManger.getTodos();
+    await this.dataManger.getTasks();
 
-    console.log(this.todos);
+    console.log(this.dataManger.tasks);
   }
 }

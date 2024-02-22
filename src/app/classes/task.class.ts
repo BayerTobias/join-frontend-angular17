@@ -1,31 +1,21 @@
-import { User } from './user.class';
-
-interface TaskData {
-  title: string;
-  description: string;
-  category: string;
-  assignedTo: User[] | [];
-  dueDate: string;
-  prio: string;
-  subtasks: [];
-}
+import { TaskResponse } from './../interfaces/tasks/task-response-interface';
 
 export class Task {
   title: string;
   description: string;
   category: string;
-  assignedTo: User[] | [];
+  assignedTo: number[] | [];
   dueDate: string;
   prio: string;
   subtasks: [];
 
-  constructor(data?: TaskData) {
+  constructor(data?: TaskResponse) {
     this.title = data?.title || '';
     this.description = data?.description || '';
     this.category = data?.category || '';
-    this.assignedTo = data?.assignedTo || [];
+    this.assignedTo = data?.assigned_users || [];
     this.dueDate = data?.dueDate || '';
-    this.prio = data?.prio || '';
+    this.prio = data?.priority || '';
     this.subtasks = data?.subtasks || [];
   }
 }
