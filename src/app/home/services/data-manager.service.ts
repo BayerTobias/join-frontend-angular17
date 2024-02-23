@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject, signal } from '@angular/core';
+import { Injectable, WritableSignal, inject, signal } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { BehaviorSubject, lastValueFrom } from 'rxjs';
 import { TaskResponse } from './../../interfaces/tasks/task-response-interface';
@@ -9,11 +9,11 @@ import { Task } from '../../classes/task.class';
   providedIn: 'root',
 })
 export class DataManagerService {
-  public taskSubject$: BehaviorSubject<Task[]> = new BehaviorSubject<Task[]>(
-    []
-  );
+  // public taskSubject$: BehaviorSubject<Task[]> = new BehaviorSubject<Task[]>(
+  //   []
+  // );
 
-  // public taskSignal = signal<Task[]>([])
+  public taskSignal: WritableSignal<Task[]> = signal<Task[]>([]);
 
   private http = inject(HttpClient);
 
@@ -28,8 +28,10 @@ export class DataManagerService {
       )) as Array<TaskResponse>;
 
       const tasks = resp.map((taskData: TaskResponse) => new Task(taskData));
-      // this.taskSignal.update(tasks)
-      this.taskSubject$.next(tasks);
+      this.taskSignal.set(tasks);
+      console.log('signal = ' + this.taskSignal());
+
+      // this.taskSubject$.next(tasks);
     } catch (err) {
       console.error(err);
     }

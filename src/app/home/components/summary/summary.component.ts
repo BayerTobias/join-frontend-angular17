@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { SummaryCardComponent } from '../../../shared/components/summary-card/summary-card.component';
 import { DataManagerService } from '../../services/data-manager.service';
 import { Task } from '../../../classes/task.class';
@@ -20,11 +20,15 @@ export class SummaryComponent {
 
   public dataManager = inject(DataManagerService);
 
+  constructor() {
+    effect(() => this.updateCounts(this.dataManager.taskSignal()));
+  }
+
   ngOnInit() {
-    this.dataManager.taskSubject$.subscribe((tasks: Task[]) => {
-      this.updateCounts(tasks);
-      console.log(this.tasksInProgress);
-    });
+    // this.dataManager.taskSubject$.subscribe((tasks: Task[]) => {
+    //   this.updateCounts(tasks);
+    //   console.log(this.tasksInProgress);
+    // });
   }
 
   updateCounts(tasks: Task[]) {
