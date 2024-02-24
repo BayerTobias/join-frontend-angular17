@@ -21,7 +21,7 @@ export class SummaryComponent {
   public dataManager = inject(DataManagerService);
 
   constructor() {
-    effect(() => this.updateCounts(this.dataManager.taskSignal()));
+    effect(() => this.updateCounts(this.dataManager.tasksSignal()));
   }
 
   ngOnInit() {
