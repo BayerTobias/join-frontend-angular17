@@ -3,8 +3,9 @@
     <h1>Add Task</h1>
 
     <form
-      onsubmit="addTask(); return false"
-      onreset="resetAddTaskForm()"
+      [formGroup]="addTaskForm"
+      (ngSubmit)="addTask()"
+      (reset)="resetAddTaskForm()"
       class="add-task-form"
     >
       <div>
@@ -12,10 +13,10 @@
           <label for="title">Title</label>
           <input
             placeholder="Enter a title"
-            name="title"
             required
-            id="title"
             type="text"
+            id="title"
+            formControlName="title"
           />
         </div>
 
@@ -26,6 +27,7 @@
             id="description"
             cols="30"
             rows="10"
+            formControlName="description"
           ></textarea>
         </div>
 
@@ -75,8 +77,8 @@
               required
               onclick="setMinDate()"
               type="date"
-              name="due-date"
               id="due-date"
+              formControlName="date"
             />
           </div>
 
