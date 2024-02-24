@@ -33,8 +33,9 @@
 
         <div id="category-box" class="input-box">
           <span class="label">Category</span>
-          <div onclick="toggleCategoryPicker()" id="category">
-            <div>
+          <div id="category">
+            @if (!selectedCategory) {
+            <div (click)="toggleCategoryPicker()">
               <span>Select task category</span>
               <img
                 class="open-arrow"
@@ -42,6 +43,29 @@
                 alt="arrow-down"
               />
             </div>
+            }@else {
+            <div (click)="toggleCategoryPicker()">
+              <span>{{ selectedCategory.name }}</span>
+              <div
+                class="color-picker-color"
+                [style.background-color]="selectedCategory.color"
+              ></div>
+              <img
+                class="open-arrow"
+                src="../assets/img/icons/open-select-arrow.svg"
+                alt="arrow-down"
+              />
+            </div>
+            } @if (selectCategoryOpen) { @for (category of categorys; track
+            $index) {
+            <div (click)="setCategory(category)">
+              <span>{{ category.name }}</span>
+              <div
+                class="color-picker-color"
+                [style.background-color]="category.color"
+              ></div>
+            </div>
+            } }
           </div>
           <div class="d-none" id="color-picker-box"></div>
           <div id="errorTagCategory" class="error-msg-task d-none">

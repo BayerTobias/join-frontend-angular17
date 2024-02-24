@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { ButtonWithIconComponent } from '../../../shared/components/buttons/button-with-icon/button-with-icon.component';
 import {
   FormBuilder,
@@ -7,6 +7,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { DataManagerService } from '../../services/data-manager.service';
+import { Category } from '../../../classes/category.class';
 
 @Component({
   selector: 'app-add-task',
@@ -17,14 +19,23 @@ import {
 })
 export class AddTaskComponent {
   addTaskForm: FormGroup;
+  selectCategoryOpen: boolean = false;
+  categorys: Category[] = [];
+
+  selectedCategory: Category | null = null;
 
   private fb = inject(FormBuilder);
+  public dataManager = inject(DataManagerService);
 
   constructor() {
     this.addTaskForm = this.fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
       date: ['', Validators.required],
+    });
+
+    effect(() => {
+      this.updateCategorysArray(this.dataManager.categorysSignal());
     });
   }
 
@@ -38,6 +49,19 @@ export class AddTaskComponent {
 
   get date() {
     return this.addTaskForm.get('date');
+  }
+
+  updateCategorysArray(signalData: Category[]) {
+    this.categorys = signalData;
+  }
+
+  toggleCategoryPicker() {
+    this.selectCategoryOpen = !this.selectCategoryOpen;
+  }
+
+  setCategory(category: Category) {
+    this.selectedCategory = category;
+    this.selectCategoryOpen = false;
   }
 
   addTask() {

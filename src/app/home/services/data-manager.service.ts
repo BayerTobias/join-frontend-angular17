@@ -12,10 +12,6 @@ import { Category } from '../../classes/category.class';
   providedIn: 'root',
 })
 export class DataManagerService {
-  // public taskSubject$: BehaviorSubject<Task[]> = new BehaviorSubject<Task[]>(
-  //   []
-  // );
-
   public tasksSignal: WritableSignal<Task[]> = signal<Task[]>([]);
   public categorysSignal: WritableSignal<Category[]> = signal<Category[]>([]);
 
@@ -33,8 +29,6 @@ export class DataManagerService {
 
       const tasks = resp.map((taskData: TaskResponse) => new Task(taskData));
       this.tasksSignal.set(tasks);
-
-      // this.taskSubject$.next(tasks);
     } catch (err) {
       console.error(err);
     }
@@ -52,8 +46,6 @@ export class DataManagerService {
         (categoryData: CategoryResponse) => new Category(categoryData)
       );
       this.categorysSignal.set(categorys);
-
-      // this.taskSubject$.next(tasks);
     } catch (err) {
       console.error(err);
     }
