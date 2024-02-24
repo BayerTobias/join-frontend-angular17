@@ -4,11 +4,18 @@ import { RouterModule } from '@angular/router';
 import { HeaderComponent } from '../../../shared/components/header/header.component';
 import { SidebarComponent } from '../../../shared/components/sidebar/sidebar.component';
 import { DataManagerService } from '../../services/data-manager.service';
+import { NavFooterComponent } from '../../../shared/components/nav-footer/nav-footer.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterModule, HeaderComponent, SidebarComponent],
+  imports: [
+    CommonModule,
+    RouterModule,
+    HeaderComponent,
+    SidebarComponent,
+    NavFooterComponent,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })

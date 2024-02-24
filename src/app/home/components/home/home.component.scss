@@ -15,15 +15,21 @@
 
     width: 100vw;
     width: 100svw;
-    min-height: calc(100vh - 95px);
-    min-height: calc(100svh - 95px);
+    min-height: calc(100vh - 95px - 80px);
+    min-height: calc(100svh - 95px - 80px);
   }
-
-  //  MEDIA QUERRY WIDTH UND HEIGHT FÜR MOBILE
 }
 
 app-sidebar {
   @media (max-width: 850px) {
     display: none;
+  }
+}
+
+app-nav-footer {
+  display: none;
+
+  @media (max-width: 850px) {
+    display: block;
   }
 }
