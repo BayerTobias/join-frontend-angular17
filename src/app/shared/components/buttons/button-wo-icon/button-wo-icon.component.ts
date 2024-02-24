@@ -24,7 +24,6 @@ export class ButtonWoIconComponent {
       width: this.width,
       'font-size': this.fontSize,
       'font-weight': this.fontWeight,
-      // Weitere Styles können hier hinzugefügt werden
     };
   }
 }

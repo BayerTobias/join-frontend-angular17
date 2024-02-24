@@ -13,7 +13,7 @@ import { LoginResponse } from '../../../interfaces/auth/login-response-interface
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { AuthBaseComponent } from '../auth-base/auth-base.component';
-import { ButtonWoIconComponent } from '../../../shared/components/button-wo-icon/button-wo-icon.component';
+import { ButtonWoIconComponent } from '../../../shared/components/buttons/button-wo-icon/button-wo-icon.component';
 
 @Component({
   selector: 'app-login',

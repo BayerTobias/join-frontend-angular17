@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { ButtonWoIconComponent } from '../../../shared/components/button-wo-icon/button-wo-icon.component';
+import { ButtonWoIconComponent } from '../../../shared/components/buttons/button-wo-icon/button-wo-icon.component';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({
