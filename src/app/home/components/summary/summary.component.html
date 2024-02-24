@@ -1,68 +1,66 @@
 <main>
-  <div class="summary">
-    <div class="summary-head">
-      <h3 class="summary-h3">Kanban Project Management Tool</h3>
-      <h1 class="summary-h1">Summary</h1>
-      <hr class="summary-hr1" />
-      <h2 class="summary-h2">Everything in a nutshell!</h2>
-      <hr class="mobile-summary-hr1" />
-    </div>
+  <div class="summary-head">
+    <h3 class="summary-h3">Kanban Project Management Tool</h3>
+    <h1 class="summary-h1">Summary</h1>
+    <hr class="summary-hr1" />
+    <h2 class="summary-h2">Everything in a nutshell!</h2>
+    <hr class="mobile-summary-hr1" />
+  </div>
 
-    <div class="summary-container">
-      <div class="left-container">
-        <div class="first-line">
-          <app-summary-card
-            [type]="'simple-card'"
-            [content]="'Tasks in Board'"
-            [routeTo]="'board'"
-            [number]="tasksInBoard"
-          ></app-summary-card>
-
-          <app-summary-card
-            [type]="'simple-card'"
-            [content]="'Tasks in Progress'"
-            [routeTo]="'board'"
-            [number]="tasksInProgress"
-          ></app-summary-card>
-
-          <app-summary-card
-            [type]="'simple-card'"
-            [content]="'awaiting-feedback'"
-            [routeTo]="'board'"
-            [number]="tasksAwaitingFeedback"
-          ></app-summary-card>
-        </div>
-
+  <div class="summary-container">
+    <div class="left-container">
+      <div class="first-line">
         <app-summary-card
-          [type]="'urgent-card'"
-          [content]="'awaiting-feedback'"
+          [type]="'simple-card'"
+          [content]="'Tasks in Board'"
           [routeTo]="'board'"
-          [number]="highPrioTasks"
+          [number]="tasksInBoard"
         ></app-summary-card>
 
-        <div class="third-line">
-          <app-summary-card
-            [type]="'icon-card'"
-            [content]="'To-do'"
-            [routeTo]="'board'"
-            [imgPath]="'./assets/img/icons/pencil.svg'"
-            [number]="tasksToDo"
-          ></app-summary-card>
+        <app-summary-card
+          [type]="'simple-card'"
+          [content]="'Tasks in Progress'"
+          [routeTo]="'board'"
+          [number]="tasksInProgress"
+        ></app-summary-card>
 
-          <app-summary-card
-            [type]="'icon-card'"
-            [content]="'Done'"
-            [routeTo]="'board'"
-            [imgPath]="'./assets/img/icons/checkmark-summary.svg'"
-            [number]="TasksDone"
-          ></app-summary-card>
-        </div>
+        <app-summary-card
+          [type]="'simple-card'"
+          [content]="'awaiting-feedback'"
+          [routeTo]="'board'"
+          [number]="tasksAwaitingFeedback"
+        ></app-summary-card>
       </div>
 
-      <div class="right-container">
-        <p class="greetings" id="greetings">Hallo...... nach datum</p>
-        <p class="user-name" id="user-name">Username hier anzeigen</p>
+      <app-summary-card
+        [type]="'urgent-card'"
+        [content]="'awaiting-feedback'"
+        [routeTo]="'board'"
+        [number]="highPrioTasks"
+      ></app-summary-card>
+
+      <div class="third-line">
+        <app-summary-card
+          [type]="'icon-card'"
+          [content]="'To-do'"
+          [routeTo]="'board'"
+          [imgPath]="'./assets/img/icons/pencil.svg'"
+          [number]="tasksToDo"
+        ></app-summary-card>
+
+        <app-summary-card
+          [type]="'icon-card'"
+          [content]="'Done'"
+          [routeTo]="'board'"
+          [imgPath]="'./assets/img/icons/checkmark-summary.svg'"
+          [number]="TasksDone"
+        ></app-summary-card>
       </div>
+    </div>
+
+    <div class="right-container">
+      <p class="greetings" id="greetings">Hallo...... nach datum</p>
+      <p class="user-name" id="user-name">Username hier anzeigen</p>
     </div>
   </div>
 </main>

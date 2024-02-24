@@ -10,5 +10,20 @@
   min-height: calc(100vh - 95px);
   min-height: calc(100svh - 95px);
 
+  @media (max-width: 850px) {
+    left: 0;
+
+    width: 100vw;
+    width: 100svw;
+    min-height: calc(100vh - 95px);
+    min-height: calc(100svh - 95px);
+  }
+
   //  MEDIA QUERRY WIDTH UND HEIGHT FÜR MOBILE
+}
+
+app-sidebar {
+  @media (max-width: 850px) {
+    display: none;
+  }
 }

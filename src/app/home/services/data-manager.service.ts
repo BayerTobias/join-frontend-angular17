@@ -29,7 +29,6 @@ export class DataManagerService {
 
       const tasks = resp.map((taskData: TaskResponse) => new Task(taskData));
       this.taskSignal.set(tasks);
-      console.log('signal = ' + this.taskSignal());
 
       // this.taskSubject$.next(tasks);
     } catch (err) {

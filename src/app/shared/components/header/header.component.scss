@@ -15,6 +15,10 @@ header {
   box-shadow: $barra-superior;
   z-index: 101;
 
+  @media (max-width: 850px) {
+    left: 0;
+  }
+
   .right-frame {
     position: relative;
     display: flex;
