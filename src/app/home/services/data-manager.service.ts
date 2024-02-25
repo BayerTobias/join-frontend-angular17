@@ -2,11 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, WritableSignal, inject, signal } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { BehaviorSubject, lastValueFrom } from 'rxjs';
-import { TaskResponse } from './../../interfaces/tasks/task-response-interface';
-import { CategoryResponse } from './../../interfaces/tasks/category-response-interface';
 
 import { Task } from '../../classes/task.class';
 import { Category } from '../../classes/category.class';
+import { UserSummary } from '../../classes/user-summary.class';
+import { UserSummaryResponse } from '../../interfaces/users/user-summary-response-interface';
+import { TaskResponse } from './../../interfaces/tasks/task-response-interface';
+import { CategoryResponse } from './../../interfaces/tasks/category-response-interface';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +16,7 @@ import { Category } from '../../classes/category.class';
 export class DataManagerService {
   public tasksSignal: WritableSignal<Task[]> = signal<Task[]>([]);
   public categorysSignal: WritableSignal<Category[]> = signal<Category[]>([]);
+  public usersSignal: WritableSignal<UserSummary[]> = signal<UserSummary[]>([]);
 
   private http = inject(HttpClient);
 
@@ -46,6 +49,24 @@ export class DataManagerService {
         (categoryData: CategoryResponse) => new Category(categoryData)
       );
       this.categorysSignal.set(categorys);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  async getUsers() {
+    const url = environment.baseUrl + '/users/';
+
+    try {
+      const resp = (await lastValueFrom(
+        this.http.get(url)
+      )) as Array<UserSummaryResponse>;
+
+      const users = resp.map(
+        (userData: UserSummaryResponse) => new UserSummary(userData)
+      );
+
+      this.usersSignal.set(users);
     } catch (err) {
       console.error(err);
     }

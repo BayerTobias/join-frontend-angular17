@@ -10,6 +10,7 @@ import {
 import { DataManagerService } from '../../services/data-manager.service';
 import { Category } from '../../../classes/category.class';
 import { CommonModule } from '@angular/common';
+import { UserSummary } from '../../../classes/user-summary.class';
 
 @Component({
   selector: 'app-add-task',
@@ -39,6 +40,8 @@ export class AddTaskComponent {
   categorys: Category[] = [];
   selectedCategory: Category | null = null;
 
+  users: UserSummary[] = [];
+
   addTaskForm: FormGroup;
 
   private fb = inject(FormBuilder);
@@ -54,6 +57,9 @@ export class AddTaskComponent {
 
     effect(() => {
       this.updateCategorysArray(this.dataManager.categorysSignal());
+    });
+    effect(() => {
+      this.updateUsersArray(this.dataManager.usersSignal());
     });
   }
 
@@ -75,6 +81,10 @@ export class AddTaskComponent {
 
   updateCategorysArray(signalData: Category[]) {
     this.categorys = signalData;
+  }
+
+  updateUsersArray(signalData: UserSummary[]) {
+    this.users = signalData;
   }
 
   toggleCategoryPicker() {
@@ -104,6 +114,8 @@ export class AddTaskComponent {
       category.name = this.newCategoryInput?.value;
 
       await this.dataManager.createCategory(category);
+      this.categorys.push(category);
+      this.closeCreateCategory();
     }
   }
 
