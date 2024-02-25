@@ -50,4 +50,8 @@ export class DataManagerService {
       console.error(err);
     }
   }
+
+  async createCategory(category: Category) {
+    console.log('category upload: ', category);
+  }
 }

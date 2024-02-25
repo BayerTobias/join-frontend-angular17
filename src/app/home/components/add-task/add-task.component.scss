@@ -1,6 +1,10 @@
 @import "../../../../styles.scss";
 @import "../../../../mixin.scss";
 
+.no-padding {
+  padding: 0 !important;
+}
+
 main {
   height: calc(100vh - 95px);
   display: flex;
@@ -147,15 +151,6 @@ textarea::placeholder {
   display: flex;
   justify-content: end;
   gap: 25px;
-}
-
-.button-secondary-with-icon:hover img {
-  filter: invert(47%) sepia(28%) saturate(5405%) hue-rotate(164deg)
-    brightness(101%) contrast(101%);
-}
-
-.button-secondary-with-icon:active img {
-  filter: none;
 }
 
 #prio-box {

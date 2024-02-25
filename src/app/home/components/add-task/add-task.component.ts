@@ -9,20 +9,37 @@ import {
 } from '@angular/forms';
 import { DataManagerService } from '../../services/data-manager.service';
 import { Category } from '../../../classes/category.class';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-task',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, ButtonWithIconComponent],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    ButtonWithIconComponent,
+    CommonModule,
+  ],
   templateUrl: './add-task.component.html',
   styleUrl: './add-task.component.scss',
 })
 export class AddTaskComponent {
-  addTaskForm: FormGroup;
+  categoryColors: string[] = [
+    '#8AA4FF',
+    '#F00',
+    '#2AD300',
+    '#FF8A00',
+    '#E200BE',
+    '#0038FF',
+  ];
+  createCategoryOpen: boolean = false;
+  selectedColor: string | null = null;
+
   selectCategoryOpen: boolean = false;
   categorys: Category[] = [];
-
   selectedCategory: Category | null = null;
+
+  addTaskForm: FormGroup;
 
   private fb = inject(FormBuilder);
   public dataManager = inject(DataManagerService);
@@ -32,6 +49,7 @@ export class AddTaskComponent {
       title: ['', Validators.required],
       description: ['', Validators.required],
       date: ['', Validators.required],
+      newCategoryInput: [''],
     });
 
     effect(() => {
@@ -51,17 +69,46 @@ export class AddTaskComponent {
     return this.addTaskForm.get('date');
   }
 
+  get newCategoryInput() {
+    return this.addTaskForm.get('newCategoryInput');
+  }
+
   updateCategorysArray(signalData: Category[]) {
     this.categorys = signalData;
   }
 
   toggleCategoryPicker() {
+    this.selectedCategory = null;
     this.selectCategoryOpen = !this.selectCategoryOpen;
   }
 
   setCategory(category: Category) {
     this.selectedCategory = category;
     this.selectCategoryOpen = false;
+  }
+
+  openCreateCategory() {
+    this.createCategoryOpen = true;
+  }
+
+  closeCreateCategory() {
+    this.selectedColor = null;
+    this.createCategoryOpen = false;
+  }
+
+  async addNewCategory() {
+    let category = new Category();
+
+    if (this.selectedColor && this.newCategoryInput?.value) {
+      category.color = this.selectedColor;
+      category.name = this.newCategoryInput?.value;
+
+      await this.dataManager.createCategory(category);
+    }
+  }
+
+  selectColor(color: string) {
+    this.selectedColor = color;
   }
 
   addTask() {

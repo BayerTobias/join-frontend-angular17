@@ -33,6 +33,42 @@
 
         <div id="category-box" class="input-box">
           <span class="label">Category</span>
+
+          @if (createCategoryOpen) {
+          <div id="category" [style.padding]="0">
+            <input
+              placeholder="New category name"
+              id="category-input"
+              type="text"
+              formControlName="newCategoryInput"
+            />
+            <div class="add-category-img-box">
+              <img
+                (click)="closeCreateCategory()"
+                class="subtask-img"
+                src="./assets/img/icons/cancel-icon.svg"
+                alt=""
+              />
+              <div class="seperator-small"></div>
+              <img
+                (click)="addNewCategory()"
+                class="subtask-img"
+                src="./assets/img/icons/checkmark-icon-black.svg"
+                alt=""
+              />
+            </div>
+          </div>
+          <div id="color-picker-box">
+            @for (color of categoryColors; track $index) {
+            <div
+              [ngClass]="{ 'active-color': color === selectedColor }"
+              (click)="selectColor(color)"
+              class="color-picker-color"
+              [style.background-color]="color"
+            ></div>
+            }
+          </div>
+          }@else {
           <div id="category">
             @if (!selectedCategory) {
             <div (click)="toggleCategoryPicker()">
@@ -45,29 +81,40 @@
             </div>
             }@else {
             <div (click)="toggleCategoryPicker()">
-              <span>{{ selectedCategory.name }}</span>
-              <div
-                class="color-picker-color"
-                [style.background-color]="selectedCategory.color"
-              ></div>
+              <div>
+                <span>{{ selectedCategory.name }}</span>
+                <div
+                  class="color-picker-color"
+                  [style.background-color]="selectedCategory.color"
+                ></div>
+              </div>
+
               <img
                 class="open-arrow"
                 src="../assets/img/icons/open-select-arrow.svg"
                 alt="arrow-down"
               />
             </div>
-            } @if (selectCategoryOpen) { @for (category of categorys; track
-            $index) {
-            <div (click)="setCategory(category)">
-              <span>{{ category.name }}</span>
-              <div
-                class="color-picker-color"
-                [style.background-color]="category.color"
-              ></div>
+            } @if (selectCategoryOpen) {
+
+            <div (click)="openCreateCategory()">
+              <span>New category</span>
             </div>
-            } }
+
+            @for (category of categorys; track $index) {
+            <div (click)="setCategory(category)">
+              <div>
+                <span>{{ category.name }}</span>
+                <div
+                  class="color-picker-color"
+                  [style.background-color]="category.color"
+                ></div>
+              </div>
+            </div>
+            }}
           </div>
-          <div class="d-none" id="color-picker-box"></div>
+          }
+
           <div id="errorTagCategory" class="error-msg-task d-none">
             Please select a category or create a new one
           </div>
