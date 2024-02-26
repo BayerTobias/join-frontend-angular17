@@ -44,6 +44,7 @@ export class AddTaskComponent {
   users: UserSummary[] = [];
 
   today: string = new Date().toISOString().split('T')[0];
+  prio?: string;
 
   addTaskForm: FormGroup;
 
@@ -128,6 +129,10 @@ export class AddTaskComponent {
 
   toggleUserPicker() {
     this.userPickerOpen = !this.userPickerOpen;
+  }
+
+  setPrio(prio: string) {
+    this.prio = prio;
   }
 
   addTask() {
