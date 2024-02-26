@@ -6,10 +6,12 @@ interface UserData {
 export class UserSummary {
   username: string;
   id: number;
+  checked: boolean;
 
   constructor(data?: UserData) {
     this.username = data?.username || '';
     this.id = data?.id || -1;
+    this.checked = false;
   }
 
   toJson() {

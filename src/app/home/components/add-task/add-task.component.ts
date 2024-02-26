@@ -40,6 +40,7 @@ export class AddTaskComponent {
   categorys: Category[] = [];
   selectedCategory: Category | null = null;
 
+  userPickerOpen: boolean = false;
   users: UserSummary[] = [];
 
   addTaskForm: FormGroup;
@@ -121,6 +122,10 @@ export class AddTaskComponent {
 
   selectColor(color: string) {
     this.selectedColor = color;
+  }
+
+  toggleUserPicker() {
+    this.userPickerOpen = !this.userPickerOpen;
   }
 
   addTask() {

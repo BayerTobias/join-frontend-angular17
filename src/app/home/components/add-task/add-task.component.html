@@ -122,8 +122,9 @@
 
         <div id="add-task-assigned-to-box" class="input-box">
           <span class="label">Assigned to</span>
-          <div onclick="toggleUserPicker()" id="assigned-to">
-            <div>
+          @if (!userPickerOpen) {
+          <div id="assigned-to">
+            <div (click)="toggleUserPicker()">
               <span>Select contacts to assign</span>
               <img
                 class="open-arrow"
@@ -132,6 +133,28 @@
               />
             </div>
           </div>
+
+          } @else {
+          <div id="assigned-to">
+            <div (click)="toggleUserPicker()">
+              <span>Select contacts to assign</span>
+              <img
+                class="open-arrow"
+                src="./assets/img/icons/open-select-arrow.svg"
+                alt="arrow-down"
+              />
+            </div>
+            @for (user of users; track $index) {
+
+            <label (change)="user.checked = !user.checked">
+              {{ user.username }}
+              <input name="" type="checkbox" [checked]="user.checked" />
+            </label>
+
+            }
+          </div>
+          }
+
           <div id="errorTagAssign" class="error-msg-task d-none">
             Please assign the task to at least one person
           </div>
