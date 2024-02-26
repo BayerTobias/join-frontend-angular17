@@ -43,6 +43,8 @@ export class AddTaskComponent {
   userPickerOpen: boolean = false;
   users: UserSummary[] = [];
 
+  today: string = new Date().toISOString().split('T')[0];
+
   addTaskForm: FormGroup;
 
   private fb = inject(FormBuilder);

@@ -169,7 +169,7 @@
             <label for="due-date">Due date</label>
             <input
               required
-              onclick="setMinDate()"
+              [min]="today"
               type="date"
               id="due-date"
               formControlName="date"
