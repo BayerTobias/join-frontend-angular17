@@ -12,6 +12,8 @@ import { Category } from '../../../classes/category.class';
 import { CommonModule } from '@angular/common';
 import { UserSummary } from '../../../classes/user-summary.class';
 import { Subtask } from '../../../classes/subtask.class';
+import { Task } from '../../../classes/task.class';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-add-task',
@@ -47,7 +49,7 @@ export class AddTaskComponent {
   subtasks: Subtask[] = [];
 
   today: string = new Date().toISOString().split('T')[0];
-  prio?: string;
+  prio: string = '';
 
   addTaskForm: FormGroup;
 
@@ -159,9 +161,39 @@ export class AddTaskComponent {
   }
 
   addTask() {
-    console.log(this.subtasks);
+    const task = new Task();
 
-    console.log(this.addTaskForm.value);
+    console.log(this.formIsValid());
+
+    if (this.formIsValid()) {
+      task.title = this.addTaskForm.get('title')?.value;
+      task.description = this.addTaskForm.get('description')?.value;
+      task.category = this.selectedCategory as Category;
+      task.assignedTo = this.getSelectedUserIds();
+      task.dueDate = task.description = this.addTaskForm.get('date')?.value; // ggf auf deutsches datum format ändern
+      task.prio = this.prio;
+      task.subtasks = this.subtasks;
+
+      console.log(task);
+    }
+  }
+
+  getSelectedUserIds() {
+    const selectedUsers = this.users.filter((user) => user.checked);
+    const userIds = selectedUsers.map((user) => user.id);
+
+    console.log(userIds);
+
+    return userIds;
+  }
+
+  formIsValid() {
+    return (
+      this.addTaskForm.valid &&
+      this.selectedCategory !== null &&
+      this.users.filter((user) => user.checked).length > 0 &&
+      ['high', 'medium', 'low'].includes(this.prio)
+    );
   }
 
   resetAddTaskForm() {
