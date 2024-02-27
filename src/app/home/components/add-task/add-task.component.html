@@ -234,25 +234,32 @@
                 id="subtask-input"
                 type="text"
                 name="subtask-input"
+                formControlName="subtaskInput"
               />
               <div class="input-icon-box">
                 <img
-                  onclick="clearInput('subtask-input')"
+                  (click)="clearSubtaskInput()"
                   class="subtask-img"
-                  src="../assets/img/icons/cancel-icon.svg"
+                  src="./assets/img/icons/cancel-icon.svg"
                   alt=""
                 />
                 <div class="seperator-small"></div>
                 <img
-                  onclick="addSubtask()"
+                  (click)="addSubtask()"
                   class="subtask-img"
-                  src="../assets/img/icons/checkmark-icon-black.svg"
+                  src="./assets/img/icons/checkmark-icon-black.svg"
                   alt=""
                 />
               </div>
             </div>
           </div>
-          <div id="subtask-box"></div>
+          <div id="subtask-box">
+            @for (subtask of subtasks; track $index) {
+            <label (change)="subtask.complete = !subtask.complete"
+              ><input type="checkbox" /> {{ subtask.title }}</label
+            >
+            }
+          </div>
         </div>
         <div class="form-right-bottom-box">
           <div class="button-box">

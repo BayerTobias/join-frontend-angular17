@@ -11,6 +11,7 @@ import { DataManagerService } from '../../services/data-manager.service';
 import { Category } from '../../../classes/category.class';
 import { CommonModule } from '@angular/common';
 import { UserSummary } from '../../../classes/user-summary.class';
+import { Subtask } from '../../../classes/subtask.class';
 
 @Component({
   selector: 'app-add-task',
@@ -43,6 +44,8 @@ export class AddTaskComponent {
   userPickerOpen: boolean = false;
   users: UserSummary[] = [];
 
+  subtasks: Subtask[] = [];
+
   today: string = new Date().toISOString().split('T')[0];
   prio?: string;
 
@@ -57,6 +60,7 @@ export class AddTaskComponent {
       description: ['', Validators.required],
       date: ['', Validators.required],
       newCategoryInput: [''],
+      subtaskInput: [''],
     });
 
     effect(() => {
@@ -81,6 +85,10 @@ export class AddTaskComponent {
 
   get newCategoryInput() {
     return this.addTaskForm.get('newCategoryInput');
+  }
+
+  get subtaskInput() {
+    return this.addTaskForm.get('subtaskInput');
   }
 
   updateCategorysArray(signalData: Category[]) {
@@ -135,11 +143,28 @@ export class AddTaskComponent {
     this.prio = prio;
   }
 
+  clearSubtaskInput() {
+    this.addTaskForm.get('subtaskInput')?.reset();
+  }
+
+  addSubtask() {
+    let subtask = new Subtask();
+    const inputValue: string = this.addTaskForm.get('subtaskInput')?.value;
+
+    if (inputValue) {
+      subtask.title = inputValue;
+      this.subtasks.push(subtask);
+      this.clearSubtaskInput();
+    }
+  }
+
   addTask() {
+    console.log(this.subtasks);
+
     console.log(this.addTaskForm.value);
   }
 
   resetAddTaskForm() {
-    console.log('reset');
+    this.addTaskForm.reset();
   }
 }

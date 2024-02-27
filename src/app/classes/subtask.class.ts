@@ -1,21 +1,21 @@
 interface SubtaskData {
   title: string;
-  status: boolean;
+  complete: boolean;
 }
 
 export class Subtask {
   title: string;
-  status: boolean;
+  complete: boolean;
 
   constructor(data?: SubtaskData) {
     this.title = data?.title || '';
-    this.status = data?.status || false;
+    this.complete = data?.complete || false;
   }
 
   asJson() {
     return {
       title: this.title,
-      status: this.status,
+      status: this.complete,
     };
   }
 }
