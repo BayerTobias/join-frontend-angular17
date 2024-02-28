@@ -174,7 +174,11 @@ export class AddTaskComponent {
       task.prio = this.prio;
       task.subtasks = this.subtasks;
 
-      console.log(task);
+      try {
+        this.dataManager.createTask(task);
+      } catch (err) {
+        console.error(err);
+      }
     }
   }
 

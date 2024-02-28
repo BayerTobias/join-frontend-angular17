@@ -15,8 +15,7 @@ export class Task {
   constructor(data?: TaskResponse) {
     this.title = data?.title || '';
     this.description = data?.description || '';
-    // this.category = data?.category || '';
-    this.category = new Category() || '';
+    this.category = (data?.category as Category) || ''; // check if this works
     this.status = data?.status || '';
     this.assignedTo = data?.assigned_users || [];
     this.dueDate = data?.dueDate || '';

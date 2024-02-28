@@ -14,8 +14,8 @@ export class Category {
 
   asJson() {
     return {
-      title: this.name,
-      status: this.color,
+      name: this.name,
+      color: this.color,
     };
   }
 }

@@ -72,7 +72,16 @@ export class DataManagerService {
     }
   }
 
+  async createTask(task: Task) {
+    console.log('Task created: ', task);
+  }
+
   async createCategory(category: Category) {
-    console.log('category upload: ', category);
+    const url = environment.baseUrl + '/categorys/';
+    const body = category.asJson();
+
+    console.log(body);
+
+    return lastValueFrom(this.http.post(url, body));
   }
 }

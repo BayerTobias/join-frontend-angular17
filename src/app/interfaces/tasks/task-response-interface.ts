@@ -4,7 +4,7 @@ export interface TaskResponse {
   title: string;
   description: string;
   status: string;
-  category: string;
+  category: {};
   assigned_users: number[] | [];
   dueDate: string;
   priority: string;
