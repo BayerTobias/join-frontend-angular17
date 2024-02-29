@@ -170,9 +170,11 @@ export class AddTaskComponent {
       task.description = this.addTaskForm.get('description')?.value;
       task.category = this.selectedCategory as Category;
       task.assignedTo = this.getSelectedUserIds();
-      task.dueDate = task.description = this.addTaskForm.get('date')?.value; // ggf auf deutsches datum format ändern
+      task.dueDate = this.addTaskForm.get('date')?.value; // ggf auf deutsches datum format ändern
       task.prio = this.prio;
       task.subtasks = this.subtasks;
+
+      console.log(task);
 
       try {
         this.dataManager.createTask(task);

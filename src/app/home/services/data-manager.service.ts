@@ -24,17 +24,24 @@ export class DataManagerService {
 
   async getTasks() {
     const url = environment.baseUrl + '/tasks/';
-
     try {
       const resp = (await lastValueFrom(
         this.http.get(url)
       )) as Array<TaskResponse>;
-
       const tasks = resp.map((taskData: TaskResponse) => new Task(taskData));
       this.tasksSignal.set(tasks);
+      console.log(tasks);
     } catch (err) {
       console.error(err);
     }
+  }
+
+  async createTask(task: Task) {
+    const url = environment.baseUrl + '/tasks/';
+    const body = task.asPayloadJson();
+    console.log('Task created: ', task.asPayloadJson());
+
+    return lastValueFrom(this.http.post(url, body));
   }
 
   async getCategorys() {
@@ -72,15 +79,9 @@ export class DataManagerService {
     }
   }
 
-  async createTask(task: Task) {
-    console.log('Task created: ', task);
-  }
-
   async createCategory(category: Category) {
     const url = environment.baseUrl + '/categorys/';
     const body = category.asJson();
-
-    console.log(body);
 
     return lastValueFrom(this.http.post(url, body));
   }
