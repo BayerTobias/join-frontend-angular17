@@ -32,7 +32,11 @@ export class Task {
       assigned_users: this.assignedTo,
       due_date: this.dueDate,
       priority: this.prio,
-      subtasks: this.subtasks,
+      subtasks: this.subtasksAsJson(),
     };
+  }
+
+  subtasksAsJson() {
+    return this.subtasks.map((subtask) => subtask.asJson());
   }
 }

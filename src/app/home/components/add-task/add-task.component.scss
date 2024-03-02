@@ -6,21 +6,42 @@
 }
 
 main {
-  height: calc(100vh - 95px);
-  display: flex;
+  @include dFlex($jc: space-evenly);
   flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
+  min-height: calc(100vh - 95px);
   position: relative;
   font-size: 21px;
   background-color: $bg-color;
-  overflow: hidden;
+  overflow-x: hidden;
+
+  @media screen and (max-width: 850px) {
+    min-height: calc(100vh - 95px - 90px);
+    margin-bottom: 90px;
+  }
+
+  h1 {
+    font-size: 47px;
+    font-weight: 700;
+    margin-bottom: 40px;
+
+    @media screen and (max-width: 850px) {
+      padding-top: 70px;
+
+      &::before {
+        content: "Kanban Project Management Tool";
+        position: absolute;
+        font-size: 16px;
+        font-weight: 400;
+        top: 30px;
+      }
+    }
+  }
 }
 
-h1 {
-  font-size: 47px;
-  font-weight: 700;
-  margin-bottom: 40px;
+section {
+  @media screen and (max-width: 850px) {
+    width: 90%;
+  }
 }
 
 input::-webkit-calendar-picker-indicator {
@@ -31,50 +52,55 @@ input::-webkit-calendar-picker-indicator {
 
 form {
   display: flex;
-  height: 600px;
-}
+  min-height: 600px;
+  padding-bottom: 20px;
 
-form > div {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  position: relative;
-}
+  @media screen and (max-width: 1200px) {
+    gap: 14px;
+    flex-direction: column;
+  }
 
-form label {
-  font-size: 21px;
-  color: rgba(0, 0, 0, 1);
-}
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    position: relative;
+  }
 
-form input[type="text"],
-form input[type="date"] {
-  height: 51px;
-}
+  label {
+    font-size: 21px;
+    color: rgba(0, 0, 0, 1);
+  }
 
-form textarea {
-  height: 119px;
-  resize: none;
-}
+  input[type="text"],
+  input[type="date"] {
+    height: 51px;
+  }
 
-form input,
-form textarea {
-  padding: 13px 21px;
-  border-radius: 10px;
-  outline: unset;
-  border: 1px solid $sidebar-text-color;
-  background-color: white;
-  font-size: 21px;
-}
+  textarea {
+    height: 119px;
+    resize: none;
+  }
 
-input[type="date"]:invalid::-webkit-datetime-edit {
-  color: $sidebar-text-color;
-  font-size: 21px;
-}
+  input,
+  textarea {
+    padding: 13px 21px;
+    border-radius: 10px;
+    outline: unset;
+    border: 1px solid $sidebar-text-color;
+    background-color: white;
+    font-size: 21px;
 
-input::placeholder,
-textarea::placeholder {
-  font-size: 21px;
-  color: $sidebar-text-color;
+    &::placeholder {
+      font-size: 21px;
+      color: $sidebar-text-color;
+    }
+  }
+
+  input[type="date"]:invalid::-webkit-datetime-edit {
+    color: $sidebar-text-color;
+    font-size: 21px;
+  }
 }
 
 /* ===== Form Classes & ID´s ===== */
@@ -83,6 +109,10 @@ textarea::placeholder {
   margin: 0px 25px;
   border-left: 1px solid rgba(209, 209, 209, 1);
   height: 501px;
+
+  @media screen and (max-width: 1200px) {
+    display: none !important;
+  }
 }
 
 .input-box {
@@ -108,8 +138,7 @@ textarea::placeholder {
 }
 
 .input-icon-box {
-  display: flex;
-  align-items: center;
+  @include dFlex();
 
   > div {
     border-left: 1px solid black;
@@ -123,54 +152,68 @@ textarea::placeholder {
   color: rgba(0, 0, 0, 1);
 }
 
-.placeholder {
-  font-size: 21px;
-  color: $sidebar-text-color;
-}
+// .placeholder {
+//   font-size: 21px;
+//   color: $sidebar-text-color;
+// }
 
-.input {
-  height: 51px;
-  padding: 13px 21px;
-  border-radius: 10px;
-  outline: unset;
-  border: 1px solid $sidebar-text-color;
-  background-color: white;
-}
+// .input {
+//   height: 51px;
+//   padding: 13px 21px;
+//   border-radius: 10px;
+//   outline: unset;
+//   border: 1px solid $sidebar-text-color;
+//   background-color: white;
+// }
 
 .form-right-box {
   justify-content: space-between;
-}
 
-.form-right-top-box {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
+  .form-right-top-box {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
 
-.button-box {
-  display: flex;
-  justify-content: end;
-  gap: 25px;
+  .button-box {
+    @include dFlex($jc: end, $gp: 25px);
+
+    @media screen and (max-width: 1200px) {
+      justify-content: center;
+    }
+  }
 }
 
 #prio-box {
   display: flex;
   gap: 10px;
-}
 
-#prio-box div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  padding: 18px 10px;
-  height: 51px;
-  width: 136px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: $nuevo;
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+    align-items: center;
 
-  cursor: pointer;
+    div {
+      width: 100%;
+    }
+  }
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 10px;
+    height: 51px;
+    width: 136px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: $nuevo;
+    cursor: pointer;
+
+    @media screen and (max-width: 500px) {
+      width: 100%;
+    }
+  }
 }
 
 #assigned-to {
@@ -224,15 +267,15 @@ textarea::placeholder {
   position: absolute;
   right: 14px;
   top: 47px;
-}
 
-.add-category-img-box > div {
-  border-left: 1px solid black;
-  height: 25px;
-}
+  &:hover {
+    background-color: unset !important;
+  }
 
-.add-category-img-box:hover {
-  background-color: unset !important;
+  div {
+    border-left: 1px solid black;
+    height: 25px;
+  }
 }
 
 #assigned-to label {

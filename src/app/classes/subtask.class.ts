@@ -15,7 +15,7 @@ export class Subtask {
   asJson() {
     return {
       title: this.title,
-      status: this.complete,
+      complete: this.complete,
     };
   }
 }
