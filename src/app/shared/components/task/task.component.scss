@@ -1,0 +1,15 @@
+@import "../../../../styles.scss";
+@import "../../../../mixin.scss";
+
+.task {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 19px;
+  width: 100%;
+  background: white;
+  border-radius: 30px;
+  box-shadow: $shadoe-backlog-box;
+  cursor: pointer;
+  position: relative;
+}

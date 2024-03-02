@@ -165,10 +165,10 @@ export class AddTaskComponent {
 
     console.log(this.formIsValid());
 
-    if (this.formIsValid()) {
+    if (this.formIsValid() && this.selectedCategory !== null) {
       task.title = this.addTaskForm.get('title')?.value;
       task.description = this.addTaskForm.get('description')?.value;
-      task.category = this.selectedCategory as Category;
+      task.categoryId = this.selectedCategory.id;
       task.assignedTo = this.getSelectedUserIds();
       task.dueDate = this.addTaskForm.get('date')?.value; // ggf auf deutsches datum format ändern
       task.prio = this.prio;

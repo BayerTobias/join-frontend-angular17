@@ -1,0 +1,36 @@
+<div
+  onclick="openTask()"
+  class="task"
+  draggable="true"
+  ondragstart="startDragging()"
+>
+  <!-- <div id="mobileBox${index}" class="mobile-category-box">
+    <img
+      onclick="doNotClose(event), changeStatusMobile()"
+      style="transform: rotate(90deg)"
+      src="./assets/img/icons/arrow-left.svg"
+      alt=""
+    />
+    <img
+      onclick="doNotClose(event), changeStatusMobile()"
+      style="transform: rotate(-90deg)"
+      src="./assets/img/icons/arrow-left.svg"
+      alt=""
+    />
+  </div> -->
+  <span class="task-category">{{ category }}</span>
+  <div class="task-title-description-box">
+    <b></b>
+    <p></p>
+  </div>
+  <div id="" class="subtask-box"></div>
+  <div class="assign-and-prio-box">
+    <div
+      class="assigned-to-overview-box"
+      id="overview-assigned-to-box${}"
+    ></div>
+    <div class="task-prio-box">
+      <img src="" alt="" />
+    </div>
+  </div>
+</div>

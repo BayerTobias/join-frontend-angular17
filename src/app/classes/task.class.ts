@@ -5,7 +5,7 @@ import { Subtask } from './subtask.class';
 export class Task {
   title: string;
   description: string;
-  category: Category;
+  categoryId: number;
   status: string;
   assignedTo: number[] | [];
   dueDate: string;
@@ -15,7 +15,7 @@ export class Task {
   constructor(data?: TaskResponse) {
     this.title = data?.title || '';
     this.description = data?.description || '';
-    this.category = (data?.category as Category) || '';
+    this.categoryId = data?.category || -1;
     this.status = data?.status || 'todo';
     this.assignedTo = data?.assigned_users || [];
     this.dueDate = data?.dueDate || '';
@@ -27,7 +27,7 @@ export class Task {
     return {
       title: this.title,
       description: this.description,
-      category: this.category.id,
+      category: this.categoryId,
       status: this.status,
       assigned_users: this.assignedTo,
       due_date: this.dueDate,
