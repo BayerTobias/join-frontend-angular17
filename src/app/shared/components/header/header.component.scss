@@ -17,6 +17,22 @@ header {
 
   @media (max-width: 850px) {
     left: 0;
+    padding: 0 20px;
+  }
+
+  .header-logo {
+    height: 55px;
+    display: none;
+
+    @media (max-width: 850px) {
+      display: block;
+    }
+  }
+
+  span {
+    @media (max-width: 850px) {
+      display: none;
+    }
   }
 
   .right-frame {
@@ -27,6 +43,10 @@ header {
 
     a {
       height: max-content;
+
+      @media screen and (max-width: 850px) {
+        display: none;
+      }
     }
   }
 
