@@ -1,1 +1,96 @@
-<p>board works!</p>
+<main id="boardMain">
+  <div class="bord-header">
+    <h1>Board</h1>
+    <div>
+      <div class="input-wrapper">
+        <input oninput="searchTask()" placeholder="Find Task" type="text" />
+        <div>
+          <img src="../assets/img/icons/magnifying-glass.svg" alt="search" />
+        </div>
+      </div>
+
+      <app-button-with-icon
+        [content]="'Add Task'"
+        [imgSrc]="'./assets/img/icons/add-task-icon.svg'"
+        [colorStyle]="'main-color-style'"
+      ></app-button-with-icon>
+    </div>
+  </div>
+  <section class="drag-and-drop-container">
+    <div class="drag-and-drop-row">
+      <div class="drag-and-drop-header">
+        <span>To do</span>
+        <div onclick="openAddTaskOverlay('to-do')">
+          <img
+            src="../assets/img/icons/add-task-main-color-icon.svg"
+            alt="add-task-icon"
+          />
+        </div>
+      </div>
+      <div
+        id="to-do-area"
+        ondrop="moveTo('to-do')"
+        ondragleave="toggleDropareaHoverEffect('to-do-area', 'remove')"
+        ondragover="allowDrop(event, 'to-do-area')"
+        class="drag-area"
+      ></div>
+    </div>
+
+    <div class="drag-and-drop-row">
+      <div class="drag-and-drop-header">
+        <span>In progress</span>
+        <div onclick="openAddTaskOverlay('in-progress')">
+          <img
+            src="../assets/img/icons/add-task-main-color-icon.svg"
+            alt="add-task-icon"
+          />
+        </div>
+      </div>
+      <div
+        id="in-progress-area"
+        ondrop="moveTo('in-progress')"
+        ondragleave="toggleDropareaHoverEffect('in-progress-area', 'remove')"
+        ondragover="allowDrop(event, 'in-progress-area')"
+        class="drag-area"
+      ></div>
+    </div>
+
+    <div class="drag-and-drop-row">
+      <div class="drag-and-drop-header">
+        <span>Awaiting Feedback</span>
+        <div onclick="openAddTaskOverlay('awaiting-feedback')">
+          <img
+            src="../assets/img/icons/add-task-main-color-icon.svg"
+            alt="add-task-icon"
+          />
+        </div>
+      </div>
+      <div
+        id="awaiting-feedback-area"
+        ondragleave="toggleDropareaHoverEffect('awaiting-feedback-area', 'remove')"
+        ondrop="moveTo('awaiting-feedback')"
+        ondragover="allowDrop(event, 'awaiting-feedback-area')"
+        class="drag-area"
+      ></div>
+    </div>
+
+    <div class="drag-and-drop-row">
+      <div class="drag-and-drop-header">
+        <span>Done</span>
+        <div onclick="openAddTaskOverlay('done')">
+          <img
+            src="../assets/img/icons/add-task-main-color-icon.svg"
+            alt="add-task-icon"
+          />
+        </div>
+      </div>
+      <div
+        id="done-area"
+        ondragleave="toggleDropareaHoverEffect('done-area', 'remove')"
+        ondrop="moveTo('done')"
+        ondragover="allowDrop(event, 'done-area')"
+        class="drag-area"
+      ></div>
+    </div>
+  </section>
+</main>
