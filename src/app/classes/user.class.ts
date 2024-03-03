@@ -1,5 +1,7 @@
 interface UserData {
   username: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
   initials: string;
@@ -8,6 +10,8 @@ interface UserData {
 
 export class User {
   username: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
   initials: string;
@@ -15,6 +19,8 @@ export class User {
 
   constructor(data?: UserData) {
     this.username = data?.username || '';
+    this.firstName = data?.firstName || '';
+    this.lastName = data?.lastName || '';
     this.email = data?.email || '';
     this.password = data?.password || '';
     this.initials = data?.initials || '';
@@ -24,6 +30,8 @@ export class User {
   toJson() {
     return {
       username: this.username,
+      firstname: this.firstName,
+      lastname: this.lastName,
       email: this.email,
       password: this.password,
       initials: this.initials,

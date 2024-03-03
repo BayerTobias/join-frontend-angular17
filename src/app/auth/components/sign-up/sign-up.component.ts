@@ -66,6 +66,8 @@ export class SignUpComponent {
     this.signUpForm = this.fb.group(
       {
         username: ['', Validators.required],
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
         email: ['', [Validators.required, CustomValidators.emailValidator]],
         password: [
           '',
@@ -104,6 +106,14 @@ export class SignUpComponent {
     return this.signUpForm.get('username');
   }
 
+  get firstName() {
+    return this.signUpForm.get('firstName');
+  }
+
+  get lastName() {
+    return this.signUpForm.get('lastName');
+  }
+
   get email() {
     return this.signUpForm.get('email');
   }
@@ -138,14 +148,17 @@ export class SignUpComponent {
     user.username = this.username?.value;
     user.email = this.email?.value;
     user.password = this.password?.value;
+    user.firstName = this.firstName?.value;
+    user.lastName = this.lastName?.value;
 
     if (this.signUpForm.valid) {
       this.loading = true;
       this.signUpForm.disable();
       this.setColorAndInitials(user);
       try {
-        await this.auth.createUserWithUsernameAndPassword(user);
-        this.animateAndRoute();
+        // await this.auth.createUserWithUsernameAndPassword(user);
+        // this.animateAndRoute();
+        console.log(user);
       } catch (err: any) {
         this.handleError(err);
       }
@@ -154,16 +167,9 @@ export class SignUpComponent {
 
   setColorAndInitials(user: User) {
     user.color = this.colors[Math.floor(Math.random() * this.colors.length)];
-
-    const splitName = user.username.split(' ');
-    const initials =
-      splitName.length > 1
-        ? `${splitName[0].charAt(0)}${splitName[splitName.length - 1].charAt(
-            0
-          )}`
-        : splitName[0].charAt(0);
-
-    user.initials = initials;
+    user.initials =
+      user.firstName.charAt(0).toUpperCase() +
+      user.lastName.charAt(0).toUpperCase();
   }
 
   animateAndRoute() {

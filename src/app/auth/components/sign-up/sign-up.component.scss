@@ -67,7 +67,7 @@ main {
 }
 
 .user-form {
-  @include dFlex($gp: 36px);
+  @include dFlex($gp: 16px);
   flex-direction: column;
   width: 422px;
 
@@ -92,7 +92,6 @@ main {
 
     .error-msg {
       position: absolute;
-      margin-top: 2px;
       font-size: 12px;
       color: $error-color;
     }

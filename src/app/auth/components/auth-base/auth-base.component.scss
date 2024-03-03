@@ -8,7 +8,7 @@ section {
   min-height: 100vh;
   min-height: 100svh;
   background-color: $bg-color;
-  @include dFlex($jc: space-between);
+  @include dFlex($jc: space-between, $gp: 16px);
   flex-direction: column;
 }
 
