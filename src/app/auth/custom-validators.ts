@@ -34,4 +34,14 @@ export class CustomValidators {
           };
     };
   }
+
+  static noWhitespaceValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const username: string = control.value;
+      if (username && /\s/.test(username)) {
+        return { noWhitespace: true };
+      }
+      return null;
+    };
+  }
 }

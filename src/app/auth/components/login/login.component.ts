@@ -128,7 +128,7 @@ export class LoginComponent {
   async guestLogin() {
     try {
       const resp: LoginResponse = (await this.auth.loginWithEmailAndPassword(
-        'Test User',
+        'TestUser',
         'Test123'
       )) as LoginResponse;
       localStorage.setItem('token', resp.token);

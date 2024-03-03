@@ -65,7 +65,10 @@ export class SignUpComponent {
   ) {
     this.signUpForm = this.fb.group(
       {
-        username: ['', Validators.required],
+        username: [
+          '',
+          [Validators.required, CustomValidators.noWhitespaceValidator()],
+        ],
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
         email: ['', [Validators.required, CustomValidators.emailValidator]],
@@ -156,9 +159,10 @@ export class SignUpComponent {
       this.signUpForm.disable();
       this.setColorAndInitials(user);
       try {
-        // await this.auth.createUserWithUsernameAndPassword(user);
-        // this.animateAndRoute();
-        console.log(user);
+        console.log('Request data', user);
+
+        await this.auth.createUserWithUsernameAndPassword(user);
+        this.animateAndRoute();
       } catch (err: any) {
         this.handleError(err);
       }
