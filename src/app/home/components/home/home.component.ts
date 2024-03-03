@@ -29,8 +29,8 @@ export class HomeComponent {
   }
 
   async getData() {
-    await this.dataManger.getTasks();
     await this.dataManger.getCategorys();
     await this.dataManger.getUsers();
+    await this.dataManger.getTasks();
   }
 }

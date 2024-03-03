@@ -6,6 +6,7 @@ export class Task {
   title: string;
   description: string;
   categoryId: number;
+  category: Category;
   status: string;
   assignedTo: number[] | [];
   dueDate: string;
@@ -16,6 +17,7 @@ export class Task {
     this.title = data?.title || '';
     this.description = data?.description || '';
     this.categoryId = data?.category || -1;
+    this.category = new Category();
     this.status = data?.status || 'todo';
     this.assignedTo = data?.assigned_users || [];
     this.dueDate = data?.dueDate || '';

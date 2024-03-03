@@ -5,7 +5,7 @@
       <div class="input-wrapper">
         <input oninput="searchTask()" placeholder="Find Task" type="text" />
         <div>
-          <img src="../assets/img/icons/magnifying-glass.svg" alt="search" />
+          <img src="./assets/img/icons/magnifying-glass.svg" alt="search" />
         </div>
       </div>
 
@@ -22,7 +22,7 @@
         <span>To do</span>
         <div onclick="openAddTaskOverlay('to-do')">
           <img
-            src="../assets/img/icons/add-task-main-color-icon.svg"
+            src="./assets/img/icons/add-task-main-color-icon.svg"
             alt="add-task-icon"
           />
         </div>
@@ -35,7 +35,7 @@
         class="drag-area"
       >
         @for (task of todoTasks; track $index) {
-        <app-task [category]="1"></app-task>
+        <app-task [task]="task"></app-task>
         }
       </div>
     </div>
@@ -45,7 +45,7 @@
         <span>In progress</span>
         <div onclick="openAddTaskOverlay('in-progress')">
           <img
-            src="../assets/img/icons/add-task-main-color-icon.svg"
+            src="./assets/img/icons/add-task-main-color-icon.svg"
             alt="add-task-icon"
           />
         </div>
@@ -58,7 +58,7 @@
         class="drag-area"
       >
         @for (task of inProgressTasks; track $index) {
-        <app-task></app-task>
+        <app-task [task]="task"></app-task>
         }
       </div>
     </div>
@@ -68,7 +68,7 @@
         <span>Awaiting Feedback</span>
         <div onclick="openAddTaskOverlay('awaiting-feedback')">
           <img
-            src="../assets/img/icons/add-task-main-color-icon.svg"
+            src="./assets/img/icons/add-task-main-color-icon.svg"
             alt="add-task-icon"
           />
         </div>
@@ -81,7 +81,7 @@
         class="drag-area"
       >
         @for (task of awaitingFeedbackTasks; track $index) {
-        <app-task></app-task>
+        <app-task [task]="task"></app-task>
         }
       </div>
     </div>
@@ -91,7 +91,7 @@
         <span>Done</span>
         <div onclick="openAddTaskOverlay('done')">
           <img
-            src="../assets/img/icons/add-task-main-color-icon.svg"
+            src="./assets/img/icons/add-task-main-color-icon.svg"
             alt="add-task-icon"
           />
         </div>
@@ -104,7 +104,7 @@
         class="drag-area"
       >
         @for (task of doneTasks; track $index) {
-        <app-task></app-task>
+        <app-task [task]="task"></app-task>
         }
       </div>
     </div>

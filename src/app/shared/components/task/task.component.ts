@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
+import { Task } from '../../../classes/task.class';
+import { DataManagerService } from '../../../home/services/data-manager.service';
 
 @Component({
   selector: 'app-task',
@@ -9,5 +11,11 @@ import { Component, Input } from '@angular/core';
   styleUrl: './task.component.scss',
 })
 export class TaskComponent {
-  @Input() category: number = -1;
+  dataManager = inject(DataManagerService);
+
+  @Input() task: Task = new Task();
+
+  // ngOnInit() {
+  //   console.log(this.dataManager.usersSignal());
+  // }
 }

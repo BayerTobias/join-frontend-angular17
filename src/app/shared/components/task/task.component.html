@@ -18,19 +18,30 @@
       alt=""
     />
   </div> -->
-  <span class="task-category">{{ category }}</span>
+  <span [style.background-color]="task.category.color" class="task-category">{{
+    task.category.name
+  }}</span>
+
   <div class="task-title-description-box">
-    <b></b>
-    <p></p>
+    <b>{{ task.title }}</b>
+    <p>{{ task.description }}</p>
   </div>
-  <div id="" class="subtask-box"></div>
+
+  @if (task.subtasks.length > 0) {
+  <div class="subtask-box"></div>
+  }
+
   <div class="assign-and-prio-box">
-    <div
-      class="assigned-to-overview-box"
-      id="overview-assigned-to-box${}"
-    ></div>
+    <div class="assigned-to-overview-box">
+      @for (user of task.assignedTo; track $index) {
+      <span>{{ user }}</span>
+      }
+    </div>
     <div class="task-prio-box">
-      <img src="" alt="" />
+      <img
+        src="./assets/img/icons/{{ task.prio }}-prio-icon-small.svg"
+        alt="prio"
+      />
     </div>
   </div>
 </div>

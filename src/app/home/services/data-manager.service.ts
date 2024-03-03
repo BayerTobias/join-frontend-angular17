@@ -29,11 +29,25 @@ export class DataManagerService {
         this.http.get(url)
       )) as Array<TaskResponse>;
       const tasks = resp.map((taskData: TaskResponse) => new Task(taskData));
+      this.updateCategoriesForTasks(tasks);
       this.tasksSignal.set(tasks);
       console.log(tasks);
     } catch (err) {
       console.error(err);
     }
+  }
+
+  updateCategoriesForTasks(tasks: Task[]) {
+    const categories = this.categorysSignal();
+
+    tasks.forEach((task) => {
+      const matchingCategory = categories.find(
+        (category) => category.id === task.categoryId
+      );
+      if (matchingCategory) {
+        task.category = matchingCategory;
+      }
+    });
   }
 
   async createTask(task: Task) {
