@@ -28,7 +28,18 @@
   </div>
 
   @if (task.subtasks.length > 0) {
-  <div class="subtask-box"></div>
+  <div class="subtask-box">
+    <div class="progress-bar-box">
+      <div
+        [style.width.%]="completedSubtasksPercent"
+        class="progress-bar-bar"
+      ></div>
+    </div>
+    <div class="subtask-text-box">
+      <span>{{ completedSubtasks }}/{{ task.subtasks.length }}</span>
+      <span>Done</span>
+    </div>
+  </div>
   }
 
   <div class="assign-and-prio-box">
