@@ -1,6 +1,7 @@
 import { TaskResponse } from './../interfaces/tasks/task-response-interface';
 import { Category } from './category.class';
 import { Subtask } from './subtask.class';
+import { UserSummary } from './user-summary.class';
 
 export class Task {
   title: string;
@@ -8,7 +9,7 @@ export class Task {
   categoryId: number;
   category: Category;
   status: string;
-  assignedTo: number[] | [];
+  assignedTo: number[] | [] | UserSummary[];
   dueDate: string;
   prio: string;
   subtasks: Subtask[];

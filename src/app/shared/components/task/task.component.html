@@ -33,9 +33,11 @@
 
   <div class="assign-and-prio-box">
     <div class="assigned-to-overview-box">
-      @for (user of task.assignedTo; track $index) {
-      <span>{{ user }}</span>
-      }
+      @for (user of task.assignedTo; track $index) { @if (isUserSummary(user)) {
+      <span [style.background-color]="user.color" class="assigned-to-display">{{
+        user.initials
+      }}</span>
+      } }
     </div>
     <div class="task-prio-box">
       <img

@@ -42,7 +42,7 @@ export class SummaryComponent {
 
     this.tasksInProgress = statusCounts['in-progress'] || 0;
     this.tasksAwaitingFeedback = statusCounts['awaiting-feedback'] || 0;
-    this.tasksToDo = statusCounts['to-do'] || 0;
+    this.tasksToDo = statusCounts['todo'] || 0;
     this.TasksDone = statusCounts['done'] || 0;
     this.highPrioTasks = tasks.filter((task) => task.prio === 'high').length;
   }

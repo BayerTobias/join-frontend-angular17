@@ -1,6 +1,8 @@
 interface UserData {
   username: string;
   id: number;
+  initials: string;
+  color: string;
 }
 
 export class UserSummary {
@@ -14,8 +16,8 @@ export class UserSummary {
     this.username = data?.username || '';
     this.id = data?.id || -1;
     this.checked = false;
-    this.initials = '';
-    this.color = '';
+    this.initials = data?.initials || '';
+    this.color = data?.color || '';
   }
 
   toJson() {

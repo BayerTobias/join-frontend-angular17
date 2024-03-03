@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, WritableSignal, inject, signal } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { BehaviorSubject, lastValueFrom } from 'rxjs';
+import { lastValueFrom } from 'rxjs';
 
 import { Task } from '../../classes/task.class';
 import { Category } from '../../classes/category.class';
@@ -30,6 +30,8 @@ export class DataManagerService {
       )) as Array<TaskResponse>;
       const tasks = resp.map((taskData: TaskResponse) => new Task(taskData));
       this.updateCategoriesForTasks(tasks);
+      this.matchUserIdsWithUsers(tasks);
+
       this.tasksSignal.set(tasks);
       console.log(tasks);
     } catch (err) {
@@ -47,6 +49,17 @@ export class DataManagerService {
       if (matchingCategory) {
         task.category = matchingCategory;
       }
+    });
+  }
+
+  matchUserIdsWithUsers(tasks: Task[]) {
+    const users = this.usersSignal();
+
+    tasks.forEach((task) => {
+      const matchedUsers = task.assignedTo
+        .map((userId) => users.find((user) => user.id === userId))
+        .filter((user): user is UserSummary => user !== undefined);
+      task.assignedTo = matchedUsers;
     });
   }
 
