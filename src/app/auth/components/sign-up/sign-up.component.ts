@@ -47,6 +47,17 @@ export class SignUpComponent {
   animationOverlay: boolean = false;
   animationStarted: boolean = false;
 
+  colors: string[] = [
+    '#008ddc',
+    '#ff7827',
+    '#a900f8',
+    '#502787',
+    '#ff63fa',
+    '#00d345',
+    '#bb051d',
+    '#ffc938',
+  ];
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -131,6 +142,7 @@ export class SignUpComponent {
     if (this.signUpForm.valid) {
       this.loading = true;
       this.signUpForm.disable();
+      this.setColorAndInitials(user);
       try {
         await this.auth.createUserWithUsernameAndPassword(user);
         this.animateAndRoute();
@@ -138,6 +150,20 @@ export class SignUpComponent {
         this.handleError(err);
       }
     } else this.signUpForm.markAllAsTouched();
+  }
+
+  setColorAndInitials(user: User) {
+    user.color = this.colors[Math.floor(Math.random() * this.colors.length)];
+
+    const splitName = user.username.split(' ');
+    const initials =
+      splitName.length > 1
+        ? `${splitName[0].charAt(0)}${splitName[splitName.length - 1].charAt(
+            0
+          )}`
+        : splitName[0].charAt(0);
+
+    user.initials = initials;
   }
 
   animateAndRoute() {
