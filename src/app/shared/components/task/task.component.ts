@@ -31,8 +31,6 @@ export class TaskComponent {
 
     this.completedSubtasksPercent =
       (this.completedSubtasks / this.task.subtasks.length) * 100;
-
-    console.log(this.completedSubtasksPercent);
   }
 
   isUserSummary(user: number | UserSummary): user is UserSummary {

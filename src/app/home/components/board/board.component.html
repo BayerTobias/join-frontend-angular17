@@ -29,13 +29,17 @@
       </div>
       <div
         id="to-do-area"
-        ondrop="moveTo('to-do')"
-        ondragleave="toggleDropareaHoverEffect('to-do-area', 'remove')"
-        ondragover="allowDrop(event, 'to-do-area')"
+        (drop)="moveTo('todo')"
+        (dragleave)="toggleDropareaHoverEffect('to-do-area', 'remove')"
+        (dragover)="allowDrop($event, 'to-do-area')"
         class="drag-area"
       >
         @for (task of todoTasks; track $index) {
-        <app-task [task]="task"></app-task>
+        <app-task
+          draggable="true"
+          (dragstart)="startDragging(task)"
+          [task]="task"
+        ></app-task>
         }
       </div>
     </div>
@@ -52,13 +56,17 @@
       </div>
       <div
         id="in-progress-area"
-        ondrop="moveTo('in-progress')"
-        ondragleave="toggleDropareaHoverEffect('in-progress-area', 'remove')"
-        ondragover="allowDrop(event, 'in-progress-area')"
+        (drop)="moveTo('in-progress')"
+        (dragleave)="toggleDropareaHoverEffect('in-progress-area', 'remove')"
+        (dragover)="allowDrop($event, 'in-progress-area')"
         class="drag-area"
       >
         @for (task of inProgressTasks; track $index) {
-        <app-task [task]="task"></app-task>
+        <app-task
+          draggable="true"
+          (dragstart)="startDragging(task)"
+          [task]="task"
+        ></app-task>
         }
       </div>
     </div>
@@ -75,13 +83,19 @@
       </div>
       <div
         id="awaiting-feedback-area"
-        ondragleave="toggleDropareaHoverEffect('awaiting-feedback-area', 'remove')"
-        ondrop="moveTo('awaiting-feedback')"
-        ondragover="allowDrop(event, 'awaiting-feedback-area')"
+        (dragleave)="
+          toggleDropareaHoverEffect('awaiting-feedback-area', 'remove')
+        "
+        (drop)="moveTo('awaiting-feedback')"
+        (dragover)="allowDrop($event, 'awaiting-feedback-area')"
         class="drag-area"
       >
         @for (task of awaitingFeedbackTasks; track $index) {
-        <app-task [task]="task"></app-task>
+        <app-task
+          draggable="true"
+          (dragstart)="startDragging(task)"
+          [task]="task"
+        ></app-task>
         }
       </div>
     </div>
@@ -98,13 +112,17 @@
       </div>
       <div
         id="done-area"
-        ondragleave="toggleDropareaHoverEffect('done-area', 'remove')"
-        ondrop="moveTo('done')"
-        ondragover="allowDrop(event, 'done-area')"
+        (dragleave)="toggleDropareaHoverEffect('done-area', 'remove')"
+        (drop)="moveTo('done')"
+        (dragover)="allowDrop($event, 'done-area')"
         class="drag-area"
       >
         @for (task of doneTasks; track $index) {
-        <app-task [task]="task"></app-task>
+        <app-task
+          draggable="true"
+          (dragstart)="startDragging(task)"
+          [task]="task"
+        ></app-task>
         }
       </div>
     </div>

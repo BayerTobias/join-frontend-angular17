@@ -18,6 +18,8 @@ export class BoardComponent {
   public awaitingFeedbackTasks: Task[] = [];
   public doneTasks: Task[] = [];
 
+  currentlyDraggedTask?: Task;
+
   public dataManager = inject(DataManagerService);
 
   constructor() {
@@ -33,5 +35,42 @@ export class BoardComponent {
       (task: Task) => task.status === 'awaiting-feedback'
     );
     this.doneTasks = tasks.filter((task: Task) => task.status === 'done');
+  }
+
+  startDragging(task: Task) {
+    this.currentlyDraggedTask = task;
+
+    console.log(task);
+  }
+
+  moveTo(status: string) {
+    console.log('moveTo');
+
+    if (this.currentlyDraggedTask) {
+      this.currentlyDraggedTask.status = status;
+    }
+
+    this.filterTasks(this.dataManager.tasksSignal());
+
+    // tasks[currentlyDraggedElement].status = status;
+    // toggleDropareaHoverEffect(status + "-area", "remove");
+    // currentlyDraggedElement = null;
+    // renderTodos();
+    // await uploadTasks();
+  }
+
+  toggleDropareaHoverEffect(id: string, action: string) {
+    console.log('dragleave');
+
+    // const dragArea = document.getElementById(id);
+    // if (action == "remove") dragArea.classList.remove("dragarea-hover");
+    // if (action == "add") dragArea.classList.add("dragarea-hover");
+  }
+
+  allowDrop(ev: Event, id: string) {
+    console.log('dragover');
+
+    ev.preventDefault();
+    // this.toggleDropareaHoverEffect(id, 'add');
   }
 }
