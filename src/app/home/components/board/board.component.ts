@@ -39,38 +39,23 @@ export class BoardComponent {
 
   startDragging(task: Task) {
     this.currentlyDraggedTask = task;
-
-    console.log(task);
   }
 
-  moveTo(status: string) {
-    console.log('moveTo');
-
+  moveTo(dorpArea: HTMLDivElement, status: string) {
     if (this.currentlyDraggedTask) {
+      this.toggleDropareaHoverEffect(dorpArea, 'remove');
       this.currentlyDraggedTask.status = status;
+      this.filterTasks(this.dataManager.tasksSignal());
     }
-
-    this.filterTasks(this.dataManager.tasksSignal());
-
-    // tasks[currentlyDraggedElement].status = status;
-    // toggleDropareaHoverEffect(status + "-area", "remove");
-    // currentlyDraggedElement = null;
-    // renderTodos();
-    // await uploadTasks();
   }
 
-  toggleDropareaHoverEffect(id: string, action: string) {
-    console.log('dragleave');
-
-    // const dragArea = document.getElementById(id);
-    // if (action == "remove") dragArea.classList.remove("dragarea-hover");
-    // if (action == "add") dragArea.classList.add("dragarea-hover");
+  toggleDropareaHoverEffect(dorpArea: HTMLDivElement, action: string) {
+    if (action === 'add') dorpArea.classList.add('dragarea-hover');
+    if (action == 'remove') dorpArea.classList.remove('dragarea-hover');
   }
 
-  allowDrop(ev: Event, id: string) {
-    console.log('dragover');
-
+  allowDrop(ev: Event, dorpArea: HTMLDivElement) {
     ev.preventDefault();
-    // this.toggleDropareaHoverEffect(id, 'add');
+    this.toggleDropareaHoverEffect(dorpArea, 'add');
   }
 }

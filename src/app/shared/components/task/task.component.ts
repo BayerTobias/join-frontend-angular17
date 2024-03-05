@@ -3,7 +3,6 @@ import { Component, Input, inject } from '@angular/core';
 import { Task } from '../../../classes/task.class';
 import { DataManagerService } from '../../../home/services/data-manager.service';
 import { UserSummary } from '../../../classes/user-summary.class';
-import { Subtask } from '../../../classes/subtask.class';
 
 @Component({
   selector: 'app-task',

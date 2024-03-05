@@ -28,10 +28,11 @@
         </div>
       </div>
       <div
+        #todoArea
         id="to-do-area"
-        (drop)="moveTo('todo')"
-        (dragleave)="toggleDropareaHoverEffect('to-do-area', 'remove')"
-        (dragover)="allowDrop($event, 'to-do-area')"
+        (drop)="moveTo(todoArea, 'todo')"
+        (dragleave)="toggleDropareaHoverEffect(todoArea, 'remove')"
+        (dragover)="allowDrop($event, todoArea)"
         class="drag-area"
       >
         @for (task of todoTasks; track $index) {
@@ -55,10 +56,11 @@
         </div>
       </div>
       <div
+        #inProgressArea
         id="in-progress-area"
-        (drop)="moveTo('in-progress')"
-        (dragleave)="toggleDropareaHoverEffect('in-progress-area', 'remove')"
-        (dragover)="allowDrop($event, 'in-progress-area')"
+        (drop)="moveTo(inProgressArea, 'in-progress')"
+        (dragleave)="toggleDropareaHoverEffect(inProgressArea, 'remove')"
+        (dragover)="allowDrop($event, inProgressArea)"
         class="drag-area"
       >
         @for (task of inProgressTasks; track $index) {
@@ -82,12 +84,11 @@
         </div>
       </div>
       <div
+        #awaitingFeedbackArea
         id="awaiting-feedback-area"
-        (dragleave)="
-          toggleDropareaHoverEffect('awaiting-feedback-area', 'remove')
-        "
-        (drop)="moveTo('awaiting-feedback')"
-        (dragover)="allowDrop($event, 'awaiting-feedback-area')"
+        (dragleave)="toggleDropareaHoverEffect(awaitingFeedbackArea, 'remove')"
+        (drop)="moveTo(awaitingFeedbackArea, 'awaiting-feedback')"
+        (dragover)="allowDrop($event, awaitingFeedbackArea)"
         class="drag-area"
       >
         @for (task of awaitingFeedbackTasks; track $index) {
@@ -111,10 +112,11 @@
         </div>
       </div>
       <div
+        #doneArea
         id="done-area"
-        (dragleave)="toggleDropareaHoverEffect('done-area', 'remove')"
-        (drop)="moveTo('done')"
-        (dragover)="allowDrop($event, 'done-area')"
+        (dragleave)="toggleDropareaHoverEffect(doneArea, 'remove')"
+        (drop)="moveTo(doneArea, 'done')"
+        (dragover)="allowDrop($event, doneArea)"
         class="drag-area"
       >
         @for (task of doneTasks; track $index) {

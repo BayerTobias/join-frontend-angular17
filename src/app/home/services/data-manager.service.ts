@@ -59,7 +59,7 @@ export class DataManagerService {
       const matchedUsers = task.assignedTo
         .map((userId) => users.find((user) => user.id === userId))
         .filter((user): user is UserSummary => user !== undefined);
-      task.assignedTo = matchedUsers;
+      task.assignedToUserSummarys = matchedUsers;
     });
   }
 
