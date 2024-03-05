@@ -41,11 +41,12 @@ export class BoardComponent {
     this.currentlyDraggedTask = task;
   }
 
-  moveTo(dorpArea: HTMLDivElement, status: string) {
+  async moveTo(dorpArea: HTMLDivElement, status: string) {
     if (this.currentlyDraggedTask) {
       this.toggleDropareaHoverEffect(dorpArea, 'remove');
       this.currentlyDraggedTask.status = status;
       this.filterTasks(this.dataManager.tasksSignal());
+      await this.dataManager.updateTask(this.currentlyDraggedTask);
     }
   }
 

@@ -6,7 +6,7 @@ export interface TaskResponse {
   status: string;
   category: number;
   assigned_users: number[] | [];
-  dueDate: string;
+  due_date: string;
   priority: string;
   subtasks: [];
 }

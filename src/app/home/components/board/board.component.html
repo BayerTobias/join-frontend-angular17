@@ -29,7 +29,6 @@
       </div>
       <div
         #todoArea
-        id="to-do-area"
         (drop)="moveTo(todoArea, 'todo')"
         (dragleave)="toggleDropareaHoverEffect(todoArea, 'remove')"
         (dragover)="allowDrop($event, todoArea)"
@@ -57,7 +56,6 @@
       </div>
       <div
         #inProgressArea
-        id="in-progress-area"
         (drop)="moveTo(inProgressArea, 'in-progress')"
         (dragleave)="toggleDropareaHoverEffect(inProgressArea, 'remove')"
         (dragover)="allowDrop($event, inProgressArea)"
@@ -85,7 +83,6 @@
       </div>
       <div
         #awaitingFeedbackArea
-        id="awaiting-feedback-area"
         (dragleave)="toggleDropareaHoverEffect(awaitingFeedbackArea, 'remove')"
         (drop)="moveTo(awaitingFeedbackArea, 'awaiting-feedback')"
         (dragover)="allowDrop($event, awaitingFeedbackArea)"
@@ -113,7 +110,6 @@
       </div>
       <div
         #doneArea
-        id="done-area"
         (dragleave)="toggleDropareaHoverEffect(doneArea, 'remove')"
         (drop)="moveTo(doneArea, 'done')"
         (dragover)="allowDrop($event, doneArea)"

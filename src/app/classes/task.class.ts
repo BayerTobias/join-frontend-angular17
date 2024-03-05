@@ -25,9 +25,10 @@ export class Task {
     this.status = data?.status || 'todo';
     this.assignedTo = data?.assigned_users || [];
     this.assignedToUserSummarys = [];
-    this.dueDate = data?.dueDate || '';
+    this.dueDate = data?.due_date || '';
     this.prio = data?.priority || '';
-    this.subtasks = data?.subtasks || [];
+    this.subtasks =
+      data?.subtasks.map((subtaskData) => new Subtask(subtaskData)) || [];
   }
 
   asPayloadJson() {
@@ -44,6 +45,8 @@ export class Task {
   }
 
   subtasksAsJson() {
-    return this.subtasks.map((subtask) => subtask.asJson());
+    console.log(this.subtasks);
+
+    return this.subtasks.map((subtask: Subtask) => subtask.asJson());
   }
 }

@@ -71,6 +71,13 @@ export class DataManagerService {
     return lastValueFrom(this.http.post(url, body));
   }
 
+  async updateTask(task: Task) {
+    const url = environment.baseUrl + '/tasks/' + task.id + '/';
+    const body = task.asPayloadJson();
+
+    return lastValueFrom(this.http.patch(url, body));
+  }
+
   async getCategorys() {
     const url = environment.baseUrl + '/categorys/';
 
