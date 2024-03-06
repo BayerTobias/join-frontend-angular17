@@ -1,5 +1,5 @@
 <div onclick="openTask()" class="task">
-  <!-- <div id="mobileBox${index}" class="mobile-category-box">
+  <div id="mobileBox${index}" class="mobile-category-box">
     <img
       onclick="doNotClose(event), changeStatusMobile()"
       style="transform: rotate(90deg)"
@@ -12,7 +12,7 @@
       src="./assets/img/icons/arrow-left.svg"
       alt=""
     />
-  </div> -->
+  </div>
   <span [style.background-color]="task.category.color" class="task-category">{{
     task.category.name
   }}</span>

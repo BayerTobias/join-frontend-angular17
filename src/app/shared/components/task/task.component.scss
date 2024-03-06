@@ -20,16 +20,20 @@
   position: absolute;
   top: 12px;
   right: 12px;
-}
 
-.mobile-category-box > img {
-  height: 30px;
-  width: 30px;
-  border-radius: 50%;
-}
+  @media screen and (max-width: 1350px) {
+    display: block;
+  }
 
-.mobile-category-box > img:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  img {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+  }
 }
 
 .task-category {
@@ -43,35 +47,33 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-}
 
-.task-title-description-box b {
-  color: $main-color;
-  word-wrap: break-word;
-}
+  b {
+    color: $main-color;
+    word-wrap: break-word;
+  }
 
-.task-title-description-box p {
-  color: rgba(168, 168, 168, 1);
-  line-height: 120%;
-  word-wrap: break-word;
+  p {
+    color: rgba(168, 168, 168, 1);
+    line-height: 120%;
+    word-wrap: break-word;
+  }
 }
 
 .subtask-box {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @include dFlex($jc: space-between);
 }
 
 .progress-bar-box {
   width: 138px;
   height: 8px;
   background-color: rgba(244, 244, 244, 1);
-}
 
-.progress-bar-bar {
-  background-color: rgba(41, 171, 226, 1);
-  height: 100%;
-  width: 0%;
+  div {
+    background-color: rgba(41, 171, 226, 1);
+    height: 100%;
+    width: 0%;
+  }
 }
 
 .subtask-text-box {
@@ -79,27 +81,21 @@
 }
 
 .assign-and-prio-box {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include dFlex($jc: space-between);
 }
 
-#assigned-to-box {
+.assigned-to-overview-box {
   display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
+  width: 80%;
+  overflow-x: auto;
 
-#assigned-to-box > div {
-  display: flex;
-  align-items: center;
-  gap: 25px;
+  & > span:not(:first-child) {
+    margin-left: -10px;
+  }
 }
 
 .assigned-to-display {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include dFlex();
   width: 35px;
   height: 35px;
   border-radius: 58px;
@@ -107,28 +103,6 @@
   color: white;
   font-size: 12px;
   flex: 0 0 auto;
-}
-
-.assigned-to-overview-box {
-  display: flex;
-  width: 80%;
-  overflow-x: auto;
-}
-
-.assigned-to-overview-box > span:not(:first-child) {
-  margin-left: -10px;
-}
-
-.assigned-to-display-maximized {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 45px;
-  height: 45px;
-  border-radius: 58px;
-  border: 1px solid white;
-  color: white;
-  font-size: 16px;
 }
 
 .task-prio-box {

@@ -59,4 +59,13 @@ export class BoardComponent {
     ev.preventDefault();
     this.toggleDropareaHoverEffect(dorpArea, 'add');
   }
+
+  changeStatusMobile() {
+    // const availibleStatus = ["to-do", "in-progress", "awaiting-feedback", "done"];
+    // const task = tasks[findIndexOfTasks(taskId)];
+    // const currentStatusIndex = availibleStatus.indexOf(status);
+    // if (doWhat === "previous") task.status = availibleStatus[currentStatusIndex - 1];
+    // if (doWhat === "next") task.status = availibleStatus[currentStatusIndex + 1];
+    // await uploadTasks();
+  }
 }
