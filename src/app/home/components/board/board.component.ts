@@ -46,6 +46,7 @@ export class BoardComponent {
       this.toggleDropareaHoverEffect(dorpArea, 'remove');
       this.currentlyDraggedTask.status = status;
       this.filterTasks(this.dataManager.tasksSignal());
+
       await this.dataManager.updateTask(this.currentlyDraggedTask);
     }
   }
@@ -60,12 +61,8 @@ export class BoardComponent {
     this.toggleDropareaHoverEffect(dorpArea, 'add');
   }
 
-  changeStatusMobile() {
-    // const availibleStatus = ["to-do", "in-progress", "awaiting-feedback", "done"];
-    // const task = tasks[findIndexOfTasks(taskId)];
-    // const currentStatusIndex = availibleStatus.indexOf(status);
-    // if (doWhat === "previous") task.status = availibleStatus[currentStatusIndex - 1];
-    // if (doWhat === "next") task.status = availibleStatus[currentStatusIndex + 1];
-    // await uploadTasks();
+  async filterAndUpdate(event: { task: Task }) {
+    this.filterTasks(this.dataManager.tasksSignal());
+    await this.dataManager.updateTask(event.task);
   }
 }

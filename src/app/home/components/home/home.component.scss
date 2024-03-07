@@ -12,11 +12,12 @@
 
   @media (max-width: 850px) {
     left: 0;
+    bottom: 90px;
 
     width: 100vw;
     width: 100svw;
-    min-height: calc(100vh - 95px - 80px);
-    min-height: calc(100svh - 95px - 80px);
+    min-height: calc(100vh - 95px - 90px);
+    min-height: calc(100svh - 95px - 90px);
   }
 }
 

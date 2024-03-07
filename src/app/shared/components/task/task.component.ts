@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { Task } from '../../../classes/task.class';
 import { DataManagerService } from '../../../home/services/data-manager.service';
 import { UserSummary } from '../../../classes/user-summary.class';
@@ -18,6 +18,10 @@ export class TaskComponent {
   completedSubtasksPercent: number = 0;
 
   @Input() task: Task = new Task();
+  @Input() nextStatus: string = '';
+  @Input() previousStatus: string = '';
+
+  @Output() taskUpdated: EventEmitter<{ task: Task }> = new EventEmitter();
 
   ngOnInit() {
     this.manageSubtasks();
@@ -34,5 +38,11 @@ export class TaskComponent {
 
   isUserSummary(user: number | UserSummary): user is UserSummary {
     return typeof user !== 'number' && user !== null;
+  }
+
+  changeStatusMobile(event: Event, newStatus: string) {
+    event.stopPropagation();
+    this.task.status = newStatus;
+    this.taskUpdated.emit({ task: this.task });
   }
 }

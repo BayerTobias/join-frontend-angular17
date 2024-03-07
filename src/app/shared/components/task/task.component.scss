@@ -16,7 +16,6 @@
 
 .mobile-category-box {
   display: none;
-  z-index: 100;
   position: absolute;
   top: 12px;
   right: 12px;
@@ -62,12 +61,20 @@
 
 .subtask-box {
   @include dFlex($jc: space-between);
+
+  @media screen and (max-width: 1350px) {
+    gap: 4px;
+  }
 }
 
 .progress-bar-box {
   width: 138px;
   height: 8px;
   background-color: rgba(244, 244, 244, 1);
+
+  @media screen and (max-width: 1350px) {
+    width: 90%;
+  }
 
   div {
     background-color: rgba(41, 171, 226, 1);
@@ -77,6 +84,8 @@
 }
 
 .subtask-text-box {
+  @include dFlex($gp: 4px);
+  flex-wrap: nowrap;
   font-size: 12px;
 }
 

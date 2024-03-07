@@ -1,5 +1,5 @@
 <main id="boardMain">
-  <div class="bord-header">
+  <div class="board-header">
     <h1>Board</h1>
     <div>
       <div class="input-wrapper">
@@ -39,6 +39,8 @@
           draggable="true"
           (dragstart)="startDragging(task)"
           [task]="task"
+          [nextStatus]="'in-progress'"
+          (taskUpdated)="filterAndUpdate($event)"
         ></app-task>
         }
       </div>
@@ -66,6 +68,9 @@
           draggable="true"
           (dragstart)="startDragging(task)"
           [task]="task"
+          [nextStatus]="'awaiting-feedback'"
+          [previousStatus]="'todo'"
+          (taskUpdated)="filterAndUpdate($event)"
         ></app-task>
         }
       </div>
@@ -93,6 +98,9 @@
           draggable="true"
           (dragstart)="startDragging(task)"
           [task]="task"
+          [nextStatus]="'done'"
+          [previousStatus]="'in-progress'"
+          (taskUpdated)="filterAndUpdate($event)"
         ></app-task>
         }
       </div>
@@ -120,6 +128,8 @@
           draggable="true"
           (dragstart)="startDragging(task)"
           [task]="task"
+          [previousStatus]="'awaiting-feedback'"
+          (taskUpdated)="filterAndUpdate($event)"
         ></app-task>
         }
       </div>

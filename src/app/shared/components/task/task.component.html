@@ -1,17 +1,19 @@
 <div onclick="openTask()" class="task">
   <div id="mobileBox${index}" class="mobile-category-box">
+    @if (task.status !== 'todo') {
     <img
-      onclick="doNotClose(event), changeStatusMobile()"
+      (click)="changeStatusMobile($event, previousStatus)"
       style="transform: rotate(90deg)"
       src="./assets/img/icons/arrow-left.svg"
       alt=""
-    />
+    />} @if (task.status !== 'done') {
     <img
-      onclick="doNotClose(event), changeStatusMobile()"
+      (click)="changeStatusMobile($event, nextStatus)"
       style="transform: rotate(-90deg)"
       src="./assets/img/icons/arrow-left.svg"
       alt=""
     />
+    }
   </div>
   <span [style.background-color]="task.category.color" class="task-category">{{
     task.category.name

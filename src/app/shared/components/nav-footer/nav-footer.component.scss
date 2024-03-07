@@ -10,6 +10,8 @@ nav {
   width: 100svw;
   height: 90px;
 
+  z-index: 1;
+
   @include dFlex($jc: space-around);
 
   background-color: $main-color;
