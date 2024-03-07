@@ -1,8 +1,11 @@
 <button
   [type]="type"
-  [ngClass]="colorStyle"
+  [ngClass]="[colorStyle, iconOnly ? 'icon-only-button' : '']"
   [disabled]="diasbled"
   [ngStyle]="getStyle()"
 >
-  {{ content }} <img [src]="imgSrc" />
+  @if (!iconOnly) {
+  {{ content }}
+  }
+  <img [src]="imgSrc" />
 </button>

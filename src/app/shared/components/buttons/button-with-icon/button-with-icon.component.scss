@@ -13,6 +13,12 @@ button {
   font-size: 21px;
 }
 
+.icon-only-button {
+  padding: 8px !important;
+  height: 51px !important;
+  width: 51px !important;
+}
+
 .main-color-style {
   background-color: $main-color;
   color: white;

@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal } from '@angular/core';
+import { Component, HostListener, effect, inject, signal } from '@angular/core';
 import { ButtonWithIconComponent } from '../../../shared/components/buttons/button-with-icon/button-with-icon.component';
 import { TaskComponent } from '../../../shared/components/task/task.component';
 import { Task } from '../../../classes/task.class';
@@ -19,11 +19,18 @@ export class BoardComponent {
   public doneTasks: Task[] = [];
 
   currentlyDraggedTask?: Task;
+  mobileButton: boolean = false;
 
   public dataManager = inject(DataManagerService);
 
   constructor() {
     effect(() => this.filterTasks(this.dataManager.tasksSignal()));
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.mobileButton = window.innerWidth <= 850;
+    console.log(window.innerWidth <= 850);
   }
 
   filterTasks(tasks: Task[]) {
