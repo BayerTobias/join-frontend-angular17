@@ -163,8 +163,6 @@ export class AddTaskComponent {
   addTask() {
     const task = new Task();
 
-    console.log(this.formIsValid());
-
     if (this.formIsValid() && this.selectedCategory !== null) {
       task.title = this.addTaskForm.get('title')?.value;
       task.description = this.addTaskForm.get('description')?.value;
@@ -173,8 +171,6 @@ export class AddTaskComponent {
       task.dueDate = this.addTaskForm.get('date')?.value; // ggf auf deutsches datum format ändern
       task.prio = this.prio;
       task.subtasks = this.subtasks;
-
-      console.log(task);
 
       try {
         this.dataManager.createTask(task);
@@ -187,8 +183,6 @@ export class AddTaskComponent {
   getSelectedUserIds() {
     const selectedUsers = this.users.filter((user) => user.checked);
     const userIds = selectedUsers.map((user) => user.id);
-
-    console.log(userIds);
 
     return userIds;
   }
@@ -204,5 +198,8 @@ export class AddTaskComponent {
 
   resetAddTaskForm() {
     this.addTaskForm.reset();
+    this.selectedCategory = null;
+    this.prio = '';
+    this.subtasks = [];
   }
 }

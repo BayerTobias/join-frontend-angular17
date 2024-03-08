@@ -30,7 +30,6 @@ export class BoardComponent {
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.mobileButton = window.innerWidth <= 850;
-    console.log(window.innerWidth <= 850);
   }
 
   filterTasks(tasks: Task[]) {
