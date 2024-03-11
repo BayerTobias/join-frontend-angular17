@@ -1,11 +1,5 @@
-body {
-  overflow: hidden;
-}
-
 main {
   display: flex;
-  margin-left: 232px;
-  margin-top: 95px;
   height: calc(100vh - 95px);
   background-color: var(--bg-color);
   overflow: hidden;
