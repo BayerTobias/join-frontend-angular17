@@ -12,15 +12,17 @@
     <div class="contact-wrapper">
       <span class="seperator-list">{{ initial }}</span>
       <div class="line-list"></div>
+
+      @for (contact of dataManager.userContacts; track $index) { @if
+      (contact.name.charAt(0).toUpperCase() === initial) {
+      <app-contact
+        (click)="showContact(contact)"
+        [contact]="contact"
+      ></app-contact>
+      } }
     </div>
 
-    @for (contact of dataManager.userContacts; track $index) { @if
-    (contact.name.charAt(0).toUpperCase() === initial) {
-    <app-contact
-      (click)="showContact(contact)"
-      [contact]="contact"
-    ></app-contact>
-    } } }
+    }
   </section>
 
   <section id="contactsOverview">
