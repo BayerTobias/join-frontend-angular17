@@ -9,6 +9,7 @@ import { UserSummary } from '../../classes/user-summary.class';
 import { UserSummaryResponse } from '../../interfaces/users/user-summary-response-interface';
 import { TaskResponse } from './../../interfaces/tasks/task-response-interface';
 import { CategoryResponse } from './../../interfaces/tasks/category-response-interface';
+import { User } from '../../classes/user.class';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +18,9 @@ export class DataManagerService {
   public tasksSignal: WritableSignal<Task[]> = signal<Task[]>([]);
   public categorysSignal: WritableSignal<Category[]> = signal<Category[]>([]);
   public usersSignal: WritableSignal<UserSummary[]> = signal<UserSummary[]>([]);
+
+  public loggedInUser: User = new User();
+  public userContacts: {}[] = [];
 
   private http = inject(HttpClient);
 

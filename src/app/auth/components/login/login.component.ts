@@ -14,6 +14,8 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { AuthBaseComponent } from '../auth-base/auth-base.component';
 import { ButtonWoIconComponent } from '../../../shared/components/buttons/button-wo-icon/button-wo-icon.component';
+import { User } from '../../../classes/user.class';
+import { DataManagerService } from '../../../home/services/data-manager.service';
 
 @Component({
   selector: 'app-login',
@@ -43,6 +45,7 @@ export class LoginComponent {
   private fb = inject(FormBuilder);
   private router = inject(Router);
   private auth = inject(AuthService);
+  private dataManager = inject(DataManagerService);
 
   constructor() {
     this.loginForm = this.fb.group({
@@ -118,8 +121,7 @@ export class LoginComponent {
         this.username?.value,
         this.password?.value
       )) as LoginResponse;
-      localStorage.setItem('token', resp.token);
-      this.router.navigateByUrl('/home');
+      this.handleSuccessfullLogin(resp);
     } catch (err) {
       console.error(err);
     }
@@ -131,11 +133,17 @@ export class LoginComponent {
         'TestUser',
         'Test123'
       )) as LoginResponse;
-      localStorage.setItem('token', resp.token);
-      this.router.navigateByUrl('/home');
+      this.handleSuccessfullLogin(resp);
     } catch (err) {
       console.error(err);
     }
+  }
+
+  handleSuccessfullLogin(resp: LoginResponse) {
+    localStorage.setItem('token', resp.token);
+    this.dataManager.loggedInUser = new User(resp.user);
+    this.dataManager.userContacts = resp.contacts;
+    this.router.navigateByUrl('/home');
   }
 
   togglePasswordVisibility() {
