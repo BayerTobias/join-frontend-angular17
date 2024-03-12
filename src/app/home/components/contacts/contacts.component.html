@@ -10,9 +10,7 @@
 
   <section id="contactsList">
     @for (contact of dataManager.userContacts; track $index) {
-    <span>{{ contact.name }}</span>
-    <span>{{ contact.email }}</span>
-    <span>{{ contact.phone }}</span>
+    <app-contact [contact]="contact"></app-contact>
 
     }
   </section>
