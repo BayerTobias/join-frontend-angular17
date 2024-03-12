@@ -1,18 +1,26 @@
 <main id="boardMain">
-  <button
-    onclick="toggleAddContactModal()"
+  <app-button-with-icon
+    [content]="'New Contact'"
+    [colorStyle]="'main-color-style'"
+    [imgSrc]="'./assets/img/icons/add-contact-icon.svg'"
+    (click)="toggleAddContactModal()"
     id="newContact"
-    class="button-with-icon"
-  >
-    New contact
-    <img src="../assets/img/icons/add-contact-icon.svg" alt="" />
-  </button>
+  ></app-button-with-icon>
 
-  <section id="contactsList">
-    @for (contact of dataManager.userContacts; track $index) {
-    <app-contact [contact]="contact"></app-contact>
+  <section class="contactsList">
+    @for (initial of initials; track $index) {
+    <div class="contact-wrapper">
+      <span class="seperator-list">{{ initial }}</span>
+      <div class="line-list"></div>
+    </div>
 
-    }
+    @for (contact of dataManager.userContacts; track $index) { @if
+    (contact.name.charAt(0).toUpperCase() === initial) {
+    <app-contact
+      (click)="showContact(contact)"
+      [contact]="contact"
+    ></app-contact>
+    } } }
   </section>
 
   <section id="contactsOverview">
@@ -20,7 +28,7 @@
       id="contactsBackImg"
       class="contacts-back d-none"
       onclick="closeContact()"
-      src="../assets/img/icons/arrow-left.svg"
+      src="./assets/img/icons/arrow-left.svg"
     />
 
     <div id="sub-header" class="sub-header">
@@ -36,7 +44,12 @@
       <div class="line"></div>
     </div>
 
-    <div id="currentContact"></div>
+    <div #currentContactDiv class="currentContact">
+      @if (currentContact) {<app-current-contact-display
+        [currentContact]="currentContact"
+      ></app-current-contact-display>
+      }
+    </div>
   </section>
 
   <!-- <section
