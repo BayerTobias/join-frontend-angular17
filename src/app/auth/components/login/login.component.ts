@@ -141,6 +141,8 @@ export class LoginComponent {
 
   handleSuccessfullLogin(resp: LoginResponse) {
     localStorage.setItem('token', resp.token);
+    localStorage.setItem('user', JSON.stringify(resp.user));
+    localStorage.setItem('contacts', JSON.stringify(resp.contacts));
     this.dataManager.loggedInUser = new User(resp.user);
     this.dataManager.userContacts = resp.contacts;
     this.router.navigateByUrl('/home');

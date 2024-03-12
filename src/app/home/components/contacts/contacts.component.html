@@ -8,7 +8,14 @@
     <img src="../assets/img/icons/add-contact-icon.svg" alt="" />
   </button>
 
-  <section id="contactsList"></section>
+  <section id="contactsList">
+    @for (contact of dataManager.userContacts; track $index) {
+    <span>{{ contact.name }}</span>
+    <span>{{ contact.email }}</span>
+    <span>{{ contact.phone }}</span>
+
+    }
+  </section>
 
   <section id="contactsOverview">
     <img

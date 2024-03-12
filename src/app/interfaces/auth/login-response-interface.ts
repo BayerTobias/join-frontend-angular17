@@ -1,3 +1,5 @@
+import { Contact } from '../../classes/contact.class';
+
 interface UserData {
   username: string;
   first_name: string;
@@ -11,7 +13,5 @@ interface UserData {
 export interface LoginResponse {
   token: string;
   user: UserData;
-  // user_id: number;
-  // email: string;
-  contacts: {}[];
+  contacts: Contact[];
 }

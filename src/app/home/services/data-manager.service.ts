@@ -10,6 +10,7 @@ import { UserSummaryResponse } from '../../interfaces/users/user-summary-respons
 import { TaskResponse } from './../../interfaces/tasks/task-response-interface';
 import { CategoryResponse } from './../../interfaces/tasks/category-response-interface';
 import { User } from '../../classes/user.class';
+import { Contact } from '../../classes/contact.class';
 
 @Injectable({
   providedIn: 'root',
@@ -19,12 +20,26 @@ export class DataManagerService {
   public categorysSignal: WritableSignal<Category[]> = signal<Category[]>([]);
   public usersSignal: WritableSignal<UserSummary[]> = signal<UserSummary[]>([]);
 
-  public loggedInUser: User = new User();
-  public userContacts: {}[] = [];
+  public loggedInUser?: User;
+  public userContacts?: Contact[];
 
   private http = inject(HttpClient);
 
-  constructor() {}
+  constructor() {
+    this.getUser();
+  }
+
+  getUser() {
+    if (!this.loggedInUser) {
+      const user = localStorage.getItem('user');
+      const contacts = localStorage.getItem('contacts');
+
+      if (user && contacts) {
+        this.loggedInUser = JSON.parse(user);
+        this.userContacts = JSON.parse(contacts);
+      }
+    }
+  }
 
   async getTasks() {
     const url = environment.baseUrl + '/tasks/';
@@ -37,7 +52,6 @@ export class DataManagerService {
       this.matchUserIdsWithUsers(tasks);
 
       this.tasksSignal.set(tasks);
-      console.log(tasks);
     } catch (err) {
       console.error(err);
     }
