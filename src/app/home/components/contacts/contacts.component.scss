@@ -11,12 +11,22 @@ main {
   background-color: $bg-color;
   overflow: hidden;
   position: relative;
+
+  @media screen and (max-width: 850px) {
+    height: calc(100vh - 95px - 90px);
+  }
 }
 
 #newContact {
   position: absolute;
   bottom: 64px;
   right: 47px;
+
+  @media screen and (max-width: 1100px) {
+    top: 35px;
+    right: 20px;
+    height: fit-content;
+  }
 }
 
 .mobile-addons {
@@ -85,6 +95,24 @@ main {
 
 .contacts-back {
   display: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 1100px) {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    height: 37px;
+    width: 37px;
+    z-index: 1;
+  }
+
+  @media screen and (max-width: 850px) {
+    right: 25px;
+  }
 }
 
 /* ===== Contacts List ===== */
@@ -102,6 +130,10 @@ main {
   @media screen and (max-width: 1100px) {
     width: 100%;
     padding-top: 50px;
+  }
+
+  @media screen and (max-width: 850px) {
+    min-height: calc(100vh - 95px - 90px);
   }
 
   .contact-wrapper {
@@ -243,7 +275,7 @@ main {
   content: "";
   width: 90px;
   height: 2px;
-  background-color: var(--secondary-color);
+  background-color: $secondary-color;
   position: absolute;
   bottom: 12px;
 }
@@ -278,6 +310,11 @@ main {
   color: white;
   font-size: 47px;
   aspect-ratio: 1 / 1;
+
+  @media screen and (max-width: 850px) {
+    width: 80px;
+    height: 80px;
+  }
 }
 
 #contactsOverview {
@@ -301,14 +338,25 @@ main {
     opacity: 0;
     z-index: -1;
     background-color: $bg-color;
+
+    &:has(.current-contact-animation) {
+      opacity: 1;
+      z-index: 1;
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
+
+    &:has(.current-contact-animation) .contacts-back {
+      display: block;
+    }
   }
 }
 
-#contactsOverview button {
-  position: absolute;
-  bottom: 67px;
-  right: 47px;
-}
+// #contactsOverview button {
+//   position: absolute;
+//   bottom: 67px;
+//   right: 47px;
+// }
 
 .currentContact {
   display: flex;

@@ -106,6 +106,12 @@
   color: white;
   font-size: 47px;
   aspect-ratio: 1 / 1;
+
+  @media screen and (max-width: 850px) {
+    width: 80px;
+    height: 80px;
+    font-size: 36px;
+  }
 }
 
 .bold {
