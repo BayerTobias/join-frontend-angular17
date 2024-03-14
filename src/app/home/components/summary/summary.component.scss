@@ -14,9 +14,11 @@ main {
 
   overflow: hidden;
 
-  @media (max-width: 850px) {
+  @media (max-width: 1100px) {
     padding: 33px;
+  }
 
+  @media (max-width: 850px) {
     width: 100vw;
     width: 100svw;
     min-height: calc(100vh - 95px - 90px);
@@ -91,7 +93,11 @@ main {
 }
 
 .summary-container {
-  @include dFlex($jc: space-between, $gp: 20px);
+  @include dFlex($jc: flex-start, $gp: 40px);
+
+  @media (max-width: 1100px) {
+    gap: 20px;
+  }
 
   @media (max-width: 850px) {
     justify-content: center;
@@ -125,7 +131,7 @@ main {
     .third-line {
       display: flex;
       justify-content: flex-start;
-      gap: 15px;
+      gap: 30px;
 
       @media (max-width: 450px) {
         flex-wrap: wrap;
@@ -159,7 +165,7 @@ main {
   font-weight: 400;
 
   @media (max-width: 950px) {
-    font-size: 45px;
+    font-size: 40px;
   }
 
   @media (max-width: 850px) {
@@ -174,7 +180,7 @@ main {
   margin-top: 5px;
 
   @media (max-width: 950px) {
-    font-size: 50px;
+    font-size: 35px;
   }
 
   @media (max-width: 850px) {

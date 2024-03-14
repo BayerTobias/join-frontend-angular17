@@ -1,5 +1,5 @@
 import { Component, effect, inject, signal } from '@angular/core';
-import { SummaryCardComponent } from '../../../shared/components/summary-card/summary-card.component';
+import { SummaryCardComponent } from './summary-card/summary-card.component';
 import { DataManagerService } from '../../services/data-manager.service';
 import { Task } from '../../../classes/task.class';
 
@@ -24,11 +24,14 @@ export class SummaryComponent {
     effect(() => this.updateCounts(this.dataManager.tasksSignal()));
   }
 
-  ngOnInit() {
-    // this.dataManager.taskSubject$.subscribe((tasks: Task[]) => {
-    //   this.updateCounts(tasks);
-    //   console.log(this.tasksInProgress);
-    // });
+  ngOnInit() {}
+
+  getGreeting(): string {
+    const currentHour = new Date().getHours();
+
+    if (currentHour < 12) return 'Good morning, ';
+    else if (currentHour < 18) return 'Good afternoon, ';
+    else return 'Good evening, ';
   }
 
   updateCounts(tasks: Task[]) {

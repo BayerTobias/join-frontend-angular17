@@ -35,7 +35,7 @@ export class DataManagerService {
       const contacts = localStorage.getItem('contacts');
 
       if (user && contacts) {
-        this.loggedInUser = JSON.parse(user);
+        this.loggedInUser = new User(JSON.parse(user));
         this.userContacts = JSON.parse(contacts);
       }
     }

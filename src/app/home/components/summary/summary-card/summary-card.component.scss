@@ -1,4 +1,5 @@
-@import "../../../../styles.scss";
+@import "../../../../../styles.scss";
+@import "../../../../../mixin.scss";
 
 a {
   text-decoration: none;
@@ -16,7 +17,13 @@ a {
   text-align: center;
   font-weight: 400;
 
-  @media (max-width: 450px) {
+  @media screen and (max-width: 950px) {
+    height: 110px;
+    width: 110px;
+    padding: 5px;
+  }
+
+  @media screen and (max-width: 450px) {
     height: auto;
     max-width: 90vw;
   }
@@ -39,6 +46,10 @@ a {
   display: flex;
   align-items: center;
   width: 420px;
+
+  @media screen and (max-width: 950px) {
+    width: 360px;
+  }
 
   @media screen and (max-width: 450px) {
     flex-direction: column;
@@ -84,9 +95,15 @@ a {
 }
 
 .card-third-line {
+  @include dFlex();
   width: 202.5px;
   height: 115px;
-  display: flex;
+
+  @media screen and (max-width: 950px) {
+    height: 110px;
+    width: calc(360px / 2 - 15px);
+    padding: 5px;
+  }
 }
 
 .card-third-line:hover img {

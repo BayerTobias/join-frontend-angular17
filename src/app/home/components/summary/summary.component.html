@@ -59,8 +59,14 @@
     </div>
 
     <div class="right-container">
-      <p class="greetings" id="greetings">Hallo...... nach datum</p>
-      <p class="user-name" id="user-name">Username hier anzeigen</p>
+      <p class="greetings" id="greetings">{{ getGreeting() }}</p>
+      <p class="user-name" id="user-name">
+        {{
+          dataManager.loggedInUser?.firstName +
+            " " +
+            dataManager.loggedInUser?.lastName
+        }}
+      </p>
     </div>
   </div>
 </main>
