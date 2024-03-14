@@ -10,4 +10,5 @@ import { Contact } from '../../../../classes/contact.class';
 })
 export class ContactComponent {
   @Input() contact: Contact = new Contact();
+  @Input() active: boolean = false;
 }

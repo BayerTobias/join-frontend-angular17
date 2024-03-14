@@ -18,6 +18,10 @@
       font-weight: 500;
       margin: 0;
       word-break: break-word;
+
+      @media screen and (max-width: 850px) {
+        font-size: 36px;
+      }
     }
 
     span svg path {
@@ -56,6 +60,10 @@
     }
 
     > span:last-child {
+      @media screen and (max-width: 1100px) {
+        display: none;
+      }
+
       &:hover {
         cursor: pointer;
         color: $secondary-color;
@@ -116,4 +124,25 @@
 
 .bold {
   font-weight: bold;
+}
+
+.mobile-addons {
+  display: none;
+
+  @media screen and (max-width: 1100px) {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: block;
+
+    .mobile-contact-btn-container {
+      position: absolute;
+      right: 0px;
+      bottom: 0px;
+      height: auto;
+      display: flex;
+      gap: 15px !important;
+      flex-direction: column;
+    }
+  }
 }

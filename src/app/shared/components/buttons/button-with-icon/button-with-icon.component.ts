@@ -18,6 +18,8 @@ export class ButtonWithIconComponent {
   @Input() type: string = 'button';
   @Input() diasbled: boolean = false;
   @Input() iconOnly: boolean = false;
+  @Input() imgHeight?: number;
+  @Input() imgWidth?: number;
 
   @Input() imgSrc: string = '';
 
