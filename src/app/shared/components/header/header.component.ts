@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { DataManagerService } from '../../../home/services/data-manager.service';
 
 @Component({
   selector: 'app-header',
@@ -9,4 +10,6 @@ import { RouterModule } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  public dataManager = inject(DataManagerService);
+}

@@ -14,13 +14,13 @@
     <div class="img-ellipse">
       <img src="./assets/img/logos/ellipse.png" alt="grey ellipse" />
       <div class="img-profile-wrapper">
-        <div onclick="toggleLogOutModal()" id="default-profile"></div>
-        <img
-          id="img-profile"
+        <div
           onclick="toggleLogOutModal()"
-          src=""
-          alt="Profile picture"
-        />
+          id="default-profile"
+          [style.background-color]="dataManager.loggedInUser?.color"
+        >
+          {{ dataManager.loggedInUser?.initials }}
+        </div>
       </div>
     </div>
   </div>
