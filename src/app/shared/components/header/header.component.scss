@@ -29,12 +29,6 @@ header {
     }
   }
 
-  span {
-    @media (max-width: 850px) {
-      display: none;
-    }
-  }
-
   .right-frame {
     position: relative;
     display: flex;
@@ -127,4 +121,8 @@ header {
   text-decoration: none;
   color: white;
   display: none;
+
+  @media (max-width: 850px) {
+    display: block;
+  }
 }

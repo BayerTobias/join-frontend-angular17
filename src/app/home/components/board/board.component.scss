@@ -3,6 +3,7 @@
 
 main {
   min-height: calc(100vh - 95px);
+  min-height: calc(100svh - 95px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,9 +17,10 @@ main {
 
   @media screen and (max-width: 850px) {
     justify-content: flex-start;
-    min-height: calc(100vh - 95px - 90px);
-
-    padding-bottom: 90px;
+    min-height: unset;
+    height: calc(100vh - 95px - 90px);
+    height: calc(100svh - 95px - 90px);
+    padding-bottom: 0;
     width: 100%;
   }
 }

@@ -9,20 +9,27 @@ main {
   @include dFlex($jc: space-evenly);
   flex-direction: column;
   min-height: calc(100vh - 95px);
+  min-height: calc(100svh - 95px);
   position: relative;
   font-size: 21px;
   background-color: $bg-color;
   overflow-x: hidden;
 
   @media screen and (max-width: 850px) {
-    min-height: calc(100vh - 95px - 90px);
-    padding-bottom: 90px;
+    min-height: unset;
+    height: calc(100vh - 95px - 90px);
+    height: calc(100svh - 95px - 90px);
+    justify-content: flex-start;
   }
 
   h1 {
     font-size: 47px;
     font-weight: 700;
     margin-bottom: 40px;
+
+    @media screen and (max-width: 1200px) {
+      padding-top: 20px;
+    }
 
     @media screen and (max-width: 850px) {
       padding-top: 70px;
@@ -151,20 +158,6 @@ form {
   font-size: 21px;
   color: rgba(0, 0, 0, 1);
 }
-
-// .placeholder {
-//   font-size: 21px;
-//   color: $sidebar-text-color;
-// }
-
-// .input {
-//   height: 51px;
-//   padding: 13px 21px;
-//   border-radius: 10px;
-//   outline: unset;
-//   border: 1px solid $sidebar-text-color;
-//   background-color: white;
-// }
 
 .form-right-box {
   justify-content: space-between;

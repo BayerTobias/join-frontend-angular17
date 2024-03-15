@@ -12,7 +12,7 @@ main {
   min-height: calc(100vh - 95px);
   min-height: calc(100svh - 95px);
 
-  overflow: hidden;
+  overflow-x: hidden;
 
   @media (max-width: 1100px) {
     padding: 33px;
@@ -21,10 +21,9 @@ main {
   @media (max-width: 850px) {
     width: 100vw;
     width: 100svw;
-    min-height: calc(100vh - 95px - 90px);
-    min-height: calc(100svh - 95px - 90px);
-
-    margin-bottom: 90px;
+    min-height: unset;
+    height: calc(100vh - 95px - 90px);
+    height: calc(100svh - 95px - 90px);
   }
 
   .summary-head {
@@ -94,6 +93,10 @@ main {
 
 .summary-container {
   @include dFlex($jc: flex-start, $gp: 40px);
+
+  @media (min-width: 1200px) {
+    gap: 150px;
+  }
 
   @media (max-width: 1100px) {
     gap: 20px;
