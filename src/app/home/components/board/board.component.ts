@@ -4,11 +4,17 @@ import { TaskComponent } from '../../../shared/components/task/task.component';
 import { Task } from '../../../classes/task.class';
 import { CommonModule } from '@angular/common';
 import { DataManagerService } from '../../services/data-manager.service';
+import { TaskOverlayComponent } from './task-overlay/task-overlay.component';
 
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [ButtonWithIconComponent, TaskComponent, CommonModule],
+  imports: [
+    ButtonWithIconComponent,
+    TaskComponent,
+    CommonModule,
+    TaskOverlayComponent,
+  ],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss',
 })
@@ -20,6 +26,8 @@ export class BoardComponent {
 
   currentlyDraggedTask?: Task;
   mobileButton: boolean = false;
+
+  public overlayTask: Task | null = null;
 
   public dataManager = inject(DataManagerService);
 
@@ -70,5 +78,13 @@ export class BoardComponent {
   async filterAndUpdate(event: { task: Task }) {
     this.filterTasks(this.dataManager.tasksSignal());
     await this.dataManager.updateTask(event.task);
+  }
+
+  openTask(task: Task) {
+    this.overlayTask = task;
+  }
+
+  closeOverlay() {
+    this.overlayTask = null;
   }
 }

@@ -13,7 +13,6 @@ import { CommonModule } from '@angular/common';
 import { UserSummary } from '../../../classes/user-summary.class';
 import { Subtask } from '../../../classes/subtask.class';
 import { Task } from '../../../classes/task.class';
-import { take } from 'rxjs';
 
 @Component({
   selector: 'app-add-task',

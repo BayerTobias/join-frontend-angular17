@@ -147,7 +147,7 @@
             @for (user of users; track $index) {
 
             <label (change)="user.checked = !user.checked">
-              {{ user.username }}
+              {{ user.firstName }}
               <input name="" type="checkbox" [checked]="user.checked" />
             </label>
 

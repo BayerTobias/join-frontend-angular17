@@ -1,0 +1,51 @@
+<main class="task-overlay" (click)="onCloseOverlay()">
+  <div (click)="$event.stopPropagation()">
+    <span
+      [style.background-color]="task.category.color"
+      class="overlay-category"
+      >{{ task.category.name }}</span
+    >
+    <b class="overlay-headline">{{ task.title }}</b>
+    <p>{{ task.description }}</p>
+    <div class="overlay-due-date">
+      <b>Due date:</b>
+      <span>{{ task.dueDate }}</span>
+    </div>
+    <div class="overlay-prio">
+      <b>Priority:</b>
+      <div id="overlayPrioBox">{{ task.prio }}</div>
+    </div>
+    <b>Assigned To:</b>
+    <div id="assigned-to-box">
+      @for (user of task.assignedToUserSummarys; track $index) {
+      <div>
+        <div
+          [style.background-color]="user.color"
+          class="assigned-to-display-maximized"
+        >
+          {{ user.initials }}
+        </div>
+        <span>{{ user.firstName + " " + user.lastName }}</span>
+      </div>
+      }
+    </div>
+    <div id="subtaskBoxWrapper" class="add-task-overlay-input-box d-none">
+      <b>Subtasks</b>
+      <div id="subtask-box-overlay"></div>
+    </div>
+    <img
+      (click)="onCloseOverlay()"
+      class="overlay-close-button"
+      src="./assets/img/icons/x-icon.svg"
+      alt="X"
+    />
+    <div class="overlayy-delete-edit-box">
+      <div onclick="deleteTask(task)" class="overlay-delete-box">
+        <img src="./assets/img/icons/trash-bin.svg" alt="" />
+      </div>
+      <div onclick="editTask(task)" class="overlay-edit-box">
+        <img src="./assets/img/icons/bord-overlay-edit-pencil.svg" alt="" />
+      </div>
+    </div>
+  </div>
+</main>

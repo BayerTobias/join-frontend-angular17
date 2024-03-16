@@ -42,6 +42,7 @@
           [task]="task"
           [nextStatus]="'in-progress'"
           (taskUpdated)="filterAndUpdate($event)"
+          (click)="openTask(task)"
         ></app-task>
         }
       </div>
@@ -72,6 +73,7 @@
           [nextStatus]="'awaiting-feedback'"
           [previousStatus]="'todo'"
           (taskUpdated)="filterAndUpdate($event)"
+          (click)="openTask(task)"
         ></app-task>
         }
       </div>
@@ -102,6 +104,7 @@
           [nextStatus]="'done'"
           [previousStatus]="'in-progress'"
           (taskUpdated)="filterAndUpdate($event)"
+          (click)="openTask(task)"
         ></app-task>
         }
       </div>
@@ -131,9 +134,17 @@
           [task]="task"
           [previousStatus]="'awaiting-feedback'"
           (taskUpdated)="filterAndUpdate($event)"
+          (click)="openTask(task)"
         ></app-task>
         }
       </div>
     </div>
   </section>
+
+  @if (overlayTask) {
+  <app-task-overlay
+    [task]="overlayTask"
+    (closeOverlay)="closeOverlay()"
+  ></app-task-overlay>
+  }
 </main>
