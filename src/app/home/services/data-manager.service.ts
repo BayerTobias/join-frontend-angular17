@@ -137,4 +137,10 @@ export class DataManagerService {
 
     return lastValueFrom(this.http.post(url, body));
   }
+
+  fireTaskSingal() {
+    this.tasksSignal.set(this.tasksSignal());
+
+    console.log(this.tasksSignal());
+  }
 }

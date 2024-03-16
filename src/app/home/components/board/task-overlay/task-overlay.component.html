@@ -29,9 +29,16 @@
       </div>
       }
     </div>
-    <div id="subtaskBoxWrapper" class="add-task-overlay-input-box d-none">
+    <div id="subtaskBoxWrapper" class="add-task-overlay-input-box">
       <b>Subtasks</b>
-      <div id="subtask-box-overlay"></div>
+      <div id="subtask-box-overlay">
+        @for (subtask of task.subtasks; track $index) {
+        <label (change)="updateTask(subtask)"
+          ><input [checked]="subtask.complete" type="checkbox" />
+          {{ subtask.title }}</label
+        >
+        }
+      </div>
     </div>
     <img
       (click)="onCloseOverlay()"

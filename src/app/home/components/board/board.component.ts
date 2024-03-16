@@ -41,6 +41,8 @@ export class BoardComponent {
   }
 
   filterTasks(tasks: Task[]) {
+    // this.resetTaskArrays();
+
     this.todoTasks = tasks.filter((task: Task) => task.status === 'todo');
     this.inProgressTasks = tasks.filter(
       (task: Task) => task.status === 'in-progress'
@@ -50,6 +52,13 @@ export class BoardComponent {
     );
     this.doneTasks = tasks.filter((task: Task) => task.status === 'done');
   }
+
+  // resetTaskArrays() {
+  //   this.todoTasks = [];
+  //   this.inProgressTasks = [];
+  //   this.awaitingFeedbackTasks = [];
+  //   this.doneTasks = [];
+  // }
 
   startDragging(task: Task) {
     this.currentlyDraggedTask = task;
@@ -76,6 +85,8 @@ export class BoardComponent {
   }
 
   async filterAndUpdate(event: { task: Task }) {
+    console.log(event);
+
     this.filterTasks(this.dataManager.tasksSignal());
     await this.dataManager.updateTask(event.task);
   }

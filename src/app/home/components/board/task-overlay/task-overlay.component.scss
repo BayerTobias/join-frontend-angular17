@@ -44,12 +44,12 @@
 #subtask-box-overlay {
   display: flex;
   flex-direction: column;
-}
 
-#subtask-box-overlay > label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 }
 
 .overlay-close-button {
@@ -115,4 +115,28 @@
   display: flex;
   align-items: center;
   gap: 25px;
+}
+
+#assigned-to-box {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+
+  > div {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+  }
+}
+
+.assigned-to-display-maximized {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 58px;
+  border: 1px solid white;
+  color: white;
+  font-size: 16px;
 }

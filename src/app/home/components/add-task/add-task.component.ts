@@ -167,7 +167,7 @@ export class AddTaskComponent {
       task.description = this.addTaskForm.get('description')?.value;
       task.categoryId = this.selectedCategory.id;
       task.assignedTo = this.getSelectedUserIds();
-      task.dueDate = this.addTaskForm.get('date')?.value; // ggf auf deutsches datum format ändern
+      task.dueDate = this.addTaskForm.get('date')?.value;
       task.prio = this.prio;
       task.subtasks = this.subtasks;
 
