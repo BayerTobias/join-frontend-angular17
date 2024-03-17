@@ -11,7 +11,7 @@
   background-color: rgba(0, 0, 0, 0.1);
   z-index: 110;
 
-  > div {
+  > form {
     max-height: 90vh;
     max-height: 90svh;
     width: 650px;
@@ -26,4 +26,28 @@
     position: relative;
     overflow-y: auto;
   }
+}
+
+.edit-submit-button {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.edit-form {
+  margin-right: -42px;
+  padding-right: 4px;
+}
+
+#edit-assigned-users-box {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+}
+
+.overlay-close-button {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  cursor: pointer;
 }
