@@ -49,6 +49,8 @@ export class BoardComponent {
   }
 
   filterTasks(tasks: Task[]) {
+    console.log('signal fired', this.dataManager.tasksSignal());
+
     this.todoTasks = tasks.filter((task: Task) => task.status === 'todo');
     this.inProgressTasks = tasks.filter(
       (task: Task) => task.status === 'in-progress'
@@ -103,5 +105,9 @@ export class BoardComponent {
 
   closeOverlay() {
     this.overlayTask = null;
+  }
+
+  openEditTaskOverlay() {
+    console.log('asda');
   }
 }

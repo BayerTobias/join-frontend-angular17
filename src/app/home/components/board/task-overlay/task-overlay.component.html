@@ -13,7 +13,15 @@
     </div>
     <div class="overlay-prio">
       <b>Priority:</b>
-      <div id="overlayPrioBox">{{ task.prio }}</div>
+      <div id="overlayPrioBox">
+        <div class="overview-prio-box" [ngClass]="task.prio">
+          <span>{{ task.prio }}</span>
+          <img
+            src="./assets/img/icons/{{ task.prio }}-prio-white-icon-small.svg"
+            alt="high-prio"
+          />
+        </div>
+      </div>
     </div>
     <b>Assigned To:</b>
     <div id="assigned-to-box">
@@ -47,10 +55,10 @@
       alt="X"
     />
     <div class="overlayy-delete-edit-box">
-      <div onclick="deleteTask(task)" class="overlay-delete-box">
+      <div (click)="deleteTask()" class="overlay-delete-box">
         <img src="./assets/img/icons/trash-bin.svg" alt="" />
       </div>
-      <div onclick="editTask(task)" class="overlay-edit-box">
+      <div (click)="openEditTaskOverlay()" class="overlay-edit-box">
         <img src="./assets/img/icons/bord-overlay-edit-pencil.svg" alt="" />
       </div>
     </div>

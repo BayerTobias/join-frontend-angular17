@@ -31,16 +31,6 @@
   }
 }
 
-.overview-prio-box {
-  display: flex;
-  padding: 4px 18px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border-radius: 10px;
-  box-shadow: $nuevo;
-}
-
 #subtask-box-overlay {
   display: flex;
   flex-direction: column;
@@ -115,6 +105,16 @@
   display: flex;
   align-items: center;
   gap: 25px;
+
+  .overview-prio-box {
+    display: flex;
+    padding: 4px 18px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    box-shadow: $nuevo;
+  }
 }
 
 #assigned-to-box {
@@ -139,4 +139,21 @@
   border: 1px solid white;
   color: white;
   font-size: 16px;
+}
+
+/* Prio Colors */
+
+.high {
+  background-color: rgb(255, 61, 0) !important;
+  color: white;
+}
+
+.medium {
+  background-color: rgb(255, 168, 0) !important;
+  color: white;
+}
+
+.low {
+  background-color: rgb(122, 226, 41) !important;
+  color: white;
 }

@@ -84,7 +84,6 @@ export class DataManagerService {
   async createTask(task: Task) {
     const url = environment.baseUrl + '/tasks/';
     const body = task.asPayloadJson();
-    console.log('Task created: ', task.asPayloadJson());
 
     return lastValueFrom(this.http.post(url, body));
   }
@@ -94,6 +93,12 @@ export class DataManagerService {
     const body = task.asPayloadJson();
 
     return lastValueFrom(this.http.patch(url, body));
+  }
+
+  async deleteTask(task: Task) {
+    const url = environment.baseUrl + '/tasks/' + task.id + '/';
+
+    return lastValueFrom(this.http.delete(url));
   }
 
   async getCategorys() {
@@ -138,9 +143,9 @@ export class DataManagerService {
     return lastValueFrom(this.http.post(url, body));
   }
 
-  fireTaskSingal() {
-    this.tasksSignal.set(this.tasksSignal());
-
+  fireTaskSignal() {
     console.log(this.tasksSignal());
+
+    this.tasksSignal.set(this.tasksSignal());
   }
 }
