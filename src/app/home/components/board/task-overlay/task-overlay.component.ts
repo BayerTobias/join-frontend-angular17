@@ -17,7 +17,7 @@ export class TaskOverlayComponent {
   @Input() task: Task = new Task();
 
   @Output() closeOverlay: EventEmitter<void> = new EventEmitter<void>();
-  @Output() openEditOverlay: EventEmitter<void> = new EventEmitter<void>();
+  @Output() openEditOverlay: EventEmitter<{ task: Task }> = new EventEmitter();
   @Output() updateSubtask: EventEmitter<{ task: Task }> = new EventEmitter();
 
   onCloseOverlay() {
@@ -26,7 +26,7 @@ export class TaskOverlayComponent {
 
   openEditTaskOverlay() {
     this.closeOverlay.emit();
-    this.openEditOverlay.emit();
+    this.openEditOverlay.emit({ task: this.task });
   }
 
   updateTask(subtask: Subtask) {

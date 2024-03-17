@@ -1,0 +1,29 @@
+@import "../../../../../styles.scss";
+@import "../../../../../mixin.scss";
+
+.task-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  @include dFlex();
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 110;
+
+  > div {
+    max-height: 90vh;
+    max-height: 90svh;
+    width: 650px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 50px;
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: $nuevo;
+    font-size: 21px;
+    position: relative;
+    overflow-y: auto;
+  }
+}

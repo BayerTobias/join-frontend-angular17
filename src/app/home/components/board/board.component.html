@@ -145,8 +145,11 @@
   <app-task-overlay
     [task]="overlayTask"
     (closeOverlay)="closeOverlay()"
-    (openEditOverlay)="openEditTaskOverlay()"
+    (openEditOverlay)="openEditTaskOverlay($event)"
     (updateSubtask)="filterAndUpdate($event)"
   ></app-task-overlay>
+  } @if(activeEditTask) {
+  <app-edit-task-overlay></app-edit-task-overlay>
+
   }
 </main>

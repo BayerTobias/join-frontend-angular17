@@ -12,11 +12,9 @@
   z-index: 110;
 
   > div {
-    overflow-y: auto;
     max-height: 90vh;
     max-height: 90svh;
     width: 650px;
-
     display: flex;
     flex-direction: column;
     gap: 25px;
@@ -26,7 +24,6 @@
     box-shadow: $nuevo;
     font-size: 21px;
     position: relative;
-
     overflow-y: auto;
   }
 }

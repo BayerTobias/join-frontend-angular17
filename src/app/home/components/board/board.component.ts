@@ -12,6 +12,7 @@ import { Task } from '../../../classes/task.class';
 import { CommonModule } from '@angular/common';
 import { DataManagerService } from '../../services/data-manager.service';
 import { TaskOverlayComponent } from './task-overlay/task-overlay.component';
+import { EditTaskOverlayComponent } from './edit-task-overlay/edit-task-overlay.component';
 
 @Component({
   selector: 'app-board',
@@ -21,6 +22,7 @@ import { TaskOverlayComponent } from './task-overlay/task-overlay.component';
     TaskComponent,
     CommonModule,
     TaskOverlayComponent,
+    EditTaskOverlayComponent,
   ],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss',
@@ -35,6 +37,8 @@ export class BoardComponent {
   mobileButton: boolean = false;
 
   public overlayTask: Task | null = null;
+  public activeEditTask: Task | null = null;
+
   @ViewChildren(TaskComponent) taskComponents?: QueryList<TaskComponent>;
 
   public dataManager = inject(DataManagerService);
@@ -107,7 +111,7 @@ export class BoardComponent {
     this.overlayTask = null;
   }
 
-  openEditTaskOverlay() {
-    console.log('asda');
+  openEditTaskOverlay(event: { task: Task }) {
+    this.activeEditTask = event.task;
   }
 }
