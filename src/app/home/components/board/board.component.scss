@@ -25,6 +25,20 @@ main {
   }
 }
 
+.stop-scroll {
+  overflow-y: hidden;
+
+  @media screen and (max-width: 1350px) {
+    height: calc(100vh - 95px);
+    height: calc(100svh - 95px);
+  }
+
+  @media screen and (max-width: 850px) {
+    height: calc(100vh - 95px - 90px);
+    height: calc(100svh - 95px - 90px);
+  }
+}
+
 /* ===== Header =====*/
 
 .board-header {

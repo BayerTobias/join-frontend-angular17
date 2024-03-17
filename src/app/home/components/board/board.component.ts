@@ -1,4 +1,11 @@
-import { Component, HostListener, effect, inject, signal } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  QueryList,
+  ViewChildren,
+  effect,
+  inject,
+} from '@angular/core';
 import { ButtonWithIconComponent } from '../../../shared/components/buttons/button-with-icon/button-with-icon.component';
 import { TaskComponent } from '../../../shared/components/task/task.component';
 import { Task } from '../../../classes/task.class';
@@ -28,6 +35,7 @@ export class BoardComponent {
   mobileButton: boolean = false;
 
   public overlayTask: Task | null = null;
+  @ViewChildren(TaskComponent) taskComponents?: QueryList<TaskComponent>;
 
   public dataManager = inject(DataManagerService);
 
@@ -41,8 +49,6 @@ export class BoardComponent {
   }
 
   filterTasks(tasks: Task[]) {
-    // this.resetTaskArrays();
-
     this.todoTasks = tasks.filter((task: Task) => task.status === 'todo');
     this.inProgressTasks = tasks.filter(
       (task: Task) => task.status === 'in-progress'
@@ -52,13 +58,6 @@ export class BoardComponent {
     );
     this.doneTasks = tasks.filter((task: Task) => task.status === 'done');
   }
-
-  // resetTaskArrays() {
-  //   this.todoTasks = [];
-  //   this.inProgressTasks = [];
-  //   this.awaitingFeedbackTasks = [];
-  //   this.doneTasks = [];
-  // }
 
   startDragging(task: Task) {
     this.currentlyDraggedTask = task;
@@ -85,9 +84,16 @@ export class BoardComponent {
   }
 
   async filterAndUpdate(event: { task: Task }) {
-    console.log(event);
-
     this.filterTasks(this.dataManager.tasksSignal());
+
+    if (this.taskComponents) {
+      const taskComponent = this.taskComponents.find(
+        (component) => component.task.id === event.task.id
+      );
+
+      if (taskComponent) taskComponent.manageSubtasks();
+    }
+
     await this.dataManager.updateTask(event.task);
   }
 
