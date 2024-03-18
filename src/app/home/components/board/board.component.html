@@ -147,6 +147,7 @@
     (closeOverlay)="closeOverlay()"
     (openEditOverlay)="openEditTaskOverlay($event)"
     (updateSubtask)="filterAndUpdate($event)"
+    (taskDeleted)="filterTasksSignalInput()"
   ></app-task-overlay>
   } @if(activeEditTask) {
   <app-edit-task-overlay></app-edit-task-overlay>

@@ -19,6 +19,7 @@ export class TaskOverlayComponent {
   @Output() closeOverlay: EventEmitter<void> = new EventEmitter<void>();
   @Output() openEditOverlay: EventEmitter<{ task: Task }> = new EventEmitter();
   @Output() updateSubtask: EventEmitter<{ task: Task }> = new EventEmitter();
+  @Output() taskDeleted: EventEmitter<void> = new EventEmitter();
 
   onCloseOverlay() {
     this.closeOverlay.emit();
@@ -47,6 +48,8 @@ export class TaskOverlayComponent {
       // this.dataManger.fireTaskSignal();
 
       // console.log(this.dataManger.tasksSignal());
+
+      this.taskDeleted.emit();
 
       this.onCloseOverlay();
     } catch (err) {

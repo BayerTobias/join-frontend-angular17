@@ -90,7 +90,7 @@ export class BoardComponent {
   }
 
   async filterAndUpdate(event: { task: Task }) {
-    this.filterTasks(this.dataManager.tasksSignal());
+    this.filterTasksSignalInput();
 
     if (this.taskComponents) {
       const taskComponent = this.taskComponents.find(
@@ -101,6 +101,10 @@ export class BoardComponent {
     }
 
     await this.dataManager.updateTask(event.task);
+  }
+
+  filterTasksSignalInput() {
+    this.filterTasks(this.dataManager.tasksSignal());
   }
 
   openTask(task: Task) {
