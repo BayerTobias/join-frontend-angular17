@@ -25,25 +25,100 @@
     font-size: 21px;
     position: relative;
     overflow-y: auto;
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+    }
+
+    label {
+      font-size: 21px;
+      color: black;
+    }
+
+    input,
+    textarea {
+      padding: 13px 21px;
+      border-radius: 10px;
+      outline: unset;
+      border: 1px solid $sidebar-text-color;
+      background-color: white;
+      font-size: 21px;
+
+      &::placeholder {
+        font-size: 21px;
+        color: $sidebar-text-color;
+      }
+    }
+
+    input[type="text"],
+    input[type="date"] {
+      height: 51px;
+      width: 100%;
+    }
+
+    input[type="date"]:invalid::-webkit-datetime-edit {
+      color: $sidebar-text-color;
+      font-size: 21px;
+    }
+
+    textarea {
+      height: 119px;
+      resize: none;
+    }
+
+    #prio-box {
+      display: flex;
+      gap: 10px;
+
+      div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 18px 10px;
+        height: 51px;
+        width: 136px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: $nuevo;
+        cursor: pointer;
+      }
+    }
+
+    #assigned-to {
+      display: flex;
+      flex-direction: column;
+      min-height: 51px;
+      padding: 13px 21px;
+      border-radius: 10px;
+      outline: unset;
+      border: 1px solid $sidebar-text-color;
+      background-color: white;
+      cursor: pointer;
+
+      div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+      }
+    }
   }
 }
 
 .edit-submit-button {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-}
-
-.edit-form {
-  margin-right: -42px;
-  padding-right: 4px;
-}
-
-#edit-assigned-users-box {
   display: flex;
-  flex-direction: row;
-  gap: 0;
+  justify-content: flex-end;
 }
+
+// #edit-assigned-users-box {
+//   display: flex;
+//   flex-direction: row;
+//   gap: 0;
+// }
 
 .overlay-close-button {
   position: absolute;

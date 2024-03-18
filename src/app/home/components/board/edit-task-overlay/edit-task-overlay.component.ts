@@ -19,6 +19,15 @@ import { ButtonWithIconComponent } from '../../../../shared/components/buttons/b
 export class EditTaskOverlayComponent {
   @Input() task: Task = new Task();
 
+  editTask: Task | null = null;
+
+  ngOnInit() {
+    //erstelle eine kopie vom task
+    this.editTask = JSON.parse(JSON.stringify(this.task));
+
+    console.log(this.editTask);
+  }
+
   onCloseOverlay() {
     console.log('close');
   }
