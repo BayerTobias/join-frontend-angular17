@@ -142,10 +142,4 @@ export class DataManagerService {
 
     return lastValueFrom(this.http.post(url, body));
   }
-
-  fireTaskSignal() {
-    console.log(this.tasksSignal());
-
-    this.tasksSignal.set(this.tasksSignal());
-  }
 }

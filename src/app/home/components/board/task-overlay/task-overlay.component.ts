@@ -19,7 +19,6 @@ export class TaskOverlayComponent {
   @Output() closeOverlay: EventEmitter<void> = new EventEmitter<void>();
   @Output() openEditOverlay: EventEmitter<{ task: Task }> = new EventEmitter();
   @Output() updateSubtask: EventEmitter<{ task: Task }> = new EventEmitter();
-  @Output() taskDeleted: EventEmitter<void> = new EventEmitter();
 
   onCloseOverlay() {
     this.closeOverlay.emit();
@@ -43,13 +42,12 @@ export class TaskOverlayComponent {
       const index = this.dataManger
         .tasksSignal()
         .findIndex((task) => task.id === this.task.id);
-      if (index !== -1) this.dataManger.tasksSignal().splice(index, 1);
 
-      // this.dataManger.fireTaskSignal();
-
-      // console.log(this.dataManger.tasksSignal());
-
-      this.taskDeleted.emit();
+      if (index !== -1) {
+        this.dataManger.tasksSignal.update((value) =>
+          value.filter((task, idx) => idx !== index)
+        );
+      }
 
       this.onCloseOverlay();
     } catch (err) {
