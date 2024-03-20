@@ -99,6 +99,14 @@
       background-color: white;
       cursor: pointer;
 
+      label {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        cursor: pointer;
+      }
+
       div {
         display: flex;
         justify-content: space-between;
@@ -113,12 +121,6 @@
   display: flex;
   justify-content: flex-end;
 }
-
-// #edit-assigned-users-box {
-//   display: flex;
-//   flex-direction: row;
-//   gap: 0;
-// }
 
 .overlay-close-button {
   position: absolute;

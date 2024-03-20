@@ -1,8 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, effect, inject } from '@angular/core';
 import { Task } from '../../../../classes/task.class';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ButtonWithIconComponent } from '../../../../shared/components/buttons/button-with-icon/button-with-icon.component';
+import { UserSummary } from '../../../../classes/user-summary.class';
+import { DataManagerService } from '../../../services/data-manager.service';
 
 @Component({
   selector: 'app-edit-task-overlay',
@@ -19,13 +21,28 @@ import { ButtonWithIconComponent } from '../../../../shared/components/buttons/b
 export class EditTaskOverlayComponent {
   @Input() task: Task = new Task();
 
+  public dataManager = inject(DataManagerService);
+
   editTask: Task | null = null;
+
+  users: UserSummary[] = [];
+  userPickerOpen: boolean = false;
+
+  constructor() {
+    effect(() => {
+      this.users = this.dataManager.usersSignal();
+    });
+  }
 
   ngOnInit() {
     //erstelle eine kopie vom task
     this.editTask = JSON.parse(JSON.stringify(this.task));
 
     console.log(this.editTask);
+  }
+
+  toggleUserPicker() {
+    this.userPickerOpen = !this.userPickerOpen;
   }
 
   onCloseOverlay() {
