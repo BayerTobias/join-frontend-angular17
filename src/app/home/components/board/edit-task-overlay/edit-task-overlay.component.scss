@@ -128,3 +128,36 @@
   right: 50px;
   cursor: pointer;
 }
+
+#edit-assigned-users-box {
+  display: flex;
+  flex-direction: row;
+
+  .assigned-to-display {
+    @include dFlex();
+    width: 35px;
+    height: 35px;
+    border-radius: 58px;
+    border: 1px solid white;
+    color: white;
+    font-size: 12px;
+    flex: 0 0 auto;
+  }
+}
+
+/* Prio Colors */
+
+.high {
+  background-color: rgb(255, 61, 0) !important;
+  color: white;
+}
+
+.medium {
+  background-color: rgb(255, 168, 0) !important;
+  color: white;
+}
+
+.low {
+  background-color: rgb(122, 226, 41) !important;
+  color: white;
+}
