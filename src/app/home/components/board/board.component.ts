@@ -111,10 +111,6 @@ export class BoardComponent {
     this.overlayTask = task;
   }
 
-  closeOverlay() {
-    this.overlayTask = null;
-  }
-
   openEditTaskOverlay(event: { task: Task }) {
     this.activeEditTask = event.task;
   }

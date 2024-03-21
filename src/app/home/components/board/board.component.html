@@ -144,12 +144,14 @@
   @if (overlayTask) {
   <app-task-overlay
     [task]="overlayTask"
-    (closeOverlay)="closeOverlay()"
+    (closeOverlay)="overlayTask = null"
     (openEditOverlay)="openEditTaskOverlay($event)"
     (updateSubtask)="filterAndUpdate($event)"
   ></app-task-overlay>
   } @if(activeEditTask) {
-  <app-edit-task-overlay></app-edit-task-overlay>
-
+  <app-edit-task-overlay
+    [task]="activeEditTask"
+    (closeOverlay)="activeEditTask = null"
+  ></app-edit-task-overlay>
   }
 </main>

@@ -1,4 +1,11 @@
-import { Component, Input, effect, inject } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  effect,
+  inject,
+} from '@angular/core';
 import { Task } from '../../../../classes/task.class';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -20,6 +27,7 @@ import { DataManagerService } from '../../../services/data-manager.service';
 })
 export class EditTaskOverlayComponent {
   @Input() task: Task = new Task();
+  @Output() closeOverlay: EventEmitter<void> = new EventEmitter<void>();
 
   public dataManager = inject(DataManagerService);
 
@@ -46,6 +54,6 @@ export class EditTaskOverlayComponent {
   }
 
   onCloseOverlay() {
-    console.log('close');
+    this.closeOverlay.emit();
   }
 }
