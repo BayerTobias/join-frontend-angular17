@@ -89,8 +89,25 @@ export class EditTaskOverlayComponent {
     }
   }
 
-  saveEditedTask() {
-    console.log('Form Data', this.editTaskForm.value);
+  async saveEditedTask() {
+    if (this.editTask) {
+      this.task.title = this.editTaskForm.get('title')?.value;
+      this.task.description = this.editTaskForm.get('description')?.value;
+      this.task.dueDate = this.editTaskForm.get('date')?.value;
+      this.task.prio = this.prio;
+      this.task.assignedToUserSummarys = this.editTask.assignedToUserSummarys;
+      this.task.assignedTo = this.getSelectedUserIds();
+
+      await this.dataManager.updateTask(this.task);
+      this.onCloseOverlay();
+    }
+  }
+
+  getSelectedUserIds() {
+    const selectedUsers = this.users.filter((user) => user.checked);
+    const userIds = selectedUsers.map((user) => user.id);
+
+    return userIds;
   }
 
   toggleUserPicker() {
