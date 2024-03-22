@@ -72,6 +72,10 @@ export class AddTaskComponent {
     });
   }
 
+  ngOnDestroy() {
+    this.dataManager.resetUsersChecked();
+  }
+
   get title() {
     return this.addTaskForm.get('title');
   }

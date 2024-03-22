@@ -18,7 +18,6 @@ import { CommonModule } from '@angular/common';
 import { ButtonWithIconComponent } from '../../../../shared/components/buttons/button-with-icon/button-with-icon.component';
 import { UserSummary } from '../../../../classes/user-summary.class';
 import { DataManagerService } from '../../../services/data-manager.service';
-import { User } from '../../../../classes/user.class';
 
 @Component({
   selector: 'app-edit-task-overlay',
@@ -80,17 +79,6 @@ export class EditTaskOverlayComponent {
     this.prio = prio;
   }
 
-  checkIfUserIsAssigned(user: UserSummary): boolean {
-    if (this.editTask && this.editTask.assignedToUserSummarys) {
-      return (
-        this.editTask.assignedToUserSummarys.find(
-          (assignedUser: UserSummary) => assignedUser.id === user.id
-        ) !== undefined
-      );
-    }
-    return false;
-  }
-
   setAssignedUsers(userRef: UserSummary) {
     userRef.checked = !userRef.checked;
 
@@ -98,10 +86,7 @@ export class EditTaskOverlayComponent {
       this.editTask.assignedToUserSummarys = this.users.filter(
         (user) => user.checked
       );
-      this.editTask.assignedTo = [];
     }
-
-    console.log(this.users);
   }
 
   saveEditedTask() {
@@ -110,9 +95,20 @@ export class EditTaskOverlayComponent {
 
   toggleUserPicker() {
     this.userPickerOpen = !this.userPickerOpen;
+
+    if (this.editTask && this.editTask.assignedToUserSummarys) {
+      for (const user of this.users) {
+        const userExists = this.editTask.assignedToUserSummarys.some(
+          (assignedUser) => assignedUser.id === user.id
+        );
+
+        user.checked = userExists;
+      }
+    }
   }
 
   onCloseOverlay() {
+    this.dataManager.resetUsersChecked();
     this.closeOverlay.emit();
   }
 }

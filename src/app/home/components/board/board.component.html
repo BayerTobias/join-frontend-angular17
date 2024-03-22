@@ -1,4 +1,7 @@
-<main id="boardMain" [ngClass]="{ 'stop-scroll': overlayTask }">
+<main
+  id="boardMain"
+  [ngClass]="{ 'stop-scroll': overlayTask || activeEditTask }"
+>
   <div class="board-header">
     <h1>Board</h1>
     <div>

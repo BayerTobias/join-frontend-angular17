@@ -132,16 +132,16 @@
 #edit-assigned-users-box {
   display: flex;
   flex-direction: row;
+  gap: 0;
 
   .assigned-to-display {
     @include dFlex();
-    width: 35px;
-    height: 35px;
+    width: 45px;
+    height: 45px;
     border-radius: 58px;
     border: 1px solid white;
     color: white;
-    font-size: 12px;
-    flex: 0 0 auto;
+    font-size: 16px;
   }
 }
 

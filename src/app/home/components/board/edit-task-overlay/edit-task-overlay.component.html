@@ -97,7 +97,7 @@
 
         <label (change)="setAssignedUsers(user)">
           {{ user.firstName + " " + user.lastName }}
-          <input type="checkbox" [checked]="checkIfUserIsAssigned(user)" />
+          <input type="checkbox" [checked]="user.checked" />
         </label>
 
         }

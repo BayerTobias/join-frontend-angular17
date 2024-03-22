@@ -29,6 +29,12 @@ export class DataManagerService {
     this.getUser();
   }
 
+  resetUsersChecked() {
+    this.usersSignal().forEach((user) => {
+      user.checked = false;
+    });
+  }
+
   getUser() {
     if (!this.loggedInUser) {
       const user = localStorage.getItem('user');
