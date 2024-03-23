@@ -10,4 +10,5 @@ import { Component, Input } from '@angular/core';
 })
 export class SuccessMessageComponent {
   @Input() content: string = '';
+  @Input() img: string = '';
 }

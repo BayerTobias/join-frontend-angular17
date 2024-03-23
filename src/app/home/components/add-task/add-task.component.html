@@ -297,4 +297,10 @@
       <input type="submit" id="submit-form" class="d-none" />
     </form>
   </section>
+
+  <app-success-message
+    [ngClass]="{ 'confirm-animation': animateModal }"
+    [content]="'Task added to board'"
+    [img]="'./assets/img/icons/sidebar-board.svg'"
+  ></app-success-message>
 </main>

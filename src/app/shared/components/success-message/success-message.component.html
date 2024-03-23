@@ -1,1 +1,5 @@
-<section>{{ content }}</section>
+<section>
+  <span>{{ content }}</span>
+
+  @if (img) {<img [src]="img" alt="img" />}
+</section>

@@ -14,6 +14,7 @@ import { UserSummary } from '../../../classes/user-summary.class';
 import { Subtask } from '../../../classes/subtask.class';
 import { Task } from '../../../classes/task.class';
 import { Router } from '@angular/router';
+import { SuccessMessageComponent } from '../../../shared/components/success-message/success-message.component';
 
 @Component({
   selector: 'app-add-task',
@@ -23,6 +24,7 @@ import { Router } from '@angular/router';
     ReactiveFormsModule,
     ButtonWithIconComponent,
     CommonModule,
+    SuccessMessageComponent,
   ],
   templateUrl: './add-task.component.html',
   styleUrl: './add-task.component.scss',
@@ -48,6 +50,7 @@ export class AddTaskComponent {
 
   today: string = new Date().toISOString().split('T')[0];
   formSubmitted: boolean = false;
+  animateModal: boolean = false;
 
   addTaskForm: FormGroup;
 
@@ -163,14 +166,15 @@ export class AddTaskComponent {
     }
   }
 
-  addTask() {
+  async addTask() {
     this.formSubmitted = true;
 
     if (this.formIsValid() && this.selectedCategory !== null) {
       const task = this.createTaskWithData();
 
       try {
-        this.dataManager.createTask(task);
+        await this.dataManager.createTask(task);
+        await this.dataManager.getTasks();
         this.animateAndRoute();
       } catch (err) {
         console.error(err);
@@ -216,6 +220,9 @@ export class AddTaskComponent {
   }
 
   animateAndRoute() {
-    this.router.navigateByUrl('home/board');
+    this.animateModal = true;
+    setTimeout(() => {
+      this.router.navigateByUrl('home/board');
+    }, 500);
   }
 }
