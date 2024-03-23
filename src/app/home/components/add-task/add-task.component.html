@@ -18,6 +18,10 @@
             id="title"
             formControlName="title"
           />
+          @if(addTaskForm.get('title')?.touched &&
+          !addTaskForm.get('title')?.valid ){
+          <div class="error-msg-task">Please Enter a title.</div>
+          }
         </div>
 
         <div class="input-box">
@@ -29,6 +33,11 @@
             rows="10"
             formControlName="description"
           ></textarea>
+
+          @if(addTaskForm.get('description')?.touched &&
+          !addTaskForm.get('description')?.valid ){
+          <div class="error-msg-task">Please Enter a description.</div>
+          }
         </div>
 
         <div id="category-box" class="input-box">
@@ -113,11 +122,12 @@
             </div>
             }}
           </div>
-          }
+          } @if (formSubmitted && !selectedCategory) {
 
-          <div id="errorTagCategory" class="error-msg-task d-none">
+          <div class="error-msg-task">
             Please select a category or create a new one
           </div>
+          }
         </div>
 
         <div id="add-task-assigned-to-box" class="input-box">
@@ -153,11 +163,11 @@
 
             }
           </div>
-          }
-
-          <div id="errorTagAssign" class="error-msg-task d-none">
+          } @if (formSubmitted && getSelectedUserIds().length === 0) {
+          <div class="error-msg-task">
             Please assign the task to at least one person
           </div>
+          }
         </div>
       </div>
 
@@ -174,6 +184,11 @@
               id="due-date"
               formControlName="date"
             />
+
+            @if(addTaskForm.get('date')?.touched &&
+            !addTaskForm.get('date')?.valid ){
+            <div class="error-msg-task">Please Enter a date.</div>
+            }
           </div>
 
           <div id="prio-box-wrapper" class="input-box">
@@ -221,9 +236,10 @@
                 />
               </div>
             </div>
-            <div id="errorTagPrio" class="error-msg-task d-none">
-              Please select a priority
-            </div>
+
+            @if (formSubmitted && !prio) {
+            <div class="error-msg-task">Please select a priority</div>
+            }
           </div>
 
           <div id="subtask-box-wrapper" class="input-box">
