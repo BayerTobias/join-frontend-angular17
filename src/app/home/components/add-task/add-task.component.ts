@@ -1,4 +1,4 @@
-import { Component, effect, inject } from '@angular/core';
+import { Component, Input, effect, inject } from '@angular/core';
 import { ButtonWithIconComponent } from '../../../shared/components/buttons/button-with-icon/button-with-icon.component';
 import {
   FormBuilder,
@@ -47,16 +47,18 @@ export class AddTaskComponent {
   users: UserSummary[] = [];
   subtasks: Subtask[] = [];
   prio: string = '';
-
-  today: string = new Date().toISOString().split('T')[0];
   formSubmitted: boolean = false;
   animateModal: boolean = false;
-
   addTaskForm: FormGroup;
+  today: string = new Date().toISOString().split('T')[0];
+
+  @Input() overlay: boolean = false;
 
   private fb = inject(FormBuilder);
   public dataManager = inject(DataManagerService);
   private router = inject(Router);
+
+  sending: boolean = false;
 
   constructor() {
     this.addTaskForm = this.fb.group({
@@ -168,6 +170,7 @@ export class AddTaskComponent {
 
   async addTask() {
     this.formSubmitted = true;
+    this.sending = true;
 
     if (this.formIsValid() && this.selectedCategory !== null) {
       const task = this.createTaskWithData();
@@ -178,6 +181,8 @@ export class AddTaskComponent {
         this.animateAndRoute();
       } catch (err) {
         console.error(err);
+        this.addTaskForm.enable();
+        this.sending = false;
       }
     } else this.addTaskForm.markAllAsTouched();
   }

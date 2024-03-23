@@ -46,6 +46,10 @@ main {
   }
 }
 
+.overlay-main {
+  background-color: white;
+}
+
 section {
   @media screen and (max-width: 850px) {
     width: 90%;

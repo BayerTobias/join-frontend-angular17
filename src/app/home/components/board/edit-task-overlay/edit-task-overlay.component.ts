@@ -90,11 +90,6 @@ export class EditTaskOverlayComponent {
   }
 
   async saveEditedTask() {
-    console.log(this.formIsValid());
-    // console.log('edit Task Form', this.editTaskForm.valid);
-    // console.log('editTask', this.editTask);
-    // console.log('length', this.editTask?.assignedToUserSummarys?.length >= 0);
-
     if (this.editTask && this.formIsValid()) {
       try {
         this.sending = true;

@@ -1,4 +1,4 @@
-<main>
+<main [ngClass]="{ 'overlay-main': overlay }">
   <section>
     <h1>Add Task</h1>
 
@@ -290,6 +290,7 @@
               [colorStyle]="'main-color-style'"
               [imgSrc]="'./assets/img/icons/checkmark-icon.svg'"
               [type]="'submit'"
+              [diasbled]="sending"
             ></app-button-with-icon>
           </div>
         </div>

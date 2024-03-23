@@ -1,6 +1,6 @@
 <main
   id="boardMain"
-  [ngClass]="{ 'stop-scroll': overlayTask || activeEditTask }"
+  [ngClass]="{ 'stop-scroll': overlayTask || activeEditTask || addTaskOverlay }"
 >
   <div class="board-header">
     <h1>Board</h1>
@@ -156,5 +156,9 @@
     [task]="activeEditTask"
     (closeOverlay)="activeEditTask = null"
   ></app-edit-task-overlay>
+  } @if (addTaskOverlay) {
+  <div class="add-task-overlay-wrapper">
+    <app-add-task [overlay]="true"></app-add-task>
+  </div>
   }
 </main>

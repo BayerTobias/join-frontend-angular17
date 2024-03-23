@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { DataManagerService } from '../../services/data-manager.service';
 import { TaskOverlayComponent } from './task-overlay/task-overlay.component';
 import { EditTaskOverlayComponent } from './edit-task-overlay/edit-task-overlay.component';
+import { AddTaskComponent } from '../add-task/add-task.component';
 
 @Component({
   selector: 'app-board',
@@ -23,6 +24,7 @@ import { EditTaskOverlayComponent } from './edit-task-overlay/edit-task-overlay.
     CommonModule,
     TaskOverlayComponent,
     EditTaskOverlayComponent,
+    AddTaskComponent,
   ],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss',
@@ -38,6 +40,7 @@ export class BoardComponent {
 
   public overlayTask: Task | null = null;
   public activeEditTask: Task | null = null;
+  public addTaskOverlay: boolean = true;
 
   @ViewChildren(TaskComponent) taskComponents?: QueryList<TaskComponent>;
 

@@ -11,6 +11,11 @@ button {
   transition: all ease-in-out 100ms;
 
   font-size: 21px;
+
+  &:disabled {
+    background-color: lightgrey;
+    pointer-events: none;
+  }
 }
 
 .icon-only-button {
