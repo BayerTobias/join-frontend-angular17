@@ -46,6 +46,8 @@ export class EditTaskOverlayComponent {
 
   prio: string = '';
 
+  sending: boolean = false;
+
   constructor() {
     this.editTaskForm = this.fb.group({
       title: ['', Validators.required],
@@ -71,8 +73,6 @@ export class EditTaskOverlayComponent {
     });
 
     if (this.editTask?.prio) this.prio = this.editTask?.prio;
-
-    console.log(this.prio);
   }
 
   setPrio(prio: string) {
@@ -90,6 +90,29 @@ export class EditTaskOverlayComponent {
   }
 
   async saveEditedTask() {
+    if (this.editTask && this.formIsValid()) {
+      try {
+        this.sending = true;
+        this.updateTaskinTasksArray();
+        await this.dataManager.updateTask(this.task);
+        this.sending = false;
+
+        this.onCloseOverlay();
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  }
+
+  formIsValid() {
+    return (
+      this.editTaskForm.valid &&
+      this.editTask &&
+      this.editTask.assignedToUserSummarys.length! <= 0
+    );
+  }
+
+  updateTaskinTasksArray() {
     if (this.editTask) {
       this.task.title = this.editTaskForm.get('title')?.value;
       this.task.description = this.editTaskForm.get('description')?.value;
@@ -97,9 +120,6 @@ export class EditTaskOverlayComponent {
       this.task.prio = this.prio;
       this.task.assignedToUserSummarys = this.editTask.assignedToUserSummarys;
       this.task.assignedTo = this.getSelectedUserIds();
-
-      await this.dataManager.updateTask(this.task);
-      this.onCloseOverlay();
     }
   }
 

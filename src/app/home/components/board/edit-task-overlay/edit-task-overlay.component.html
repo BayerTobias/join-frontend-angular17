@@ -13,6 +13,10 @@
         type="text"
         formControlName="title"
       />
+      @if(editTaskForm.get('title')?.touched &&
+      !editTaskForm.get('title')?.valid ){
+      <div class="error-msg-task">Please Enter a title.</div>
+      }
     </div>
     <div class="add-task-overlay-input-box">
       <label for="description">Description</label>
@@ -22,10 +26,18 @@
         rows="10"
         formControlName="description"
       ></textarea>
+      @if(editTaskForm.get('description')?.touched &&
+      !editTaskForm.get('description')?.valid ){
+      <div class="error-msg-task">Please Enter a description.</div>
+      }
     </div>
     <div class="add-task-overlay-input-box">
       <label for="due-date">Due date</label>
       <input required [min]="today" type="date" formControlName="date" />
+      @if(editTaskForm.get('date')?.touched && !editTaskForm.get('date')?.valid
+      ){
+      <div class="error-msg-task">Please Enter a date.</div>
+      }
     </div>
     <div class="add-task-overlay-input-box">
       <span>Prio</span>
@@ -102,11 +114,11 @@
 
         }
       </div>
-      }
-
-      <div id="errorTagAssign" class="error-msg-task d-none">
+      } @if(editTask && editTask.assignedToUserSummarys.length <= 0){
+      <div class="error-msg-task">
         Please assign the task to at least one person
       </div>
+      }
     </div>
 
     <div id="edit-assigned-users-box">
@@ -123,6 +135,7 @@
       [imgSrc]="'./assets/img/icons/checkmark-icon.svg'"
       [colorStyle]="'main-color-style'"
       [type]="'submit'"
+      [diasbled]="sending"
     ></app-button-with-icon>
 
     <img
