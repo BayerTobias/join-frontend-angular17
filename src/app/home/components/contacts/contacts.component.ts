@@ -26,6 +26,7 @@ export class ContactsComponent {
   public currentContact: Contact = new Contact();
   public initials: string[] = [];
   public addContactOverlayOpen: boolean = false;
+  public addContactOverlayAnimation: boolean = false;
   public addTaskOverlayOpen: boolean = false;
   public addTaskOverlayAnimation: boolean = false;
 
@@ -48,26 +49,38 @@ export class ContactsComponent {
     this.initials = Array.from(initialsSet).sort();
   }
 
-  toggleAddContactModal() {}
+  toggleAddContactModal(action: string) {
+    if (action === 'open') {
+      this.addContactOverlayOpen = true;
+      setTimeout(() => {
+        this.addContactOverlayAnimation = true;
+      }, 100);
+    } else if (action === 'close') {
+      this.addContactOverlayAnimation = false;
+      setTimeout(() => {
+        this.addContactOverlayOpen = false;
+      }, 400);
+    }
+  }
+
+  toggleAddTaskOverlay(action: string) {
+    if (action === 'open') {
+      this.addTaskOverlayOpen = true;
+      setTimeout(() => {
+        this.addTaskOverlayAnimation = true;
+      }, 100);
+    } else if (action === 'close') {
+      this.addTaskOverlayAnimation = false;
+      setTimeout(() => {
+        this.addTaskOverlayOpen = false;
+      }, 300);
+    }
+  }
 
   showContact(contact: Contact) {
     const currentContactElement: HTMLElement =
       this.currentContactRef.nativeElement;
     currentContactElement.classList.add('current-contact-animation');
     this.currentContact = contact;
-  }
-
-  openAddTaskOverlay() {
-    this.addTaskOverlayOpen = true;
-    setTimeout(() => {
-      this.addTaskOverlayAnimation = true;
-    }, 10);
-  }
-
-  closeAddTaskOverlay() {
-    this.addTaskOverlayAnimation = false;
-    setTimeout(() => {
-      this.addTaskOverlayOpen = false;
-    }, 300);
   }
 }

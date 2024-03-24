@@ -1,9 +1,9 @@
-<main id="boardMain">
+<main>
   <app-button-with-icon
     [content]="'New Contact'"
     [colorStyle]="'main-color-style'"
     [imgSrc]="'./assets/img/icons/add-contact-icon.svg'"
-    (click)="toggleAddContactModal()"
+    (click)="toggleAddContactModal('open')"
     id="newContact"
   ></app-button-with-icon>
 
@@ -50,20 +50,23 @@
     <div #currentContactDiv class="currentContact">
       @if (currentContact) {<app-current-contact-display
         [currentContact]="currentContact"
-        (openAddTaskEvent)="openAddTaskOverlay()"
+        (openAddTaskEvent)="toggleAddTaskOverlay('open')"
       ></app-current-contact-display>
       }
     </div>
   </section>
 
   @if (addContactOverlayOpen) {
-  <app-add-contact-overlay></app-add-contact-overlay>
+  <app-add-contact-overlay
+    [animation]="addContactOverlayAnimation"
+    (closeOverlayEvent)="toggleAddContactModal('close')"
+  ></app-add-contact-overlay>
   } @if (addTaskOverlayOpen) {
-  <div class="add-task-overlay-wrapper" (click)="closeAddTaskOverlay()">
+  <div class="add-task-overlay-wrapper" (click)="toggleAddTaskOverlay('close')">
     <app-add-task
       [ngClass]="{ animate: addTaskOverlayAnimation }"
       [overlay]="true"
-      (closeOverlayEvent)="closeAddTaskOverlay()"
+      (closeOverlayEvent)="toggleAddTaskOverlay('close')"
     ></app-add-task>
   </div>
   }

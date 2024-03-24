@@ -1,5 +1,9 @@
 <main (click)="closeOverlay()">
-  <div class="modal-inner-container" (click)="$event.stopPropagation()">
+  <div
+    class="modal-inner-container"
+    [ngClass]="{ 'modal-animation': animation }"
+    (click)="$event.stopPropagation()"
+  >
     <div class="left-frame-add">
       <img src="../assets/img/logos/logo_Light.png" alt="Join logo" />
       <div class="contact-info">

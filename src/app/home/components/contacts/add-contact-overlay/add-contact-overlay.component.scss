@@ -9,7 +9,7 @@ main {
   right: 0;
   bottom: 0;
   z-index: 110;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .modal-inner-container {
@@ -17,10 +17,12 @@ main {
   width: 1212px;
   height: 594px;
   position: absolute;
-  // top: 50%;
-  // left: 150%;
-  // transform: translate(-50%, -50%);
+  transform: translateX(200%);
   transition: 400ms ease-in-out;
+}
+
+.modal-animation {
+  transform: translateX(0);
 }
 
 .cancel-btn {
@@ -30,56 +32,47 @@ main {
   cursor: pointer;
 }
 
-.modal-bg-animation {
-  opacity: 1;
-  z-index: 999;
-}
-
-.modal-animation {
-  left: 50%;
-}
-
 /* Left frame */
 .left-frame-add {
-  display: flex;
+  @include dFlex($ai: flex-start, $gp: 16px);
+
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
+
   color: white;
   padding: 66px 46px;
   background-color: $main-color;
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
-}
 
-.left-frame-add img:first-child {
-  width: 55.123px;
-  height: 66.483px;
-}
+  img {
+    width: 55px;
+    height: 66px;
+  }
 
-.left-frame-add h1 {
-  font-size: 61px;
-  margin-bottom: 0;
-  margin-top: 12px;
-}
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
 
-.left-frame-add h2 {
-  font-size: 27px;
-  font-weight: 400;
-  margin-top: 12px;
-}
+    &::after {
+      content: "";
+      width: 90px;
+      height: 2px;
+      background-color: $secondary-color;
+      position: absolute;
+      bottom: -12px;
+    }
 
-.contact-info {
-  position: relative;
-}
+    h1 {
+      font-size: 61px;
+    }
 
-.contact-info::after {
-  content: "";
-  width: 90px;
-  height: 2px;
-  background-color: $secondary-color;
-  position: absolute;
-  bottom: 12px;
+    h2 {
+      font-size: 27px;
+      font-weight: 400;
+    }
+  }
 }
 
 /* Right frame */
