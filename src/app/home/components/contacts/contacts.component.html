@@ -55,6 +55,12 @@
     </div>
   </section>
 
+  @if (addContactOverlayOpen) {
+
+  <app-add-contact-overlay></app-add-contact-overlay>
+
+  }
+
   <!-- <section
     onclick="toggleAddContactModal()"
     id="addContactModal"
@@ -125,9 +131,9 @@
     </div>
   </section> -->
 
-  <section
+  <!-- <section
     onclick="toggleEditContactModal()"
     id="editContactModal"
     class="modal-container"
-  ></section>
+  ></section> -->
 </main>

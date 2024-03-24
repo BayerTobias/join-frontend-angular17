@@ -5,6 +5,7 @@ import { ContactComponent } from './contact/contact.component';
 import { ButtonWithIconComponent } from '../../../shared/components/buttons/button-with-icon/button-with-icon.component';
 import { Contact } from '../../../classes/contact.class';
 import { CurrentContactDisplayComponent } from './current-contact-display/current-contact-display.component';
+import { AddContactOverlayComponent } from './add-contact-overlay/add-contact-overlay.component';
 
 @Component({
   selector: 'app-contacts',
@@ -14,18 +15,19 @@ import { CurrentContactDisplayComponent } from './current-contact-display/curren
     ContactComponent,
     ButtonWithIconComponent,
     CurrentContactDisplayComponent,
+    AddContactOverlayComponent,
   ],
   templateUrl: './contacts.component.html',
   styleUrl: './contacts.component.scss',
 })
 export class ContactsComponent {
-  currentContact: Contact = new Contact();
+  public currentContact: Contact = new Contact();
+  public initials: string[] = [];
+  public addContactOverlayOpen: boolean = true;
 
   public dataManager = inject(DataManagerService);
 
   @ViewChild('currentContactDiv') currentContactRef!: ElementRef;
-
-  initials: string[] = [];
 
   constructor() {}
 

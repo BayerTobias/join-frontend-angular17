@@ -1,0 +1,55 @@
+<main>
+  <div
+    onclick="doNotClose(event)"
+    id="addContact"
+    class="modal-inner-container"
+  >
+    <div class="left-frame-add">
+      <img src="../assets/img/logos/logo_Light.png" alt="Join logo" />
+      <div class="contact-info">
+        <h1>Add contact</h1>
+        <h2>Tasks are better with a team!</h2>
+      </div>
+    </div>
+
+    <div class="right-frame-add">
+      <div class="img-wrapper">
+        <img src="../assets/img/icons/default-user.svg" alt="" />
+      </div>
+
+      <form
+        class="user-form"
+        id="addContactForm"
+        onsubmit="addNewContact(); return false;"
+      >
+        <div class="input-wrapper">
+          <input id="contactName" required type="text" placeholder="Name" />
+          <img src="../assets/img/icons/user-icon.svg" alt="" />
+        </div>
+        <div class="input-wrapper">
+          <input id="contactEmail" required type="email" placeholder="Email" />
+          <img src="../assets/img/icons/login-email.svg" alt="" />
+        </div>
+        <div class="input-wrapper">
+          <input id="contactPhone" required type="number" placeholder="Phone" />
+          <img src="../assets/img/icons/telephone.svg" alt="" />
+        </div>
+
+        <div class="button-wrapper">
+          <button
+            onclick="toggleAddContactModal()"
+            type="reset"
+            class="button-secondary-with-icon"
+          >
+            <span>Close</span>
+            <img src="../assets/img/icons/cancel-icon.svg" alt="" />
+          </button>
+          <button class="button-with-icon">
+            <span>Create contact</span>
+            <img src="../assets/img/icons/checkmark-icon.svg" alt="" />
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
