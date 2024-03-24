@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Contact } from '../../../../classes/contact.class';
 import { ButtonWithIconComponent } from '../../../../shared/components/buttons/button-with-icon/button-with-icon.component';
 
@@ -11,4 +11,9 @@ import { ButtonWithIconComponent } from '../../../../shared/components/buttons/b
 })
 export class CurrentContactDisplayComponent {
   @Input() currentContact: Contact = new Contact();
+  @Output() openAddTaskEvent: EventEmitter<void> = new EventEmitter();
+
+  emitOpenAddTask() {
+    this.openAddTaskEvent.emit();
+  }
 }

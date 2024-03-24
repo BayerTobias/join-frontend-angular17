@@ -6,6 +6,7 @@ import { ButtonWithIconComponent } from '../../../shared/components/buttons/butt
 import { Contact } from '../../../classes/contact.class';
 import { CurrentContactDisplayComponent } from './current-contact-display/current-contact-display.component';
 import { AddContactOverlayComponent } from './add-contact-overlay/add-contact-overlay.component';
+import { AddTaskComponent } from '../add-task/add-task.component';
 
 @Component({
   selector: 'app-contacts',
@@ -16,6 +17,7 @@ import { AddContactOverlayComponent } from './add-contact-overlay/add-contact-ov
     ButtonWithIconComponent,
     CurrentContactDisplayComponent,
     AddContactOverlayComponent,
+    AddTaskComponent,
   ],
   templateUrl: './contacts.component.html',
   styleUrl: './contacts.component.scss',
@@ -23,7 +25,9 @@ import { AddContactOverlayComponent } from './add-contact-overlay/add-contact-ov
 export class ContactsComponent {
   public currentContact: Contact = new Contact();
   public initials: string[] = [];
-  public addContactOverlayOpen: boolean = true;
+  public addContactOverlayOpen: boolean = false;
+  public addTaskOverlayOpen: boolean = false;
+  public addTaskOverlayAnimation: boolean = false;
 
   public dataManager = inject(DataManagerService);
 
@@ -51,5 +55,19 @@ export class ContactsComponent {
       this.currentContactRef.nativeElement;
     currentContactElement.classList.add('current-contact-animation');
     this.currentContact = contact;
+  }
+
+  openAddTaskOverlay() {
+    this.addTaskOverlayOpen = true;
+    setTimeout(() => {
+      this.addTaskOverlayAnimation = true;
+    }, 10);
+  }
+
+  closeAddTaskOverlay() {
+    this.addTaskOverlayAnimation = false;
+    setTimeout(() => {
+      this.addTaskOverlayOpen = false;
+    }, 300);
   }
 }

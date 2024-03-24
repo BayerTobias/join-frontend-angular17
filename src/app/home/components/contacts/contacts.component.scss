@@ -205,106 +205,6 @@ main {
 //   opacity: 0;
 // }
 
-// .modal-inner-container {
-//   display: flex;
-//   width: 1212px;
-//   height: 594px;
-//   position: absolute;
-//   top: 50%;
-//   left: 150%;
-//   transform: translate(-50%, -50%);
-//   transition: 400ms ease-in-out;
-// }
-
-// .modal-bg-animation {
-//   opacity: 1;
-//   z-index: 999;
-// }
-
-// .modal-animation {
-//   left: 50%;
-// }
-
-// /* Left frame */
-// .left-frame-add {
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: flex-start;
-//   color: white;
-//   padding: 66px 46px;
-//   background-color: $main-color;
-//   border-top-left-radius: 30px;
-//   border-bottom-left-radius: 30px;
-// }
-
-// .left-frame-add img:first-child {
-//   width: 55.123px;
-//   height: 66.483px;
-// }
-
-// .left-frame-add h1 {
-//   font-size: 61px;
-//   margin-bottom: 0;
-//   margin-top: 12px;
-// }
-
-// .left-frame-add h2 {
-//   font-size: 27px;
-//   font-weight: 400;
-//   margin-top: 12px;
-// }
-
-// .contact-info {
-//   position: relative;
-// }
-
-// .contact-info::after {
-//   content: "";
-//   width: 90px;
-//   height: 2px;
-//   background-color: $secondary-color;
-//   position: absolute;
-//   bottom: 12px;
-// }
-
-/* Right frame */
-// .right-frame-add {
-//   display: flex;
-//   flex: 1;
-//   justify-content: center;
-//   align-items: center;
-//   background-color: white;
-//   gap: 65px;
-//   border-top-right-radius: 30px;
-//   border-bottom-right-radius: 30px;
-// }
-
-// .right-frame-add form {
-//   display: flex;
-//   flex-direction: column;
-// }
-
-// .img-wrapper {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   height: 120px;
-//   width: 120px;
-//   border-radius: 50%;
-//   background-color: #d1d1d1;
-//   border: 2px solid white;
-//   box-shadow: $nuevo;
-//   color: white;
-//   font-size: 47px;
-//   aspect-ratio: 1 / 1;
-
-//   @media screen and (max-width: 850px) {
-//     width: 80px;
-//     height: 80px;
-//   }
-// }
-
 #contactsOverview {
   padding: 50px;
 
@@ -336,6 +236,40 @@ main {
 
     &:has(.current-contact-animation) .contacts-back {
       display: block;
+    }
+  }
+}
+
+.add-task-overlay-wrapper {
+  @include dFlex();
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 110;
+
+  @media screen and (max-width: 850px) {
+    background-color: unset;
+    z-index: 100;
+  }
+
+  app-add-task {
+    transition: transform 225ms ease-in-out;
+    transform: translateX(200%);
+
+    @media screen and (max-width: 850px) {
+      transition: unset;
+      transform: unset;
+    }
+  }
+
+  .animate {
+    transform: translateX(0);
+
+    @media screen and (max-width: 850px) {
+      transform: unset;
     }
   }
 }

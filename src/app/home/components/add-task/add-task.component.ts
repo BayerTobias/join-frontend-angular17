@@ -59,7 +59,7 @@ export class AddTaskComponent {
   addTaskForm: FormGroup;
   today: string = new Date().toISOString().split('T')[0];
 
-  @Input() overlay: boolean = true;
+  @Input() overlay: boolean = false;
   @Input() taskStatus: string | null = null;
 
   @Output() closeOverlayEvent: EventEmitter<void> = new EventEmitter<void>();

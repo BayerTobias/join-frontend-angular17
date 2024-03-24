@@ -1,9 +1,5 @@
-<main>
-  <div
-    onclick="doNotClose(event)"
-    id="addContact"
-    class="modal-inner-container"
-  >
+<main (click)="closeOverlay()">
+  <div class="modal-inner-container" (click)="$event.stopPropagation()">
     <div class="left-frame-add">
       <img src="../assets/img/logos/logo_Light.png" alt="Join logo" />
       <div class="contact-info">
@@ -36,18 +32,16 @@
         </div>
 
         <div class="button-wrapper">
-          <button
-            onclick="toggleAddContactModal()"
-            type="reset"
-            class="button-secondary-with-icon"
-          >
-            <span>Close</span>
-            <img src="../assets/img/icons/cancel-icon.svg" alt="" />
-          </button>
-          <button class="button-with-icon">
-            <span>Create contact</span>
-            <img src="../assets/img/icons/checkmark-icon.svg" alt="" />
-          </button>
+          <app-button-with-icon
+            [content]="'Close'"
+            [colorStyle]="'secondary-color-style'"
+            (click)="closeOverlay()"
+          ></app-button-with-icon>
+          <app-button-with-icon
+            [content]="'Create Contact'"
+            [colorStyle]="'main-color-style'"
+            [type]="'submit'"
+          ></app-button-with-icon>
         </div>
       </form>
     </div>
