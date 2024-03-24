@@ -21,6 +21,5 @@ export class HeaderComponent {
 
   logout(event: Event) {
     event.stopPropagation();
-    console.log('logout');
   }
 }

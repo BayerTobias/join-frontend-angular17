@@ -25,7 +25,5 @@ export class AuthBaseComponent {
         this.hideLogo = false;
       }, 750);
     }
-
-    console.log(this.router.url);
   }
 }

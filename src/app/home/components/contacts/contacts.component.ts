@@ -40,7 +40,6 @@ export class ContactsComponent {
       initialsSet.add(initial);
     });
     this.initials = Array.from(initialsSet).sort();
-    console.log(this.initials);
   }
 
   toggleAddContactModal() {}

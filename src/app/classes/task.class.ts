@@ -45,8 +45,6 @@ export class Task {
   }
 
   subtasksAsJson() {
-    console.log(this.subtasks);
-
     return this.subtasks.map((subtask: Subtask) => subtask.asJson());
   }
 }

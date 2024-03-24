@@ -159,8 +159,6 @@ export class SignUpComponent {
       this.signUpForm.disable();
       this.setColorAndInitials(user);
       try {
-        console.log('Request data', user);
-
         await this.auth.createUserWithUsernameAndPassword(user);
         this.animateAndRoute();
       } catch (err: any) {

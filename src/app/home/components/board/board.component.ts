@@ -61,8 +61,6 @@ export class BoardComponent {
   }
 
   filterTasks(tasks: Task[]) {
-    console.log('signal fired', this.dataManager.tasksSignal());
-
     this.todoTasks = tasks.filter((task: Task) => task.status === 'todo');
     this.inProgressTasks = tasks.filter(
       (task: Task) => task.status === 'in-progress'
@@ -125,7 +123,6 @@ export class BoardComponent {
 
   openAddTaskOverlay(status: string) {
     this.addTaskOverlayStatus = status;
-    console.log(status);
 
     this.addTaskOverlay = true;
     setTimeout(() => {
