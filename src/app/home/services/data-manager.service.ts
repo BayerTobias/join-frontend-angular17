@@ -20,6 +20,8 @@ export class DataManagerService {
   public categorysSignal: WritableSignal<Category[]> = signal<Category[]>([]);
   public usersSignal: WritableSignal<UserSummary[]> = signal<UserSummary[]>([]);
 
+  public tasks: Task[] = [];
+
   public loggedInUser?: User;
   public userContacts?: Contact[];
 
@@ -58,6 +60,7 @@ export class DataManagerService {
       this.matchUserIdsWithUsers(tasks);
 
       this.tasksSignal.set(tasks);
+      this.tasks = tasks;
     } catch (err) {
       console.error(err);
     }

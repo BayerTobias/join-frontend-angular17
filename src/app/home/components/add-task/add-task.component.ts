@@ -188,11 +188,8 @@ export class AddTaskComponent {
       try {
         await this.dataManager.createTask(task);
         await this.dataManager.getTasks();
-        if (!this.overlay) {
-          this.animateAndRoute();
-        } else {
-          this.closeOverlay();
-        }
+        if (!this.overlay) this.animateAndRoute();
+        else this.animateAndCloseOverlay();
       } catch (err) {
         console.error(err);
         this.addTaskForm.enable();
@@ -211,7 +208,6 @@ export class AddTaskComponent {
     task.dueDate = this.addTaskForm.get('date')?.value;
     task.prio = this.prio;
     task.subtasks = this.subtasks;
-
     if (this.taskStatus) task.status = this.taskStatus;
 
     return task;
@@ -244,6 +240,13 @@ export class AddTaskComponent {
     this.animateModal = true;
     setTimeout(() => {
       this.router.navigateByUrl('home/board');
+    }, 500);
+  }
+
+  animateAndCloseOverlay() {
+    this.animateModal = true;
+    setTimeout(() => {
+      this.closeOverlay();
     }, 500);
   }
 

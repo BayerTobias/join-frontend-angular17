@@ -14,6 +14,7 @@ import { DataManagerService } from '../../services/data-manager.service';
 import { TaskOverlayComponent } from './task-overlay/task-overlay.component';
 import { EditTaskOverlayComponent } from './edit-task-overlay/edit-task-overlay.component';
 import { AddTaskComponent } from '../add-task/add-task.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-board',
@@ -25,6 +26,7 @@ import { AddTaskComponent } from '../add-task/add-task.component';
     TaskOverlayComponent,
     EditTaskOverlayComponent,
     AddTaskComponent,
+    FormsModule,
   ],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss',
@@ -43,6 +45,7 @@ export class BoardComponent {
   public addTaskOverlay: boolean = false;
   public addTaskOverlayAnimation: boolean = false;
   public addTaskOverlayStatus: string | null = null;
+  searchTerm: string = '';
 
   @ViewChildren(TaskComponent) taskComponents?: QueryList<TaskComponent>;
 
@@ -136,5 +139,21 @@ export class BoardComponent {
       this.addTaskOverlay = false;
     }, 300);
     this.addTaskOverlayStatus = null;
+  }
+
+  searchTask() {
+    this.dataManager.tasksSignal.set(this.dataManager.tasks);
+
+    this.dataManager.tasksSignal.update((value) =>
+      value.filter(
+        (task) =>
+          task.title
+            .toLocaleLowerCase()
+            .includes(this.searchTerm.toLowerCase()) ||
+          task.description
+            .toLocaleLowerCase()
+            .includes(this.searchTerm.toLowerCase())
+      )
+    );
   }
 }

@@ -6,7 +6,12 @@
     <h1>Board</h1>
     <div>
       <div class="input-wrapper">
-        <input oninput="searchTask()" placeholder="Find Task" type="text" />
+        <input
+          [(ngModel)]="searchTerm"
+          (input)="searchTask()"
+          placeholder="Find Task"
+          type="text"
+        />
         <div>
           <img src="./assets/img/icons/magnifying-glass.svg" alt="search" />
         </div>
