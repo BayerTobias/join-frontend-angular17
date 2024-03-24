@@ -1,4 +1,11 @@
-import { Component, Input, effect, inject } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  effect,
+  inject,
+} from '@angular/core';
 import { ButtonWithIconComponent } from '../../../shared/components/buttons/button-with-icon/button-with-icon.component';
 import {
   FormBuilder,
@@ -52,7 +59,10 @@ export class AddTaskComponent {
   addTaskForm: FormGroup;
   today: string = new Date().toISOString().split('T')[0];
 
-  @Input() overlay: boolean = false;
+  @Input() overlay: boolean = true;
+  @Input() taskStatus: string | null = null;
+
+  @Output() closeOverlayEvent: EventEmitter<void> = new EventEmitter<void>();
 
   private fb = inject(FormBuilder);
   public dataManager = inject(DataManagerService);
@@ -170,15 +180,19 @@ export class AddTaskComponent {
 
   async addTask() {
     this.formSubmitted = true;
-    this.sending = true;
 
     if (this.formIsValid() && this.selectedCategory !== null) {
       const task = this.createTaskWithData();
+      this.sending = true;
 
       try {
         await this.dataManager.createTask(task);
         await this.dataManager.getTasks();
-        this.animateAndRoute();
+        if (!this.overlay) {
+          this.animateAndRoute();
+        } else {
+          this.closeOverlay();
+        }
       } catch (err) {
         console.error(err);
         this.addTaskForm.enable();
@@ -197,6 +211,8 @@ export class AddTaskComponent {
     task.dueDate = this.addTaskForm.get('date')?.value;
     task.prio = this.prio;
     task.subtasks = this.subtasks;
+
+    if (this.taskStatus) task.status = this.taskStatus;
 
     return task;
   }
@@ -229,5 +245,10 @@ export class AddTaskComponent {
     setTimeout(() => {
       this.router.navigateByUrl('home/board');
     }, 500);
+  }
+
+  closeOverlay() {
+    this.dataManager.resetUsersChecked();
+    this.closeOverlayEvent.emit();
   }
 }

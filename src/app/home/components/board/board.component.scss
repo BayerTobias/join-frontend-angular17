@@ -215,4 +215,27 @@ main {
   left: 0;
   background-color: rgba(0, 0, 0, 0.1);
   z-index: 110;
+
+  @media screen and (max-width: 850px) {
+    background-color: unset;
+    z-index: 100;
+  }
+
+  app-add-task {
+    transition: transform 225ms ease-in-out;
+    transform: translateX(200%);
+
+    @media screen and (max-width: 850px) {
+      transition: unset;
+      transform: unset;
+    }
+  }
+
+  .animate {
+    transform: translateX(0);
+
+    @media screen and (max-width: 850px) {
+      transform: unset;
+    }
+  }
 }

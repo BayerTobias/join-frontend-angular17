@@ -1,4 +1,7 @@
-<main [ngClass]="{ 'overlay-main': overlay }">
+<main
+  (click)="$event.stopPropagation()"
+  [ngClass]="{ 'overlay-main': overlay }"
+>
   <section>
     <h1>Add Task</h1>
 
@@ -304,4 +307,13 @@
     [content]="'Task added to board'"
     [img]="'./assets/img/icons/sidebar-board.svg'"
   ></app-success-message>
+
+  @if (overlay) {
+  <img
+    (click)="closeOverlay()"
+    class="close-button"
+    src="./assets/img/icons/x-icon.svg"
+    alt=""
+  />
+  }
 </main>

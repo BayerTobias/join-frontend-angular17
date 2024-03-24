@@ -48,6 +48,87 @@ main {
 
 .overlay-main {
   background-color: white;
+  padding: 60px;
+  border-radius: 30px;
+  min-height: unset;
+  box-shadow: $nuevo;
+
+  @media screen and (max-width: 1100px) {
+    height: 90vh;
+    height: 90svh;
+    overflow: auto;
+    justify-content: flex-start;
+    padding: 45px;
+    overflow-x: hidden;
+  }
+
+  @media screen and (max-width: 850px) {
+    position: absolute;
+    top: 95px;
+    left: 0;
+    right: 0;
+    height: calc(100vh - 95px - 90px);
+    height: calc(100svh - 95px - 90px);
+    border-radius: unset;
+    background-color: $bg-color;
+  }
+
+  h1 {
+    padding: 0;
+
+    @media screen and (max-width: 850px) {
+      &::before {
+        content: "";
+      }
+    }
+  }
+
+  form {
+    min-height: unset;
+    padding: 0;
+
+    @media screen and (max-width: 1200px) {
+      flex-direction: row;
+      gap: 0;
+    }
+
+    @media screen and (max-width: 1100px) {
+      flex-direction: column;
+      gap: 14px;
+    }
+  }
+
+  .seperator {
+    @media screen and (max-width: 1200px) {
+      display: flex !important;
+    }
+
+    @media screen and (max-width: 1100px) {
+      display: none !important;
+    }
+  }
+
+  .button-box {
+    @media screen and (max-width: 1200px) {
+      justify-content: flex-end;
+    }
+
+    @media screen and (max-width: 1100px) {
+      justify-content: center;
+    }
+  }
+
+  .close-button {
+    position: absolute;
+    top: 45px;
+    right: 45px;
+    cursor: pointer;
+    display: none;
+
+    @media screen and (max-width: 850px) {
+      display: block;
+    }
+  }
 }
 
 section {

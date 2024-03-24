@@ -40,7 +40,9 @@ export class BoardComponent {
 
   public overlayTask: Task | null = null;
   public activeEditTask: Task | null = null;
-  public addTaskOverlay: boolean = true;
+  public addTaskOverlay: boolean = false;
+  public addTaskOverlayAnimation: boolean = false;
+  public addTaskOverlayStatus: string | null = null;
 
   @ViewChildren(TaskComponent) taskComponents?: QueryList<TaskComponent>;
 
@@ -116,5 +118,23 @@ export class BoardComponent {
 
   openEditTaskOverlay(event: { task: Task }) {
     this.activeEditTask = event.task;
+  }
+
+  openAddTaskOverlay(status: string) {
+    this.addTaskOverlayStatus = status;
+    console.log(status);
+
+    this.addTaskOverlay = true;
+    setTimeout(() => {
+      this.addTaskOverlayAnimation = true;
+    }, 10);
+  }
+
+  closeAddTaskOverlay() {
+    this.addTaskOverlayAnimation = false;
+    setTimeout(() => {
+      this.addTaskOverlay = false;
+    }, 300);
+    this.addTaskOverlayStatus = null;
   }
 }
