@@ -19,19 +19,34 @@
 
       <form
         class="user-form"
-        id="addContactForm"
-        onsubmit="addNewContact(); return false;"
+        [formGroup]="contactForm"
+        (submit)="addOrEditTask()"
       >
         <div class="input-wrapper">
-          <input id="contactName" required type="text" placeholder="Name" />
+          <input
+            formControlName="name"
+            required
+            type="text"
+            placeholder="Name"
+          />
           <img src="../assets/img/icons/user-icon.svg" alt="" />
         </div>
         <div class="input-wrapper">
-          <input id="contactEmail" required type="email" placeholder="Email" />
+          <input
+            formControlName="email"
+            required
+            type="email"
+            placeholder="Email"
+          />
           <img src="../assets/img/icons/login-email.svg" alt="" />
         </div>
         <div class="input-wrapper">
-          <input id="contactPhone" required type="number" placeholder="Phone" />
+          <input
+            formControlName="phone"
+            required
+            type="number"
+            placeholder="Phone"
+          />
           <img src="../assets/img/icons/telephone.svg" alt="" />
         </div>
 
