@@ -151,4 +151,18 @@ export class DataManagerService {
 
     return lastValueFrom(this.http.post(url, body));
   }
+
+  async createContact(contact: Contact) {
+    const url = environment.baseUrl + '/contacts/';
+    const body = contact.asJson();
+
+    return lastValueFrom(this.http.post(url, body));
+  }
+
+  async deleteContact(contact: Contact) {
+    const url = environment.baseUrl + '/contacts/' + contact.id + '/';
+    const body = contact.asJson();
+
+    return lastValueFrom(this.http.delete(url));
+  }
 }

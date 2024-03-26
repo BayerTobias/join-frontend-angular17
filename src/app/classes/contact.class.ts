@@ -1,4 +1,5 @@
 interface ContactData {
+  id: number;
   name: string;
   email: string;
   phone: number;
@@ -7,6 +8,7 @@ interface ContactData {
 }
 
 export class Contact {
+  id: number;
   name: string;
   email: string;
   phone: number;
@@ -14,6 +16,8 @@ export class Contact {
   color: string;
 
   constructor(data?: ContactData) {
+    this.id = data?.id || -1;
+    this.name = data?.name || '';
     this.name = data?.name || '';
     this.email = data?.email || '';
     this.phone = data?.phone || -1;
@@ -23,6 +27,7 @@ export class Contact {
 
   asJson() {
     return {
+      id: this.id,
       name: this.name,
       email: this.email,
       phone: this.phone,

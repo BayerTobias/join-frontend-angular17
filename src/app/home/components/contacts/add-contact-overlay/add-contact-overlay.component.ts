@@ -9,6 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Contact } from '../../../../classes/contact.class';
+import { DataManagerService } from '../../../services/data-manager.service';
 
 @Component({
   selector: 'app-add-contact-overlay',
@@ -42,6 +43,7 @@ export class AddContactOverlayComponent {
   contactForm: FormGroup;
 
   private fb = inject(FormBuilder);
+  private dataManager = inject(DataManagerService);
 
   constructor() {
     this.contactForm = this.fb.group({
@@ -67,14 +69,34 @@ export class AddContactOverlayComponent {
     this.closeOverlayEvent.emit();
   }
 
-  addOrEditTask() {
+  async addOrEditTask() {
     this.contact.name = this.contactForm.value.name;
     this.contact.email = this.contactForm.value.email;
     this.contact.phone = this.contactForm.value.phone;
     if (!this.contact.color) this.contact.color = this.getRandomColor();
     this.contact.initials = this.getInitials();
 
-    console.log(this.contact);
+    try {
+      await this.dataManager.createContact(this.contact);
+      console.log('done');
+    } catch (err) {
+      console.error(err);
+    }
+
+    this.dataManager.userContacts?.push(this.contact);
+    localStorage.setItem(
+      'contacts',
+      JSON.stringify(this.dataManager.userContacts)
+    );
+  }
+
+  async deleteContact() {
+    try {
+      await this.dataManager.deleteContact(this.contact);
+      console.log('done');
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   getRandomColor() {

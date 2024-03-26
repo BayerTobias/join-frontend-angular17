@@ -133,6 +133,8 @@ export class LoginComponent {
         'TestUser',
         'Test123'
       )) as LoginResponse;
+      console.log(resp);
+
       this.handleSuccessfullLogin(resp);
     } catch (err) {
       console.error(err);
