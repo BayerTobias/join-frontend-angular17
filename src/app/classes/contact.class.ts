@@ -1,11 +1,4 @@
-interface ContactData {
-  id: number;
-  name: string;
-  email: string;
-  phone: number;
-  initials: string;
-  color: string;
-}
+import { ContactData } from '../interfaces/contacts/contact-response-interface';
 
 export class Contact {
   id: number;

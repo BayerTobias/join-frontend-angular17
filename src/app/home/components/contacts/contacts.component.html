@@ -51,6 +51,7 @@
       @if (currentContact) {<app-current-contact-display
         [currentContact]="currentContact"
         (openAddTaskEvent)="toggleAddTaskOverlay('open')"
+        (openEditContactEvent)="toggleEditContactModal('open')"
       ></app-current-contact-display>
       }
     </div>
@@ -60,6 +61,13 @@
   <app-add-contact-overlay
     [animation]="addContactOverlayAnimation"
     (closeOverlayEvent)="toggleAddContactModal('close')"
+  ></app-add-contact-overlay>
+  } @if (editContactOverlayOpen) {
+  <app-add-contact-overlay
+    [animation]="editContactOverlayAnimation"
+    [contact]="currentContact"
+    [edit]="true"
+    (closeOverlayEvent)="toggleEditContactModal('close')"
   ></app-add-contact-overlay>
   } @if (addTaskOverlayOpen) {
   <div class="add-task-overlay-wrapper" (click)="toggleAddTaskOverlay('close')">

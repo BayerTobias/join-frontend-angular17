@@ -38,7 +38,7 @@
   </div>
   <div>
     <span>Contact Information</span>
-    <span onclick="editContact()">
+    <span (click)="emitEditContact()">
       <svg
         width="21"
         height="30"
@@ -75,7 +75,7 @@
         [imgSrc]="'./assets/img/icons/trash-bin.svg'"
         [imgWidth]="32"
         [imgHeight]="32"
-        onclick="deleteContactMobile()"
+        (click)="deleteContactMobile()"
       ></app-button-with-icon>
       <app-button-with-icon
         [iconOnly]="true"
@@ -83,7 +83,7 @@
         [imgSrc]="'./assets/img/icons/bord-overlay-edit-pencil.svg'"
         [imgWidth]="21"
         [imgHeight]="30"
-        onclick="editContact()"
+        (click)="emitEditContact()"
       ></app-button-with-icon>
     </div>
   </div>

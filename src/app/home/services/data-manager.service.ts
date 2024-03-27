@@ -161,7 +161,6 @@ export class DataManagerService {
 
   async deleteContact(contact: Contact) {
     const url = environment.baseUrl + '/contacts/' + contact.id + '/';
-    const body = contact.asJson();
 
     return lastValueFrom(this.http.delete(url));
   }

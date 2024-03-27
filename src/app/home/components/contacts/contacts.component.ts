@@ -27,6 +27,8 @@ export class ContactsComponent {
   public initials: string[] = [];
   public addContactOverlayOpen: boolean = false;
   public addContactOverlayAnimation: boolean = false;
+  public editContactOverlayOpen: boolean = false;
+  public editContactOverlayAnimation: boolean = false;
   public addTaskOverlayOpen: boolean = false;
   public addTaskOverlayAnimation: boolean = false;
 
@@ -63,6 +65,20 @@ export class ContactsComponent {
     }
   }
 
+  toggleEditContactModal(action: string) {
+    if (action === 'open') {
+      this.editContactOverlayOpen = true;
+      setTimeout(() => {
+        this.editContactOverlayAnimation = true;
+      }, 100);
+    } else if (action === 'close') {
+      this.editContactOverlayAnimation = false;
+      setTimeout(() => {
+        this.editContactOverlayOpen = false;
+      }, 400);
+    }
+  }
+
   toggleAddTaskOverlay(action: string) {
     if (action === 'open') {
       this.addTaskOverlayOpen = true;
@@ -78,6 +94,8 @@ export class ContactsComponent {
   }
 
   showContact(contact: Contact) {
+    this.currentContact = contact;
+
     const currentContactElement: HTMLElement =
       this.currentContactRef.nativeElement;
     currentContactElement.classList.add('current-contact-animation');

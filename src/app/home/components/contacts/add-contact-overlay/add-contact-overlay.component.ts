@@ -10,6 +10,7 @@ import {
 } from '@angular/forms';
 import { Contact } from '../../../../classes/contact.class';
 import { DataManagerService } from '../../../services/data-manager.service';
+import { ContactData } from '../../../../interfaces/contacts/contact-response-interface';
 
 @Component({
   selector: 'app-add-contact-overlay',
@@ -26,6 +27,7 @@ import { DataManagerService } from '../../../services/data-manager.service';
 export class AddContactOverlayComponent {
   @Input() animation: boolean = false;
   @Input() contact: Contact = new Contact();
+  @Input() edit: boolean = false;
 
   @Output() closeOverlayEvent: EventEmitter<void> = new EventEmitter();
 
@@ -53,6 +55,16 @@ export class AddContactOverlayComponent {
     });
   }
 
+  ngOnInit() {
+    if (this.edit && this.contact) {
+      this.contactForm.patchValue({
+        name: this.contact.name,
+        email: this.contact.email,
+        phone: this.contact.phone,
+      });
+    }
+  }
+
   get name() {
     return this.contactForm.get('name');
   }
@@ -75,19 +87,23 @@ export class AddContactOverlayComponent {
     this.contact.phone = this.contactForm.value.phone;
     if (!this.contact.color) this.contact.color = this.getRandomColor();
     this.contact.initials = this.getInitials();
+    console.log('add task', this.contact);
 
     try {
-      await this.dataManager.createContact(this.contact);
-      console.log('done');
+      const resp: ContactData = await this.dataManager.createContact(
+        this.contact
+      );
+      const serverContact = new Contact(resp);
+      this.dataManager.userContacts?.push(serverContact);
+      console.log(this.dataManager.userContacts);
+
+      localStorage.setItem(
+        'contacts',
+        JSON.stringify(this.dataManager.userContacts)
+      );
     } catch (err) {
       console.error(err);
     }
-
-    this.dataManager.userContacts?.push(this.contact);
-    localStorage.setItem(
-      'contacts',
-      JSON.stringify(this.dataManager.userContacts)
-    );
   }
 
   async deleteContact() {
