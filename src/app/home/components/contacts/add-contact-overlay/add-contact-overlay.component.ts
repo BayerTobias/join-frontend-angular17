@@ -94,6 +94,7 @@ export class AddContactOverlayComponent {
         this.contact
       );
       const serverContact = new Contact(resp);
+      this.contact = serverContact;
       this.dataManager.userContacts?.push(serverContact);
       console.log(this.dataManager.userContacts);
 
@@ -101,6 +102,7 @@ export class AddContactOverlayComponent {
         'contacts',
         JSON.stringify(this.dataManager.userContacts)
       );
+      this.closeOverlay();
     } catch (err) {
       console.error(err);
     }
@@ -109,7 +111,17 @@ export class AddContactOverlayComponent {
   async deleteContact() {
     try {
       await this.dataManager.deleteContact(this.contact);
-      console.log('done');
+      const index = this.dataManager.userContacts?.findIndex((contact) => {
+        return contact.id === this.contact.id;
+      });
+      if (index && index !== -1) {
+        this.dataManager.userContacts?.splice(index, 1);
+      }
+      localStorage.setItem(
+        'contacts',
+        JSON.stringify(this.dataManager.userContacts)
+      );
+      this.closeOverlay();
     } catch (err) {
       console.error(err);
     }
