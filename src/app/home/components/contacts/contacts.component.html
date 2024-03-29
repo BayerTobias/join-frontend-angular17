@@ -60,14 +60,14 @@
   @if (addContactOverlayOpen) {
   <app-add-contact-overlay
     [animation]="addContactOverlayAnimation"
-    (closeOverlayEvent)="toggleAddContactModal('close')"
+    (closeOverlayEvent)="toggleAddContactModal('close', $event)"
   ></app-add-contact-overlay>
   } @if (editContactOverlayOpen) {
   <app-add-contact-overlay
     [animation]="editContactOverlayAnimation"
     [contact]="currentContact"
     [edit]="true"
-    (closeOverlayEvent)="toggleEditContactModal('close')"
+    (closeOverlayEvent)="toggleEditContactModal('close', $event)"
   ></app-add-contact-overlay>
   } @if (addTaskOverlayOpen) {
   <div class="add-task-overlay-wrapper" (click)="toggleAddTaskOverlay('close')">

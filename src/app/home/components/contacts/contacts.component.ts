@@ -43,6 +43,7 @@ export class ContactsComponent {
   }
 
   getUniqueInitials() {
+    this.initials = [];
     const initialsSet = new Set<string>();
     this.dataManager.userContacts?.forEach((contact) => {
       const initial = contact.name.charAt(0).toUpperCase();
@@ -51,45 +52,88 @@ export class ContactsComponent {
     this.initials = Array.from(initialsSet).sort();
   }
 
-  toggleAddContactModal(action: string) {
+  toggleAddContactModal(
+    action: string,
+    event?: { action: boolean; delete: boolean; id: number }
+  ) {
     if (action === 'open') {
-      this.addContactOverlayOpen = true;
-      setTimeout(() => {
-        this.addContactOverlayAnimation = true;
-      }, 100);
+      this.handleOverlayAnimation('open', 'add', 400);
     } else if (action === 'close') {
-      this.addContactOverlayAnimation = false;
-      setTimeout(() => {
-        this.addContactOverlayOpen = false;
-      }, 400);
+      console.log(event);
+      this.getUniqueInitials();
+      this.handleOverlayAnimation('close', 'add', 400);
     }
   }
 
-  toggleEditContactModal(action: string) {
+  toggleEditContactModal(
+    action: string,
+    event?: { action: boolean; delete: boolean; id: number }
+  ) {
     if (action === 'open') {
-      this.editContactOverlayOpen = true;
-      setTimeout(() => {
-        this.editContactOverlayAnimation = true;
-      }, 100);
+      this.handleOverlayAnimation('open', 'edit', 400);
     } else if (action === 'close') {
-      this.editContactOverlayAnimation = false;
-      setTimeout(() => {
-        this.editContactOverlayOpen = false;
-      }, 400);
+      this.getUniqueInitials();
+      if (event?.delete) this.currentContact = new Contact();
+      this.handleOverlayAnimation('close', 'edit', 400);
     }
   }
 
   toggleAddTaskOverlay(action: string) {
     if (action === 'open') {
-      this.addTaskOverlayOpen = true;
-      setTimeout(() => {
-        this.addTaskOverlayAnimation = true;
-      }, 100);
+      this.handleOverlayAnimation('open', 'addTask', 400);
     } else if (action === 'close') {
-      this.addTaskOverlayAnimation = false;
-      setTimeout(() => {
-        this.addTaskOverlayOpen = false;
-      }, 300);
+      this.handleOverlayAnimation('close', 'addTask', 400);
+    }
+  }
+
+  handleOverlayAnimation(
+    action: string,
+    overlay: string,
+    animationTime: number
+  ) {
+    switch (overlay) {
+      case 'edit':
+        if (action === 'open') {
+          this.editContactOverlayOpen = true;
+          setTimeout(() => {
+            this.editContactOverlayAnimation = true;
+          }, 100);
+        } else if (action === 'close') {
+          this.editContactOverlayAnimation = false;
+          setTimeout(() => {
+            this.editContactOverlayOpen = false;
+          }, animationTime);
+        }
+        break;
+      case 'add':
+        if (action === 'open') {
+          this.addContactOverlayOpen = true;
+          setTimeout(() => {
+            this.addContactOverlayAnimation = true;
+          }, 100);
+        } else if (action === 'close') {
+          this.addContactOverlayAnimation = false;
+          setTimeout(() => {
+            this.addContactOverlayOpen = false;
+          }, animationTime);
+        }
+        break;
+      case 'addTask':
+        if (action === 'open') {
+          this.addTaskOverlayOpen = true;
+          setTimeout(() => {
+            this.addTaskOverlayAnimation = true;
+          }, 100);
+        } else if (action === 'close') {
+          this.addTaskOverlayAnimation = false;
+          setTimeout(() => {
+            this.addTaskOverlayOpen = false;
+          }, animationTime);
+        }
+        break;
+      default:
+        console.error(`Unbekanntes Overlay: ${overlay}`);
+        break;
     }
   }
 

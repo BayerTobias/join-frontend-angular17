@@ -29,7 +29,11 @@ export class AddContactOverlayComponent {
   @Input() contact: Contact = new Contact();
   @Input() edit: boolean = false;
 
-  @Output() closeOverlayEvent: EventEmitter<void> = new EventEmitter();
+  @Output() closeOverlayEvent: EventEmitter<{
+    action: boolean;
+    delete: boolean;
+    id: number;
+  }> = new EventEmitter<{ action: boolean; delete: boolean; id: number }>();
 
   colors: string[] = [
     '#008ddc',
@@ -77,34 +81,44 @@ export class AddContactOverlayComponent {
     return this.contactForm.get('phone');
   }
 
-  closeOverlay() {
-    this.closeOverlayEvent.emit();
+  closeOverlay(
+    contactCreateOrEdit: boolean,
+    deleted: boolean,
+    contatId: number
+  ) {
+    this.closeOverlayEvent.emit({
+      action: contactCreateOrEdit,
+      delete: deleted,
+      id: contatId,
+    });
   }
 
-  async addOrEditTask() {
-    this.contact.name = this.contactForm.value.name;
-    this.contact.email = this.contactForm.value.email;
-    this.contact.phone = this.contactForm.value.phone;
-    if (!this.contact.color) this.contact.color = this.getRandomColor();
-    this.contact.initials = this.getInitials();
-    console.log('add task', this.contact);
+  async addOrEditContact() {
+    if (this.contactForm.valid) {
+      this.contact.name = this.contactForm.value.name;
+      this.contact.email = this.contactForm.value.email;
+      this.contact.phone = this.contactForm.value.phone;
+      if (!this.contact.color) this.contact.color = this.getRandomColor();
+      this.contact.initials = this.getInitials();
+      console.log('add task', this.contact);
 
-    try {
-      const resp: ContactData = await this.dataManager.createContact(
-        this.contact
-      );
-      const serverContact = new Contact(resp);
-      this.contact = serverContact;
-      this.dataManager.userContacts?.push(serverContact);
-      console.log(this.dataManager.userContacts);
+      try {
+        const resp: ContactData = await this.dataManager.createContact(
+          this.contact
+        );
+        const serverContact = new Contact(resp);
+        this.contact = serverContact;
+        this.dataManager.userContacts?.push(serverContact);
+        console.log(this.dataManager.userContacts);
 
-      localStorage.setItem(
-        'contacts',
-        JSON.stringify(this.dataManager.userContacts)
-      );
-      this.closeOverlay();
-    } catch (err) {
-      console.error(err);
+        localStorage.setItem(
+          'contacts',
+          JSON.stringify(this.dataManager.userContacts)
+        );
+        this.closeOverlay(true, false, serverContact.id);
+      } catch (err) {
+        console.error(err);
+      }
     }
   }
 
@@ -117,11 +131,12 @@ export class AddContactOverlayComponent {
       if (index && index !== -1) {
         this.dataManager.userContacts?.splice(index, 1);
       }
+
       localStorage.setItem(
         'contacts',
         JSON.stringify(this.dataManager.userContacts)
       );
-      this.closeOverlay();
+      this.closeOverlay(true, true, this.contact.id);
     } catch (err) {
       console.error(err);
     }

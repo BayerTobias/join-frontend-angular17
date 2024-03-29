@@ -1,4 +1,4 @@
-<main (click)="closeOverlay()">
+<main (click)="closeOverlay(false, false, -1)">
   <div
     class="modal-inner-container"
     [ngClass]="{ 'modal-animation': animation }"
@@ -22,7 +22,7 @@
       <form
         class="user-form"
         [formGroup]="contactForm"
-        (submit)="addOrEditTask()"
+        (submit)="addOrEditContact()"
       >
         <div class="input-wrapper">
           <input
@@ -58,7 +58,7 @@
             [content]="'Close'"
             [colorStyle]="'secondary-color-style'"
             [imgSrc]="'./assets/img/icons/cancel-icon.svg'"
-            (click)="closeOverlay()"
+            (click)="closeOverlay(false, false, -1)"
           ></app-button-with-icon>
           }@else {
           <app-button-with-icon
