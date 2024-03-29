@@ -19,9 +19,13 @@
       <div class="img-wrapper">
         <img src="./assets/img/icons/default-user.svg" alt="" />
       </div>
-      } @else {
+      } @else if(contact) {
       <div class="img-wrapper" [style.background-color]="contact.color">
         {{ contact.initials }}
+      </div>
+      }@else {
+      <div class="img-wrapper">
+        <img src="./assets/img/icons/default-user.svg" alt="" />
       </div>
       }
 

@@ -94,55 +94,54 @@ export class AddContactOverlayComponent {
   }
 
   async addOrEditContact() {
-    if (this.contactForm.valid) {
-      this.contact.name = this.contactForm.value.name;
-      this.contact.email = this.contactForm.value.email;
-      this.contact.phone = this.contactForm.value.phone;
-      if (!this.contact.color) this.contact.color = this.getRandomColor();
-      this.contact.initials = this.getInitials();
-      console.log('add task', this.contact);
+    if (this.contactForm.valid && this.contact) {
+      this.fillContactData();
+      console.log('add contact', this.contact);
 
-      try {
-        const resp: ContactData = await this.dataManager.createContact(
-          this.contact
-        );
-        const serverContact = new Contact(resp);
-        this.contact = serverContact;
-        this.dataManager.userContacts?.push(serverContact);
-        console.log(this.dataManager.userContacts);
-
-        localStorage.setItem(
-          'contacts',
-          JSON.stringify(this.dataManager.userContacts)
-        );
-        this.closeOverlay(true, false, serverContact.id);
-      } catch (err) {
-        console.error(err);
+      if (this.edit) {
+        this.editContact();
+      } else {
+        this.addContact();
       }
     }
   }
 
-  addContact() {}
+  fillContactData() {
+    this.contact.name = this.contactForm.value.name;
+    this.contact.email = this.contactForm.value.email;
+    this.contact.phone = this.contactForm.value.phone;
+    if (!this.contact.color) this.contact.color = this.getRandomColor();
+    this.contact.initials = this.getInitials();
+  }
 
-  editContact() {}
-
-  async deleteContact() {
+  async addContact() {
     try {
-      await this.dataManager.deleteContact(this.contact);
-      const index = this.dataManager.userContacts?.findIndex((contact) => {
-        return contact.id === this.contact.id;
-      });
-      if (index && index !== -1) {
-        this.dataManager.userContacts?.splice(index, 1);
-      }
-
+      const resp: ContactData = await this.dataManager.createContact(
+        this.contact
+      );
+      const serverContact = new Contact(resp);
+      this.contact = serverContact;
+      this.dataManager.userContacts?.push(serverContact);
       localStorage.setItem(
         'contacts',
         JSON.stringify(this.dataManager.userContacts)
       );
-      this.closeOverlay(true, true, this.contact.id);
+      this.closeOverlay(true, false, serverContact.id);
     } catch (err) {
       console.error(err);
+    }
+  }
+
+  editContact() {}
+
+  async deleteContact() {
+    if (this.contact) {
+      try {
+        await this.dataManager.deleteContact(this.contact);
+        this.closeOverlay(true, true, this.contact.id);
+      } catch (err) {
+        console.error(err);
+      }
     }
   }
 

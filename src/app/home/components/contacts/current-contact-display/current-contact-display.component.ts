@@ -14,6 +14,11 @@ export class CurrentContactDisplayComponent {
   @Input() currentContact: Contact = new Contact();
   @Output() openAddTaskEvent: EventEmitter<void> = new EventEmitter();
   @Output() openEditContactEvent: EventEmitter<void> = new EventEmitter();
+  @Output() deleteContactEvent: EventEmitter<{
+    action: boolean;
+    delete: boolean;
+    id: number;
+  }> = new EventEmitter<{ action: boolean; delete: boolean; id: number }>();
 
   private dataMangager = inject(DataManagerService);
 
@@ -26,10 +31,10 @@ export class CurrentContactDisplayComponent {
   }
 
   async deleteContactMobile() {
-    try {
-      this.dataMangager.deleteContact(this.currentContact);
-    } catch (err) {
-      console.error(err);
-    }
+    this.deleteContactEvent.emit({
+      action: true,
+      delete: true,
+      id: this.currentContact.id,
+    });
   }
 }

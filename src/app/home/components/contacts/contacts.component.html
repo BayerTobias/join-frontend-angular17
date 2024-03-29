@@ -52,6 +52,7 @@
         [currentContact]="currentContact"
         (openAddTaskEvent)="toggleAddTaskOverlay('open')"
         (openEditContactEvent)="toggleEditContactModal('open')"
+        (deleteContactEvent)="toggleEditContactModal('close', $event)"
       ></app-current-contact-display>
       }
     </div>

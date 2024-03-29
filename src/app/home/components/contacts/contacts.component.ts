@@ -79,10 +79,24 @@ export class ContactsComponent {
     if (action === 'open') {
       this.handleOverlayAnimation('open', 'edit', 400);
     } else if (action === 'close') {
+      if (event?.delete) this.handleDeleteContact(event.id);
       this.getUniqueInitials();
-      if (event?.delete) this.currentContact = null;
       this.handleOverlayAnimation('close', 'edit', 400);
     }
+  }
+
+  handleDeleteContact(id: number) {
+    this.currentContact = null;
+    const index = this.dataManager.userContacts?.findIndex((contact) => {
+      return contact.id === id;
+    });
+    if (index && index !== -1) {
+      this.dataManager.userContacts?.splice(index, 1);
+    }
+    localStorage.setItem(
+      'contacts',
+      JSON.stringify(this.dataManager.userContacts)
+    );
   }
 
   toggleAddTaskOverlay(action: string) {
