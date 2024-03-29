@@ -122,6 +122,10 @@ export class AddContactOverlayComponent {
     }
   }
 
+  addContact() {}
+
+  editContact() {}
+
   async deleteContact() {
     try {
       await this.dataManager.deleteContact(this.contact);

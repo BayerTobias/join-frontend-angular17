@@ -23,7 +23,7 @@ import { AddTaskComponent } from '../add-task/add-task.component';
   styleUrl: './contacts.component.scss',
 })
 export class ContactsComponent {
-  public currentContact: Contact = new Contact();
+  public currentContact: Contact | null = new Contact();
   public initials: string[] = [];
   public addContactOverlayOpen: boolean = false;
   public addContactOverlayAnimation: boolean = false;
@@ -59,10 +59,17 @@ export class ContactsComponent {
     if (action === 'open') {
       this.handleOverlayAnimation('open', 'add', 400);
     } else if (action === 'close') {
-      console.log(event);
+      if (event?.action) this.focusCreatedContact(event.id);
       this.getUniqueInitials();
       this.handleOverlayAnimation('close', 'add', 400);
     }
+  }
+
+  focusCreatedContact(id: number) {
+    const contact = this.dataManager.userContacts?.find((contact) => {
+      return contact.id === id;
+    });
+    if (contact) this.showContact(contact);
   }
 
   toggleEditContactModal(
@@ -73,7 +80,7 @@ export class ContactsComponent {
       this.handleOverlayAnimation('open', 'edit', 400);
     } else if (action === 'close') {
       this.getUniqueInitials();
-      if (event?.delete) this.currentContact = new Contact();
+      if (event?.delete) this.currentContact = null;
       this.handleOverlayAnimation('close', 'edit', 400);
     }
   }

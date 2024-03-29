@@ -65,7 +65,7 @@
   } @if (editContactOverlayOpen) {
   <app-add-contact-overlay
     [animation]="editContactOverlayAnimation"
-    [contact]="currentContact"
+    [contact]="currentContact!"
     [edit]="true"
     (closeOverlayEvent)="toggleEditContactModal('close', $event)"
   ></app-add-contact-overlay>

@@ -15,9 +15,15 @@
     </div>
 
     <div class="right-frame-add">
+      @if(!edit){
       <div class="img-wrapper">
         <img src="./assets/img/icons/default-user.svg" alt="" />
       </div>
+      } @else {
+      <div class="img-wrapper" [style.background-color]="contact.color">
+        {{ contact.initials }}
+      </div>
+      }
 
       <form
         class="user-form"
@@ -67,13 +73,21 @@
             [imgSrc]="'./assets/img/icons/cancel-icon.svg'"
             (click)="deleteContact()"
           ></app-button-with-icon>
-          }
-
+          } @if (!edit) {
           <app-button-with-icon
             [content]="'Create Contact'"
             [colorStyle]="'main-color-style'"
+            [imgSrc]="'./assets/img/icons/checkmark-icon.svg'"
             [type]="'submit'"
           ></app-button-with-icon>
+          }@else {
+          <app-button-with-icon
+            [content]="'Save'"
+            [colorStyle]="'main-color-style'"
+            [imgSrc]="'./assets/img/icons/checkmark-icon.svg'"
+            [type]="'submit'"
+          ></app-button-with-icon>
+          }
         </div>
       </form>
     </div>
