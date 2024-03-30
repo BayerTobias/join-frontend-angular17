@@ -16,7 +16,7 @@
       @for (contact of dataManager.userContacts; track $index) { @if
       (contact.name.charAt(0).toUpperCase() === initial) {
       <app-contact
-        (click)="showContact(contact)"
+        (click)="toggleContact(contact)"
         [contact]="contact"
         [active]="contact === currentContact"
       ></app-contact>
@@ -30,7 +30,7 @@
     <img
       id="contactsBackImg"
       class="contacts-back"
-      onclick="closeContact()"
+      (click)="toggleContact()"
       src="./assets/img/icons/arrow-left.svg"
     />
 

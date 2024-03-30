@@ -95,5 +95,13 @@
         </div>
       </form>
     </div>
+
+    @if (edit) {
+    <img
+      class="cancel-btn"
+      src="./assets/img/icons/cancel-icon.svg"
+      alt="close"
+      (click)="closeOverlay(false, false, -1)"
+    />}
   </div>
 </main>

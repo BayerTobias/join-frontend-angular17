@@ -69,7 +69,7 @@ export class ContactsComponent {
     const contact = this.dataManager.userContacts?.find((contact) => {
       return contact.id === id;
     });
-    if (contact) this.showContact(contact);
+    if (contact) this.toggleContact(contact);
   }
 
   toggleEditContactModal(
@@ -158,11 +158,13 @@ export class ContactsComponent {
     }
   }
 
-  showContact(contact: Contact) {
-    this.currentContact = contact;
-
+  toggleContact(contact?: Contact) {
     const currentContactElement: HTMLElement =
       this.currentContactRef.nativeElement;
-    currentContactElement.classList.add('current-contact-animation');
+
+    if (contact) {
+      this.currentContact = contact;
+      currentContactElement.classList.add('current-contact-animation');
+    } else currentContactElement.classList.remove('current-contact-animation');
   }
 }
