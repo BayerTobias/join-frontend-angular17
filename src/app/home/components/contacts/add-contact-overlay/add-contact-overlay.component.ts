@@ -96,7 +96,6 @@ export class AddContactOverlayComponent {
   async addOrEditContact() {
     if (this.contactForm.valid && this.contact) {
       this.fillContactData();
-      console.log('add contact', this.contact);
 
       if (this.edit) {
         this.editContact();
@@ -132,7 +131,18 @@ export class AddContactOverlayComponent {
     }
   }
 
-  editContact() {}
+  editContact() {
+    try {
+      this.dataManager.updateContact(this.contact);
+      localStorage.setItem(
+        'contacts',
+        JSON.stringify(this.dataManager.userContacts)
+      );
+      this.closeOverlay(true, false, this.contact.id);
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   async deleteContact() {
     if (this.contact) {

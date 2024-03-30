@@ -11,6 +11,7 @@ import { TaskResponse } from './../../interfaces/tasks/task-response-interface';
 import { CategoryResponse } from './../../interfaces/tasks/category-response-interface';
 import { User } from '../../classes/user.class';
 import { Contact } from '../../classes/contact.class';
+import { ContactData } from '../../interfaces/contacts/contact-response-interface';
 
 @Injectable({
   providedIn: 'root',
@@ -37,6 +38,7 @@ export class DataManagerService {
     });
   }
 
+  // TODO CONTACTS und EVTL user in klassen umwandeln
   getUser() {
     if (!this.loggedInUser) {
       const user = localStorage.getItem('user');
@@ -44,7 +46,10 @@ export class DataManagerService {
 
       if (user && contacts) {
         this.loggedInUser = new User(JSON.parse(user));
-        this.userContacts = JSON.parse(contacts);
+        const contactsJson = JSON.parse(contacts);
+        this.userContacts = contactsJson.map((jsonContact: ContactData) => {
+          return new Contact(jsonContact);
+        });
       }
     }
   }
@@ -157,6 +162,15 @@ export class DataManagerService {
     const body = contact.asJson();
 
     return lastValueFrom(this.http.post(url, body));
+  }
+
+  async updateContact(contact: Contact) {
+    const url = environment.baseUrl + '/contacts/' + contact.id + '/';
+    console.log(contact.asJson);
+
+    const body = contact.asJson();
+
+    return lastValueFrom(this.http.patch(url, body));
   }
 
   async deleteContact(contact: Contact) {

@@ -164,6 +164,5 @@ export class ContactsComponent {
     const currentContactElement: HTMLElement =
       this.currentContactRef.nativeElement;
     currentContactElement.classList.add('current-contact-animation');
-    this.currentContact = contact;
   }
 }
