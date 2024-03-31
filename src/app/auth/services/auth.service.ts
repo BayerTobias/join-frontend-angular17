@@ -12,6 +12,12 @@ export class AuthService {
 
   constructor() {}
 
+  /**
+   * Logs in a user with the provided username and password.
+   * @param username The username of the user.
+   * @param password The password of the user.
+   * @returns A promise that resolves with the login response.
+   */
   async loginWithEmailAndPassword(username: string, password: string) {
     const url = environment.baseUrl + '/login/';
     const body = { username: username, password: password };
@@ -19,12 +25,20 @@ export class AuthService {
     return lastValueFrom(this.http.post(url, body));
   }
 
+  /**
+   * Logs out the current user.
+   * @returns A promise that resolves when the logout request is completed.
+   */
   async logout() {
     const url = environment.baseUrl + '/logout/';
 
     return lastValueFrom(this.http.post(url, {}));
   }
 
+  /**
+   * Checks if the user is authenticated by sending a request to the server.
+   * @returns A promise that resolves to true if the user is authenticated, otherwise false.
+   */
   async checkAuth() {
     const url = environment.baseUrl + '/check_auth/';
 
@@ -39,6 +53,11 @@ export class AuthService {
     }
   }
 
+  /**
+   * Creates a new user with the provided username and password.
+   * @param user The user object containing the username, password, and other details.
+   * @returns A promise that resolves when the user is successfully created.
+   */
   async createUserWithUsernameAndPassword(user: User) {
     const url = environment.baseUrl + '/create_user/';
     const body = user.toJson();
@@ -46,6 +65,10 @@ export class AuthService {
     return lastValueFrom(this.http.post(url, body));
   }
 
+  /**
+   * Deletes the user.
+   * @returns A promise that resolves when the user is successfully deleted.
+   */
   async deleteUser() {
     const url = environment.baseUrl + '/delete_user/';
 

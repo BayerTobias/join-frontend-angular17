@@ -91,6 +91,9 @@ export class SignUpComponent {
     this.updateButtonSize();
   }
 
+  /**
+   * Updates the size of the buttons based on the window width.
+   */
   updateButtonSize() {
     const width = window.innerWidth;
 
@@ -105,47 +108,96 @@ export class SignUpComponent {
     }
   }
 
+  /**
+   * Getter method for the 'username' form control.
+   *
+   * @returns The 'username' form control.
+   */
   get username() {
     return this.signUpForm.get('username');
   }
 
+  /**
+   * Getter method for the 'firstName' form control.
+   *
+   * @returns The 'firstName' form control.
+   */
   get firstName() {
     return this.signUpForm.get('firstName');
   }
 
+  /**
+   * Getter method for the 'lastName' form control.
+   *
+   * @returns The 'lastName' form control.
+   */
   get lastName() {
     return this.signUpForm.get('lastName');
   }
 
+  /**
+   * Getter method for the 'email' form control.
+   *
+   * @returns The 'email' form control.
+   */
   get email() {
     return this.signUpForm.get('email');
   }
 
+  /**
+   * Getter method for the 'password' form control.
+   *
+   * @returns The 'password' form control.
+   */
   get password() {
     return this.signUpForm.get('password');
   }
 
+  /**
+   * Getter method for the 'passwordRepeat' form control.
+   *
+   * @returns The 'passwordRepeat' form control.
+   */
   get passwordRepeat() {
     return this.signUpForm.get('passwordRepeat');
   }
 
+  /**
+   * Getter method for the 'privacyAccepted' form control.
+   *
+   * @returns The 'privacyAccepted' form control.
+   */
   get privacyAccepted() {
     return this.signUpForm.get('privacyAccepted');
   }
 
+  /**
+   * Toggles the visibility of the password.
+   */
   togglePasswordVisibility() {
     this.passwordIsHidden = !this.passwordIsHidden;
   }
 
+  /**
+   * Toggles the visibility of the password repeat field.
+   */
   togglePasswordRepeatVisibility() {
     this.passwordRepeatIsHidden = !this.passwordRepeatIsHidden;
   }
 
+  /**
+   * Resets the error code for a specific type.
+   *
+   * @param type The type of error code to reset ('username' or 'email').
+   */
   resetError(type: string) {
     if (type === 'username') this.usernameHttpErrorCode = null;
     if (type === 'email') this.emailHttpErrorCode = null;
   }
 
+  /**
+   * Handles the sign-up process.
+   */
   async signUp() {
     const user = new User();
     user.username = this.username?.value;
@@ -167,6 +219,10 @@ export class SignUpComponent {
     } else this.signUpForm.markAllAsTouched();
   }
 
+  /**
+   * Sets the color and initials for a new user.
+   * @param user The user object for which to set the color and initials.
+   */
   setColorAndInitials(user: User) {
     user.color = this.colors[Math.floor(Math.random() * this.colors.length)];
     user.initials =
@@ -174,6 +230,9 @@ export class SignUpComponent {
       user.lastName.charAt(0).toUpperCase();
   }
 
+  /**
+   * Animates the overlay and navigates to the login page after a delay.
+   */
   animateAndRoute() {
     this.animationOverlay = true;
 
@@ -186,6 +245,10 @@ export class SignUpComponent {
     }, 700);
   }
 
+  /**
+   * Handles errors that occur during sign-up.
+   * @param err The error response received from the server.
+   */
   handleError(err: HttpErrorResponse) {
     if (err.error.message.includes('username')) {
       this.usernameHttpErrorCode = err.status;
