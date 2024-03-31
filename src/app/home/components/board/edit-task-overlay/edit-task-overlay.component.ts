@@ -65,6 +65,9 @@ export class EditTaskOverlayComponent {
     this.updateForm();
   }
 
+  /**
+   * Updates the edit task form with the data from the editTask property.
+   */
   updateForm() {
     this.editTaskForm.patchValue({
       title: this.editTask?.title,
@@ -75,10 +78,20 @@ export class EditTaskOverlayComponent {
     if (this.editTask?.prio) this.prio = this.editTask?.prio;
   }
 
+  /**
+   * Sets the priority of the task.
+   *
+   * @param prio The priority value to set.
+   */
   setPrio(prio: string) {
     this.prio = prio;
   }
 
+  /**
+   * Toggles the selection status of a user in the user picker.
+   *
+   * @param userRef The user reference to toggle.
+   */
   setAssignedUsers(userRef: UserSummary) {
     userRef.checked = !userRef.checked;
 
@@ -89,6 +102,9 @@ export class EditTaskOverlayComponent {
     }
   }
 
+  /**
+   * Saves the edited task if the form is valid.
+   */
   async saveEditedTask() {
     if (this.editTask && this.formIsValid()) {
       try {
@@ -104,6 +120,11 @@ export class EditTaskOverlayComponent {
     }
   }
 
+  /**
+   * Checks if the form for editing the task is valid.
+   *
+   * @returns True if the form is valid, otherwise false.
+   */
   formIsValid() {
     return (
       this.editTaskForm.valid &&
@@ -112,6 +133,9 @@ export class EditTaskOverlayComponent {
     );
   }
 
+  /**
+   * Updates the task object with the form data and selected users.
+   */
   updateTaskinTasksArray() {
     if (this.editTask) {
       this.task.title = this.editTaskForm.get('title')?.value;
@@ -123,6 +147,11 @@ export class EditTaskOverlayComponent {
     }
   }
 
+  /**
+   * Retrieves the IDs of the selected users.
+   *
+   * @returns An array of user IDs.
+   */
   getSelectedUserIds() {
     const selectedUsers = this.users.filter((user) => user.checked);
     const userIds = selectedUsers.map((user) => user.id);
@@ -130,6 +159,10 @@ export class EditTaskOverlayComponent {
     return userIds;
   }
 
+  /**
+   * Toggles the visibility of the user picker.
+   * Also updates the selection status of users if editing an existing task.
+   */
   toggleUserPicker() {
     this.userPickerOpen = !this.userPickerOpen;
 
@@ -144,6 +177,9 @@ export class EditTaskOverlayComponent {
     }
   }
 
+  /**
+   * Emits the close overlay event and resets user selections.
+   */
   onCloseOverlay() {
     this.dataManager.resetUsersChecked();
     this.closeOverlay.emit();

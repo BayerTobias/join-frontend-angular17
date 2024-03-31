@@ -20,21 +20,36 @@ export class TaskOverlayComponent {
   @Output() openEditOverlay: EventEmitter<{ task: Task }> = new EventEmitter();
   @Output() updateSubtask: EventEmitter<{ task: Task }> = new EventEmitter();
 
+  /**
+   * Emits the close overlay event.
+   */
   onCloseOverlay() {
     this.closeOverlay.emit();
   }
 
+  /**
+   * Opens the edit task overlay and closes the current overlay.
+   */
   openEditTaskOverlay() {
     this.closeOverlay.emit();
     this.openEditOverlay.emit({ task: this.task });
   }
 
+  /**
+   * Toggles the completion status of a subtask and emits an update event.
+   *
+   * @param subtask The subtask to update.
+   */
   updateTask(subtask: Subtask) {
     subtask.complete = !subtask.complete;
 
     this.updateSubtask.emit({ task: this.task });
   }
 
+  /**
+   * Deletes the task from the server and updates the tasks list.
+   * Also emits the close overlay event.
+   */
   async deleteTask() {
     try {
       await this.dataManger.deleteTask(this.task);

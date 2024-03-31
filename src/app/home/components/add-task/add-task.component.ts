@@ -91,53 +91,100 @@ export class AddTaskComponent {
     this.dataManager.resetUsersChecked();
   }
 
+  /**
+   * Getter method for the 'title' form control.
+   * @returns The 'title' form control.
+   */
   get title() {
     return this.addTaskForm.get('title');
   }
 
+  /**
+   * Getter method for the 'description' form control.
+   * @returns The 'description' form control.
+   */
   get description() {
     return this.addTaskForm.get('description');
   }
 
+  /**
+   * Getter method for the 'date' form control.
+   * @returns The 'date' form control.
+   */
   get date() {
     return this.addTaskForm.get('date');
   }
 
+  /**
+   * Getter method for the 'newCategoryInput' form control.
+   * @returns The 'newCategoryInput' form control.
+   */
   get newCategoryInput() {
     return this.addTaskForm.get('newCategoryInput');
   }
 
+  /**
+   * Getter method for the 'subtaskInput' form control.
+   * @returns The 'subtaskInput' form control.
+   */
   get subtaskInput() {
     return this.addTaskForm.get('subtaskInput');
   }
 
+  /**
+   * Updates the 'categorys' array with the provided data.
+   * @param signalData The data to update the 'categorys' array.
+   */
   updateCategorysArray(signalData: Category[]) {
     this.categorys = signalData;
   }
 
+  /**
+   * Updates the 'users' array with the provided data.
+   * @param signalData The data to update the 'users' array.
+   */
   updateUsersArray(signalData: UserSummary[]) {
     this.users = signalData;
   }
 
+  /**
+   * Toggles the visibility of the category picker and resets the selected category.
+   */
   toggleCategoryPicker() {
     this.selectedCategory = null;
     this.selectCategoryOpen = !this.selectCategoryOpen;
   }
 
+  /**
+   * Sets the selected category and closes the category picker.
+   *
+   * @param category The category to set as selected.
+   */
   setCategory(category: Category) {
     this.selectedCategory = category;
     this.selectCategoryOpen = false;
   }
 
+  /**
+   * Opens the create category section.
+   */
   openCreateCategory() {
     this.createCategoryOpen = true;
   }
 
+  /**
+   * Closes the create category section and resets the selected color.
+   */
   closeCreateCategory() {
     this.selectedColor = null;
     this.createCategoryOpen = false;
   }
 
+  /**
+   * Adds a new category to the list of categories.
+   * If a color and a name are selected, the category is created and added to the list.
+   * Finally, the create category section is closed.
+   */
   async addNewCategory() {
     let category = new Category();
 
@@ -151,22 +198,41 @@ export class AddTaskComponent {
     }
   }
 
+  /**
+   * Sets the selected color for the new category.
+   *
+   * @param color The color selected by the user.
+   */
   selectColor(color: string) {
     this.selectedColor = color;
   }
 
+  /**
+   * Toggles the visibility of the user picker.
+   */
   toggleUserPicker() {
     this.userPickerOpen = !this.userPickerOpen;
   }
 
+  /**
+   * Sets the priority for the task.
+   *
+   * @param prio The priority value selected by the user.
+   */
   setPrio(prio: string) {
     this.prio = prio;
   }
 
+  /**
+   * Clears the subtask input field in the form.
+   */
   clearSubtaskInput() {
     this.addTaskForm.get('subtaskInput')?.reset();
   }
 
+  /**
+   * Adds a new subtask to the list of subtasks.
+   */
   addSubtask() {
     let subtask = new Subtask();
     const inputValue: string = this.addTaskForm.get('subtaskInput')?.value;
@@ -178,6 +244,9 @@ export class AddTaskComponent {
     }
   }
 
+  /**
+   * Submits the task creation form.
+   */
   async addTask() {
     this.formSubmitted = true;
 
@@ -198,6 +267,11 @@ export class AddTaskComponent {
     } else this.addTaskForm.markAllAsTouched();
   }
 
+  /**
+   * Creates a new task object with the form data.
+   *
+   * @returns A new task object with the form data.
+   */
   createTaskWithData() {
     const task = new Task();
 
@@ -213,6 +287,11 @@ export class AddTaskComponent {
     return task;
   }
 
+  /**
+   * Retrieves the IDs of the selected users.
+   *
+   * @returns An array of user IDs.
+   */
   getSelectedUserIds() {
     const selectedUsers = this.users.filter((user) => user.checked);
     const userIds = selectedUsers.map((user) => user.id);
@@ -220,6 +299,11 @@ export class AddTaskComponent {
     return userIds;
   }
 
+  /**
+   * Checks if the form is valid.
+   *
+   * @returns A boolean indicating whether the form is valid.
+   */
   formIsValid() {
     return (
       this.addTaskForm.valid &&
@@ -229,6 +313,9 @@ export class AddTaskComponent {
     );
   }
 
+  /**
+   * Resets the add task form, selected category, priority, and subtasks.
+   */
   resetAddTaskForm() {
     this.addTaskForm.reset();
     this.selectedCategory = null;
@@ -236,6 +323,9 @@ export class AddTaskComponent {
     this.subtasks = [];
   }
 
+  /**
+   * Animates the modal and routes to the board component after a delay.
+   */
   animateAndRoute() {
     this.animateModal = true;
     setTimeout(() => {
@@ -243,6 +333,9 @@ export class AddTaskComponent {
     }, 500);
   }
 
+  /**
+   * Animates the modal and closes the overlay after a delay.
+   */
   animateAndCloseOverlay() {
     this.animateModal = true;
     setTimeout(() => {
@@ -250,6 +343,9 @@ export class AddTaskComponent {
     }, 500);
   }
 
+  /**
+   * Closes the overlay by resetting users checked and emitting the closeOverlayEvent.
+   */
   closeOverlay() {
     this.dataManager.resetUsersChecked();
     this.closeOverlayEvent.emit();
