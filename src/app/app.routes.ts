@@ -10,6 +10,7 @@ import { AddTaskComponent } from './home/components/add-task/add-task.component'
 import { ContactsComponent } from './home/components/contacts/contacts.component';
 import { HelpComponent } from './home/components/help/help.component';
 import { LegalNoticeComponent } from './legal/components/legal-notice/legal-notice.component';
+import { PrivacyPolicyComponent } from './legal/components/privacy-policy/privacy-policy.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -17,6 +18,9 @@ export const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'reset-password', component: ResetPasswordComponent },
+  { path: 'legal-notice', component: LegalNoticeComponent },
+  { path: 'privacy-policy', component: PrivacyPolicyComponent },
+
   {
     path: 'home',
     component: HomeComponent,
