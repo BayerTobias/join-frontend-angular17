@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { AuthBaseComponent } from '../auth-base/auth-base.component';
 import { ButtonWoIconComponent } from '../../../shared/components/buttons/button-wo-icon/button-wo-icon.component';
 import { SuccessMessageComponent } from '../../../shared/components/success-message/success-message.component';
@@ -47,6 +47,10 @@ export class SignUpComponent {
   animationOverlay: boolean = false;
   animationStarted: boolean = false;
 
+  private fb = inject(FormBuilder);
+  private router = inject(Router);
+  private auth = inject(AuthService);
+
   colors: string[] = [
     '#008ddc',
     '#ff7827',
@@ -58,11 +62,7 @@ export class SignUpComponent {
     '#ffc938',
   ];
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private auth: AuthService
-  ) {
+  constructor() {
     this.signUpForm = this.fb.group(
       {
         username: [
