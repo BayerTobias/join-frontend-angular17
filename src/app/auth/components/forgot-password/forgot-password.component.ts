@@ -39,10 +39,6 @@ export class ForgotPasswordComponent {
     ]);
   }
 
-  // get email() {
-  //   return this.resetForm.get('email');
-  // }
-
   resetPassword() {
     console.log('send Mail', this.email);
   }
