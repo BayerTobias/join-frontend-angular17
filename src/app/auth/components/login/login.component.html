@@ -57,7 +57,7 @@
 
     <div class="reset-password-container">
       <label class="container">
-        <input id="rememberMe" class="checkmark" type="checkbox" />
+        <input [(ngModel)]="rememberMe" class="checkmark" type="checkbox" />
         Remember me
       </label>
       <a [routerLink]="'/forgot-password'" class="forgot-password"

@@ -42,6 +42,8 @@ export class LoginComponent {
   buttonHeight: string = '51px';
   buttonFontSize: string = '21px';
 
+  rememberMe: boolean = false;
+
   private fb = inject(FormBuilder);
   private router = inject(Router);
   private auth = inject(AuthService);
@@ -56,6 +58,7 @@ export class LoginComponent {
 
   ngOnInit() {
     this.updateButtonSize();
+    this.checkLocalStorage();
   }
 
   ngAfterViewInit() {
@@ -67,6 +70,9 @@ export class LoginComponent {
     this.updateButtonSize();
   }
 
+  /**
+   * Updates the button size based on the window width.
+   */
   updateButtonSize() {
     const width = window.innerWidth;
 
@@ -115,7 +121,11 @@ export class LoginComponent {
     return this.loginForm.get('password');
   }
 
+  /**
+   * Attempts to log in the user using the provided credentials.
+   */
   async login() {
+    this.setLocalStorage();
     try {
       const resp: LoginResponse = (await this.auth.loginWithEmailAndPassword(
         this.username?.value,
@@ -127,6 +137,9 @@ export class LoginComponent {
     }
   }
 
+  /**
+   * Attempts to log in the user as a guest.
+   */
   async guestLogin() {
     try {
       const resp: LoginResponse = (await this.auth.loginWithEmailAndPassword(
@@ -140,6 +153,45 @@ export class LoginComponent {
     }
   }
 
+  /**
+   * Checks if there are stored credentials in the local storage and updates the form accordingly.
+   */
+  checkLocalStorage() {
+    const username = localStorage.getItem('username');
+    const password = localStorage.getItem('password');
+
+    if (username && password) {
+      this.rememberMe = true;
+
+      this.loginForm.patchValue({
+        username: username,
+        password: password,
+      });
+    }
+  }
+
+  /**
+   * Stores the username and password in the local storage if the 'remember me' option is checked.
+   * Otherwise, removes them from the local storage.
+   */
+  setLocalStorage() {
+    if (this.rememberMe) {
+      localStorage.setItem('username', this.username?.value);
+      localStorage.setItem('password', this.password?.value);
+    } else {
+      localStorage.removeItem('username');
+      localStorage.removeItem('password');
+    }
+  }
+
+  /**
+   * Handles the successful login response.
+   * Stores the token, user data, and contacts in the local storage,
+   * updates the logged-in user and contacts in the data manager,
+   * and navigates to the home page.
+   *
+   * @param resp The login response containing the token, user data, and contacts.
+   */
   handleSuccessfullLogin(resp: LoginResponse) {
     localStorage.setItem('token', resp.token);
     localStorage.setItem('user', JSON.stringify(resp.user));
@@ -149,6 +201,10 @@ export class LoginComponent {
     this.router.navigateByUrl('/home');
   }
 
+  /**
+   * Toggles the visibility of the password input.
+   * Updates the passwordIsHidden flag accordingly.
+   */
   togglePasswordVisibility() {
     this.passwordIsHidden = !this.passwordIsHidden;
   }
