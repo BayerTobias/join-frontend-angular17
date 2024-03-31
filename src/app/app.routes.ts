@@ -11,6 +11,7 @@ import { ContactsComponent } from './home/components/contacts/contacts.component
 import { HelpComponent } from './home/components/help/help.component';
 import { LegalNoticeComponent } from './legal/components/legal-notice/legal-notice.component';
 import { PrivacyPolicyComponent } from './legal/components/privacy-policy/privacy-policy.component';
+import { authGuard } from './auth/guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -23,6 +24,7 @@ export const routes: Routes = [
 
   {
     path: 'home',
+    canActivate: [authGuard],
     component: HomeComponent,
     children: [
       { path: '', redirectTo: 'summary', pathMatch: 'full' },

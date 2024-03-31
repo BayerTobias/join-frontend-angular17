@@ -25,6 +25,20 @@ export class AuthService {
     return lastValueFrom(this.http.post(url, {}));
   }
 
+  async checkAuth() {
+    const url = environment.baseUrl + '/check_auth/';
+
+    try {
+      const response: { message?: string } = await lastValueFrom(
+        this.http.get(url)
+      );
+
+      return response && response.message === 'Authenticated';
+    } catch (err) {
+      return false;
+    }
+  }
+
   async createUserWithUsernameAndPassword(user: User) {
     const url = environment.baseUrl + '/create_user/';
     const body = user.toJson();
