@@ -42,6 +42,9 @@ export class ContactsComponent {
     this.getUniqueInitials();
   }
 
+  /**
+   * Retrieves unique initials from user contacts and sorts them.
+   */
   getUniqueInitials() {
     this.initials = [];
     const initialsSet = new Set<string>();
@@ -52,6 +55,11 @@ export class ContactsComponent {
     this.initials = Array.from(initialsSet).sort();
   }
 
+  /**
+   * Toggles the add contact modal.
+   * @param action - Action to perform ('open' or 'close').
+   * @param event - Optional event data.
+   */
   toggleAddContactModal(
     action: string,
     event?: { action: boolean; delete: boolean; id: number }
@@ -65,6 +73,10 @@ export class ContactsComponent {
     }
   }
 
+  /**
+   * Focuses on the created contact after closing the add contact modal.
+   * @param id - ID of the created contact.
+   */
   focusCreatedContact(id: number) {
     const contact = this.dataManager.userContacts?.find((contact) => {
       return contact.id === id;
@@ -72,6 +84,11 @@ export class ContactsComponent {
     if (contact) this.toggleContact(contact);
   }
 
+  /**
+   * Toggles the edit contact modal.
+   * @param action - Action to perform ('open' or 'close').
+   * @param event - Optional event data.
+   */
   toggleEditContactModal(
     action: string,
     event?: { action: boolean; delete: boolean; id: number }
@@ -85,6 +102,10 @@ export class ContactsComponent {
     }
   }
 
+  /**
+   * Handles the deletion of a contact.
+   * @param id - ID of the contact to delete.
+   */
   handleDeleteContact(id: number) {
     this.currentContact = null;
     const index = this.dataManager.userContacts?.findIndex((contact) => {
@@ -99,6 +120,10 @@ export class ContactsComponent {
     );
   }
 
+  /**
+   * Toggles the add task overlay.
+   * @param action - Action to perform ('open' or 'close').
+   */
   toggleAddTaskOverlay(action: string) {
     if (action === 'open') {
       this.handleOverlayAnimation('open', 'addTask', 400);
@@ -107,6 +132,12 @@ export class ContactsComponent {
     }
   }
 
+  /**
+   * Handles overlay animation.
+   * @param action - Action to perform ('open' or 'close').
+   * @param overlay - Type of overlay ('edit', 'add', 'addTask').
+   * @param animationTime - Duration of animation in milliseconds.
+   */
   handleOverlayAnimation(
     action: string,
     overlay: string,
@@ -157,6 +188,11 @@ export class ContactsComponent {
         break;
     }
   }
+
+  /**
+   * Toggles the display of a contact and applies animation if specified.
+   * @param contact - The contact to toggle.
+   */
 
   toggleContact(contact?: Contact) {
     const currentContactElement: HTMLElement =

@@ -69,18 +69,40 @@ export class AddContactOverlayComponent {
     }
   }
 
+  /**
+   * Getter method for the 'name' form control.
+   *
+   * @returns The 'name' form control.
+   */
   get name() {
     return this.contactForm.get('name');
   }
 
+  /**
+   * Getter method for the 'email' form control.
+   *
+   * @returns The 'email' form control.
+   */
   get email() {
     return this.contactForm.get('email');
   }
 
+  /**
+   * Getter method for the 'phone' form control.
+   *
+   * @returns The 'phone' form control.
+   */
   get phone() {
     return this.contactForm.get('phone');
   }
 
+  /**
+   * Emits an event to close the overlay.
+   *
+   * @param contactCreateOrEdit Flag indicating if a contact is created or edited.
+   * @param deleted Flag indicating if the contact is deleted.
+   * @param contactId The ID of the contact.
+   */
   closeOverlay(
     contactCreateOrEdit: boolean,
     deleted: boolean,
@@ -93,7 +115,10 @@ export class AddContactOverlayComponent {
     });
   }
 
-  async addOrEditContact() {
+  /**
+   * Adds or edits a contact based on the form validity and edit mode.
+   */
+  addOrEditContact() {
     if (this.contactForm.valid && this.contact) {
       this.fillContactData();
 
@@ -105,6 +130,9 @@ export class AddContactOverlayComponent {
     }
   }
 
+  /**
+   * Fills the contact data from the form values.
+   */
   fillContactData() {
     this.contact.name = this.contactForm.value.name;
     this.contact.email = this.contactForm.value.email;
@@ -113,6 +141,9 @@ export class AddContactOverlayComponent {
     this.contact.initials = this.getInitials();
   }
 
+  /**
+   * Adds a new contact to the user's contacts.
+   */
   async addContact() {
     try {
       const resp: ContactData = await this.dataManager.createContact(
@@ -131,6 +162,9 @@ export class AddContactOverlayComponent {
     }
   }
 
+  /**
+   * Edits an existing contact.
+   */
   editContact() {
     try {
       this.dataManager.updateContact(this.contact);
@@ -144,6 +178,9 @@ export class AddContactOverlayComponent {
     }
   }
 
+  /**
+   * Deletes the selected contact.
+   */
   async deleteContact() {
     if (this.contact) {
       try {
@@ -155,10 +192,16 @@ export class AddContactOverlayComponent {
     }
   }
 
+  /**
+   * Generates a random color from the available colors.
+   */
   getRandomColor() {
     return this.colors[Math.floor(Math.random() * this.colors.length)];
   }
 
+  /**
+   * Gets the initials from the contact's name.
+   */
   getInitials() {
     const names = this.contactForm.value.name.toUpperCase().trim().split(' ');
 
