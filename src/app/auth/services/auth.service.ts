@@ -19,6 +19,12 @@ export class AuthService {
     return lastValueFrom(this.http.post(url, body));
   }
 
+  async logout() {
+    const url = environment.baseUrl + '/logout/';
+
+    return lastValueFrom(this.http.post(url, {}));
+  }
+
   async createUserWithUsernameAndPassword(user: User) {
     const url = environment.baseUrl + '/create_user/';
     const body = user.toJson();
