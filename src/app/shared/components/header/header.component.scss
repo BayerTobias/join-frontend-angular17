@@ -29,6 +29,12 @@ header {
     }
   }
 
+  > span {
+    @media (max-width: 850px) {
+      display: none;
+    }
+  }
+
   .right-frame {
     position: relative;
     display: flex;
