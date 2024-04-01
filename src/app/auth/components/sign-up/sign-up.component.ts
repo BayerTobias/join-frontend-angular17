@@ -74,11 +74,11 @@ export class SignUpComponent {
         email: ['', [Validators.required, CustomValidators.emailValidator]],
         password: [
           '',
-          [Validators.required, CustomValidators.passwordLengthValidator(6)],
+          [Validators.required, CustomValidators.passwordLengthValidator(8)],
         ],
         passwordRepeat: [
           '',
-          [Validators.required, CustomValidators.passwordLengthValidator(6)],
+          [Validators.required, CustomValidators.passwordLengthValidator(8)],
         ],
         privacyAccepted: [false, Validators.requiredTrue],
       },

@@ -34,6 +34,7 @@ export class ForgotPasswordComponent {
   emailAdress: string = '';
 
   noUserFound: Boolean = false;
+  sending: boolean = false;
   animationOverlay: boolean = false;
   animationStarted: boolean = false;
 
@@ -57,6 +58,7 @@ export class ForgotPasswordComponent {
   async requestPasswordResetEmail() {
     if (this.email.valid) {
       try {
+        this.sending = true;
         await this.authService.requestPasswordReset(this.email.value);
         this.animateAndRoute();
       } catch (err: any) {
@@ -66,6 +68,7 @@ export class ForgotPasswordComponent {
         ) {
           this.noUserFound = true;
         } else console.error(err);
+        this.sending = false;
       }
     }
   }

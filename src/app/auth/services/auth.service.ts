@@ -86,4 +86,20 @@ export class AuthService {
 
     return lastValueFrom(this.http.post(url, body));
   }
+
+  /**
+   * Sends a request to set a new password using the provided password and token.
+   * @param password The new password to be set.
+   * @param token The token received for resetting the password.
+   * @returns A Promise that resolves with the response from the server.
+   */
+  setNewPassword(password: string, token: string) {
+    const url = environment.baseUrl + '/password_reset/confirm/';
+    const body = {
+      password: password,
+      token: token,
+    };
+
+    return lastValueFrom(this.http.post(url, body));
+  }
 }

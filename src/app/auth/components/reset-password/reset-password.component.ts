@@ -8,7 +8,11 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { CustomValidators } from '../../custom-validators';
+import { AuthService } from '../../services/auth.service';
+import { CommonModule } from '@angular/common';
+import { SuccessMessageComponent } from '../../../shared/components/success-message/success-message.component';
 
 @Component({
   selector: 'app-reset-password',
@@ -19,6 +23,8 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
+    CommonModule,
+    SuccessMessageComponent,
   ],
   templateUrl: './reset-password.component.html',
   styleUrl: './reset-password.component.scss',
@@ -28,17 +34,50 @@ export class ResetPasswordComponent {
   passwordIsHidden: boolean = true;
   passwordRepeatIsHidden: boolean = true;
 
+  token: string = '';
+
+  sending: boolean = false;
+  animationOverlay: boolean = false;
+  animationStarted: boolean = false;
+
   private fb = inject(FormBuilder);
+  private router = inject(Router);
+  private authService = inject(AuthService);
 
   constructor() {
-    this.setPasswordForm = this.fb.group({
-      newPassword: ['', Validators.required],
-      passwordRepeat: ['', Validators.required],
-    });
+    this.setPasswordForm = this.fb.group(
+      {
+        password: [
+          '',
+          [Validators.required, CustomValidators.passwordLengthValidator(8)],
+        ],
+        passwordRepeat: [
+          '',
+          [Validators.required, CustomValidators.passwordLengthValidator(8)],
+        ],
+      },
+      { validators: [CustomValidators.passwordMatchValidator] }
+    );
   }
 
-  get newPassword() {
-    return this.setPasswordForm.get('newPassword');
+  ngOnInit() {
+    this.extractTokenFromUrl();
+  }
+
+  extractTokenFromUrl() {
+    const url = this.router.url;
+    const tokenIndex = url.indexOf('token=');
+
+    if (tokenIndex !== -1) {
+      const startIndex = tokenIndex + 'token='.length;
+
+      this.token = url.substring(startIndex, url.length);
+      console.log(this.token);
+    }
+  }
+
+  get password() {
+    return this.setPasswordForm.get('password');
   }
 
   get passwordRepeat() {
@@ -54,6 +93,30 @@ export class ResetPasswordComponent {
   }
 
   setNewPassword() {
-    console.log(this.setPasswordForm);
+    if (this.setPasswordForm.valid) {
+      try {
+        this.sending = true;
+        this.authService.setNewPassword(this.password?.value, this.token);
+        this.animateAndRoute();
+      } catch (err) {
+        console.error(err);
+        this.sending = false;
+      }
+    } else this.setPasswordForm.markAllAsTouched();
+  }
+
+  /**
+   * Animates the password reset overlay and routes the user to the login page after a delay.
+   */
+  animateAndRoute() {
+    this.animationOverlay = true;
+
+    setTimeout(() => {
+      this.animationStarted = true;
+    }, 10);
+
+    setTimeout(() => {
+      this.router.navigateByUrl('/login');
+    }, 1000);
   }
 }
