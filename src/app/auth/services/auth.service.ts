@@ -74,4 +74,16 @@ export class AuthService {
 
     return lastValueFrom(this.http.get(url));
   }
+
+  /**
+   * Sends a request to the server to initiate the password reset process by sending a reset password email to the specified email address.
+   * @param email The email address for which to request a password reset.
+   * @returns A Promise that resolves with the response from the server.
+   */
+  async requestPasswordReset(email: string) {
+    const url = environment.baseUrl + '/password_reset/';
+    const body = { email: email };
+
+    return lastValueFrom(this.http.post(url, body));
+  }
 }

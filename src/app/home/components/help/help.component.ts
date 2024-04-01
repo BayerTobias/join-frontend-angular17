@@ -8,6 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './help.component.scss',
 })
 export class HelpComponent {
+  /**
+   * Navigates to the previous page in the browser history.
+   */
   previousPage() {
     window.history.back();
   }
