@@ -32,13 +32,18 @@ export class DataManagerService {
     this.getUser();
   }
 
+  /**
+   * Resets the checked state of all users.
+   */
   resetUsersChecked() {
     this.usersSignal().forEach((user) => {
       user.checked = false;
     });
   }
 
-  // TODO CONTACTS und EVTL user in klassen umwandeln
+  /**
+   * Retrieves the logged-in user from local storage and initializes contacts if available.
+   */
   getUser() {
     if (!this.loggedInUser) {
       const user = localStorage.getItem('user');
@@ -54,6 +59,9 @@ export class DataManagerService {
     }
   }
 
+  /**
+   * Fetches tasks from the server and updates the tasks array.
+   */
   async getTasks() {
     const url = environment.baseUrl + '/tasks/';
     try {
@@ -71,6 +79,10 @@ export class DataManagerService {
     }
   }
 
+  /**
+   * Updates the category property of each task based on the category ID.
+   * @param tasks The array of tasks to update.
+   */
   updateCategoriesForTasks(tasks: Task[]) {
     const categories = this.categorysSignal();
 
@@ -84,6 +96,10 @@ export class DataManagerService {
     });
   }
 
+  /**
+   * Matches user IDs in tasks with corresponding user objects and assigns them to tasks.
+   * @param tasks The array of tasks to update.
+   */
   matchUserIdsWithUsers(tasks: Task[]) {
     const users = this.usersSignal();
 
@@ -95,6 +111,11 @@ export class DataManagerService {
     });
   }
 
+  /**
+   * Creates a new task by sending a POST request to the server.
+   * @param task The task object to be created.
+   * @returns A promise that resolves with the response from the server.
+   */
   async createTask(task: Task) {
     const url = environment.baseUrl + '/tasks/';
     const body = task.asPayloadJson();
@@ -102,6 +123,11 @@ export class DataManagerService {
     return lastValueFrom(this.http.post(url, body));
   }
 
+  /**
+   * Updates an existing task by sending a PATCH request to the server.
+   * @param task The task object to be updated.
+   * @returns A promise that resolves with the response from the server.
+   */
   async updateTask(task: Task) {
     const url = environment.baseUrl + '/tasks/' + task.id + '/';
     const body = task.asPayloadJson();
@@ -109,12 +135,21 @@ export class DataManagerService {
     return lastValueFrom(this.http.patch(url, body));
   }
 
+  /**
+   * Deletes an existing task by sending a DELETE request to the server.
+   * @param task The task object to be deleted.
+   * @returns A promise that resolves with the response from the server.
+   */
   async deleteTask(task: Task) {
     const url = environment.baseUrl + '/tasks/' + task.id + '/';
 
     return lastValueFrom(this.http.delete(url));
   }
 
+  /**
+   * Retrieves categories from the server by sending a GET request.
+   * @returns A promise that resolves with an array of Category objects.
+   */
   async getCategorys() {
     const url = environment.baseUrl + '/categorys/';
 
@@ -132,6 +167,10 @@ export class DataManagerService {
     }
   }
 
+  /**
+   * Retrieves users from the server by sending a GET request.
+   * @returns A promise that resolves with an array of UserSummary objects.
+   */
   async getUsers() {
     const url = environment.baseUrl + '/users/';
 
@@ -150,6 +189,11 @@ export class DataManagerService {
     }
   }
 
+  /**
+   * Creates a new category by sending a POST request to the server.
+   * @param category The category object to be created.
+   * @returns A promise that resolves when the category creation is successful.
+   */
   async createCategory(category: Category) {
     const url = environment.baseUrl + '/categorys/';
     const body = category.asJson();
@@ -157,6 +201,11 @@ export class DataManagerService {
     return lastValueFrom(this.http.post(url, body));
   }
 
+  /**
+   * Creates a new contact by sending a POST request to the server.
+   * @param contact The contact object to be created.
+   * @returns A promise that resolves when the contact creation is successful.
+   */
   async createContact(contact: Contact) {
     const url = environment.baseUrl + '/contacts/';
     const body = contact.asJson();
@@ -164,6 +213,11 @@ export class DataManagerService {
     return lastValueFrom(this.http.post(url, body));
   }
 
+  /**
+   * Updates an existing contact by sending a PATCH request to the server.
+   * @param contact The contact object to be updated.
+   * @returns A promise that resolves when the contact update is successful.
+   */
   async updateContact(contact: Contact) {
     const url = environment.baseUrl + '/contacts/' + contact.id + '/';
     console.log(contact.asJson);
@@ -173,6 +227,11 @@ export class DataManagerService {
     return lastValueFrom(this.http.patch(url, body));
   }
 
+  /**
+   * Deletes an existing contact by sending a DELETE request to the server.
+   * @param contact The contact object to be deleted.
+   * @returns A promise that resolves when the contact deletion is successful.
+   */
   async deleteContact(contact: Contact) {
     const url = environment.baseUrl + '/contacts/' + contact.id + '/';
 

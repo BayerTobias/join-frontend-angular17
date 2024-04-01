@@ -12,10 +12,17 @@ import { Router } from '@angular/router';
 export class LegalNoticeComponent {
   private router = inject(Router);
 
+  /**
+   * Checks if the current route is not the home route.
+   * @returns A boolean indicating whether the current route is not the home route.
+   */
   isNotHomeRoute() {
     return this.router.url === '/legal-notice';
   }
 
+  /**
+   * Navigates to the previous page in the browser history.
+   */
   previousPage() {
     window.history.back();
   }

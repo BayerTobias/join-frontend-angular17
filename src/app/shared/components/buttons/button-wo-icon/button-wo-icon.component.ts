@@ -18,7 +18,11 @@ export class ButtonWoIconComponent {
   @Input() type: string = 'button';
   @Input() diasbled: boolean = false;
 
-  getStyle(): any {
+  /**
+   * Returns the style object based on the component's properties.
+   * @returns An object containing CSS styles for the component.
+   */
+  getStyle() {
     return {
       height: this.height,
       width: this.width,

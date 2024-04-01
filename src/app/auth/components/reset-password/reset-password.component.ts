@@ -64,6 +64,9 @@ export class ResetPasswordComponent {
     this.extractTokenFromUrl();
   }
 
+  /**
+   * Extracts the token from the current URL.
+   */
   extractTokenFromUrl() {
     const url = this.router.url;
     const tokenIndex = url.indexOf('token=');
@@ -76,22 +79,43 @@ export class ResetPasswordComponent {
     }
   }
 
+  /**
+   * Getter method for the 'password' form control.
+   *
+   * @returns The 'password' form control.
+   */
   get password() {
     return this.setPasswordForm.get('password');
   }
 
+  /**
+   * Getter method for the 'passwordRepeat' form control.
+   *
+   * @returns The 'passwordRepeat' form control.
+   */
   get passwordRepeat() {
     return this.setPasswordForm.get('passwordRepeat');
   }
 
+  /**
+   * Toggles the visibility of the password field between hidden and visible.
+   */
   togglePasswordVisibility() {
     this.passwordIsHidden = !this.passwordIsHidden;
   }
 
+  /**
+   * Toggles the visibility of the password repeat field between hidden and visible.
+   */
   togglePasswordRepeatVisibility() {
     this.passwordRepeatIsHidden = !this.passwordRepeatIsHidden;
   }
 
+  /**
+   * Sets a new password if the form is valid.
+   * If successful, animates and routes to the login page.
+   * If an error occurs, logs the error and stops the loading animation.
+   */
   setNewPassword() {
     if (this.setPasswordForm.valid) {
       try {

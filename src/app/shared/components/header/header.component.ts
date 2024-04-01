@@ -18,10 +18,17 @@ export class HeaderComponent {
   private auth = inject(AuthService);
   public dataManager = inject(DataManagerService);
 
+  /**
+   * Toggles the logout modal state between open and closed.
+   */
   toggleLogOutModal() {
     this.logOutModal = !this.logOutModal;
   }
 
+  /**
+   * Logs the user out and navigates to the login page.
+   * @param event The click event triggering the logout.
+   */
   logout(event: Event) {
     event.stopPropagation();
 

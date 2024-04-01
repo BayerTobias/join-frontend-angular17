@@ -24,8 +24,10 @@ export class SummaryComponent {
     effect(() => this.updateCounts(this.dataManager.tasksSignal()));
   }
 
-  ngOnInit() {}
-
+  /**
+   * Generates a greeting based on the current time of the day.
+   * @returns A string containing the appropriate greeting.
+   */
   getGreeting(): string {
     const currentHour = new Date().getHours();
 
@@ -34,6 +36,10 @@ export class SummaryComponent {
     else return 'Good evening, ';
   }
 
+  /**
+   * Updates the counts of tasks in different statuses and with different priorities.
+   * @param tasks An array of tasks to be counted.
+   */
   updateCounts(tasks: Task[]) {
     this.tasksInBoard = tasks.length;
 

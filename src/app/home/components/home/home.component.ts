@@ -28,6 +28,9 @@ export class HomeComponent {
     this.getData();
   }
 
+  /**
+   * Retrieves category, user, and task data from the DataManager asynchronously.
+   */
   async getData() {
     await this.dataManger.getCategorys();
     await this.dataManger.getUsers();
