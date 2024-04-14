@@ -8,12 +8,14 @@ app-contact {
 main {
   display: flex;
   height: calc(100vh - 95px);
+  height: calc(100svh - 95px);
   background-color: $bg-color;
   overflow: hidden;
   position: relative;
 
   @media screen and (max-width: 850px) {
     height: calc(100vh - 95px - 90px);
+    height: calc(100svh - 95px - 90px);
   }
 }
 
@@ -120,9 +122,8 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 380px;
+  min-width: 370px;
   background-color: white;
-  min-height: calc(100vh - 95px);
   box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08);
   overflow-x: hidden;
   scroll-behavior: smooth;
@@ -133,7 +134,6 @@ main {
   }
 
   @media screen and (max-width: 850px) {
-    min-height: calc(100vh - 95px - 90px);
   }
 
   .contact-wrapper {
@@ -156,54 +156,6 @@ main {
     }
   }
 }
-
-// /* ===== Scrollbar CSS ===== */
-// /* Firefox */
-// #contactsList {
-//   scrollbar-width: auto;
-//   scrollbar-color: #a8a8a8 #ffffff;
-// }
-
-// /* Chrome, Edge, and Safari */
-// #contactsList::-webkit-scrollbar {
-//   width: 20px;
-// }
-
-// #contactsList::-webkit-scrollbar-track {
-//   background: #ffffff;
-// }
-
-// #contactsList::-webkit-scrollbar-thumb {
-//   background-color: #a8a8a8;
-//   border-radius: 20px;
-//   border: 7px solid #ffffff;
-// }
-
-// #contactsList::-webkit-scrollbar-button:single-button:vertical:decrement {
-//   background-image: url("../../../../assets/img/icons/scrollbar-up.svg");
-//   background-repeat: no-repeat;
-//   background-position: center;
-// }
-
-// #contactsList::-webkit-scrollbar-button:single-button:vertical:increment {
-//   background-image: url("../../../../assets/img/icons/scrollbar-down.svg");
-//   background-repeat: no-repeat;
-//   background-position: center;
-// }
-
-// /* ===== Contact Modals ===== */
-// .modal-container {
-//   position: fixed;
-//   top: 0;
-//   right: 0;
-//   left: 0;
-//   bottom: 0;
-//   z-index: -99;
-//   background-color: rgba(0, 0, 0, 0.5);
-//   overflow: hidden;
-//   transition: 400ms;
-//   opacity: 0;
-// }
 
 #contactsOverview {
   padding: 50px;
@@ -285,33 +237,3 @@ main {
 .current-contact-animation {
   left: 0% !important;
 }
-
-// /* ===== Modal ===== */
-
-// #contactPhone::-webkit-inner-spin-button,
-// #contactPhone::-webkit-outer-spin-button,
-// #contactPhoneEdit::-webkit-inner-spin-button,
-// #contactPhoneEdit::-webkit-outer-spin-button {
-//   -webkit-appearance: none;
-// }
-
-// .button-wrapper {
-//   display: flex;
-//   gap: 25px;
-// }
-
-// .cancel-btn {
-//   position: absolute;
-//   top: 26px;
-//   right: 55px;
-//   cursor: pointer;
-// }
-
-// .button-secondary-with-icon img {
-//   transition: ease-in-out 100ms;
-// }
-
-// .button-secondary-with-icon:hover img {
-//   filter: invert(47%) sepia(28%) saturate(5405%) hue-rotate(164deg)
-//     brightness(101%) contrast(101%);
-// }

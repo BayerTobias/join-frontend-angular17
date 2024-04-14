@@ -1,4 +1,4 @@
 export const environment = {
-  production: false,
-  baseUrl: 'tobias-bayer.dev',
+  production: true,
+  baseUrl: 'https://tbaye.pythonanywhere.com',
 };

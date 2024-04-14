@@ -14,7 +14,6 @@ main {
   font-size: 21px;
   background-color: $bg-color;
   overflow-x: hidden;
-  overflow-y: hidden;
 
   @media screen and (max-width: 850px) {
     min-height: unset;
