@@ -36,6 +36,7 @@ export class LoginComponent {
   startAnimation: boolean = false;
   endAnimation: boolean = false;
   passwordIsHidden: boolean = true;
+  loginError: boolean = false;
 
   loginButtonWidth: string = '145px';
   guestLoginButtonWidth: string = 'auto';
@@ -112,11 +113,6 @@ export class LoginComponent {
     return this.loginForm.get('username');
   }
 
-  /**
-   * Getter method for the 'password' form control.
-   *
-   * @returns The 'password' form control.
-   */
   get password() {
     return this.loginForm.get('password');
   }
@@ -126,6 +122,7 @@ export class LoginComponent {
    */
   async login() {
     this.setLocalStorage();
+    this.loginError = false;
     try {
       const resp: LoginResponse = (await this.auth.loginWithEmailAndPassword(
         this.username?.value,
@@ -133,6 +130,7 @@ export class LoginComponent {
       )) as LoginResponse;
       this.handleSuccessfullLogin(resp);
     } catch (err) {
+      this.loginError = true;
       console.error(err);
     }
   }

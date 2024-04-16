@@ -125,6 +125,10 @@ main {
     border-bottom-right-radius: 30px;
     gap: 0;
   }
+
+  @media screen and (max-width: 850px) {
+    padding-top: 32px;
+  }
 }
 
 .user-form {
@@ -133,7 +137,7 @@ main {
   width: 422px;
 
   @media screen and (max-width: 850px) {
-    width: 100%;
+    width: 90%;
     gap: 20px;
   }
 
@@ -187,6 +191,10 @@ main {
 
   .button-wrapper {
     @include dFlex($gp: 25px);
+
+    @media screen and (max-width: 850px) {
+      flex-direction: column-reverse;
+    }
   }
 }
 

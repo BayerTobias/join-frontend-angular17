@@ -53,6 +53,7 @@ export class BoardComponent {
 
   constructor() {
     effect(() => this.filterTasks(this.dataManager.tasksSignal()));
+    this.mobileButton = window.innerWidth <= 850;
   }
 
   @HostListener('window:resize', ['$event'])

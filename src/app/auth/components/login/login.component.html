@@ -15,9 +15,6 @@
           formControlName="username"
         />
         <img src="./assets/img/icons/sign-up-name.svg" alt="" />
-        <div id="errorTagEmail" class="error-msg d-none">
-          This user doesn't exists.
-        </div>
       </div>
       <div class="input-wrapper">
         <input
@@ -48,9 +45,9 @@
           src="./assets/img/icons/login-password.svg"
           alt=""
         />
+        } @if (loginError) {
+        <div class="error-msg">Wrong Username or Password</div>
         }
-
-        <div id="errorTagPw" class="error-msg d-none">Wrong password</div>
       </div>
       <input type="submit" id="submit-form" class="d-none" />
     </form>
