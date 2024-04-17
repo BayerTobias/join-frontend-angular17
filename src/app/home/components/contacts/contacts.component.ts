@@ -111,7 +111,6 @@ export class ContactsComponent {
     const index = this.dataManager.userContacts?.findIndex((contact) => {
       return contact.id === id;
     });
-    debugger;
     if (index !== undefined && index !== -1) {
       this.dataManager.userContacts?.splice(index, 1);
       localStorage.setItem(
