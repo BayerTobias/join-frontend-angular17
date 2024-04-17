@@ -220,8 +220,6 @@ export class DataManagerService {
    */
   async updateContact(contact: Contact) {
     const url = environment.baseUrl + '/contacts/' + contact.id + '/';
-    console.log(contact.asJson);
-
     const body = contact.asJson();
 
     return lastValueFrom(this.http.patch(url, body));

@@ -111,13 +111,14 @@ export class ContactsComponent {
     const index = this.dataManager.userContacts?.findIndex((contact) => {
       return contact.id === id;
     });
-    if (index && index !== -1) {
+    debugger;
+    if (index !== undefined && index !== -1) {
       this.dataManager.userContacts?.splice(index, 1);
+      localStorage.setItem(
+        'contacts',
+        JSON.stringify(this.dataManager.userContacts)
+      );
     }
-    localStorage.setItem(
-      'contacts',
-      JSON.stringify(this.dataManager.userContacts)
-    );
   }
 
   /**
