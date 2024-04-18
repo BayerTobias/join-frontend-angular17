@@ -71,7 +71,6 @@ export class DataManagerService {
       const tasks = resp.map((taskData: TaskResponse) => new Task(taskData));
       this.updateCategoriesForTasks(tasks);
       this.matchUserIdsWithUsers(tasks);
-
       this.tasksSignal.set(tasks);
       this.tasks = tasks;
     } catch (err) {

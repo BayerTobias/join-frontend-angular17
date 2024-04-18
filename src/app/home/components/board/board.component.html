@@ -22,7 +22,7 @@
         [imgSrc]="'./assets/img/icons/add-task-icon.svg'"
         [colorStyle]="'main-color-style'"
         [iconOnly]="mobileButton"
-        (click)="openAddTaskOverlay('to-do')"
+        (click)="openAddTaskOverlay('todo')"
       ></app-button-with-icon>
     </div>
   </div>
@@ -30,7 +30,7 @@
     <div class="drag-and-drop-row">
       <div class="drag-and-drop-header">
         <span>To do</span>
-        <div (click)="openAddTaskOverlay('to-do')">
+        <div (click)="openAddTaskOverlay('todo')">
           <img
             src="./assets/img/icons/add-task-main-color-icon.svg"
             alt="add-task-icon"
