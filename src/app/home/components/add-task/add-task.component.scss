@@ -299,6 +299,19 @@ form {
   flex-direction: column;
 }
 
+.assigned-to-display-wrapper {
+  @include dFlex($gp: 4px);
+
+  .assigned-to-display {
+    @include dFlex();
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    color: white;
+    font-size: 12px;
+  }
+}
+
 #category,
 #assigned-to {
   display: flex;

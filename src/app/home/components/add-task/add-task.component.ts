@@ -52,6 +52,7 @@ export class AddTaskComponent {
   selectedCategory: Category | null = null;
   userPickerOpen: boolean = false;
   users: UserSummary[] = [];
+  selectedUsers: UserSummary[] = [];
   subtasks: Subtask[] = [];
   prio: string = '';
   formSubmitted: boolean = false;
@@ -150,7 +151,9 @@ export class AddTaskComponent {
   /**
    * Toggles the visibility of the category picker and resets the selected category.
    */
-  toggleCategoryPicker() {
+  toggleCategoryPicker(event: Event) {
+    event.stopPropagation();
+
     this.selectedCategory = null;
     this.selectCategoryOpen = !this.selectCategoryOpen;
   }
@@ -210,7 +213,8 @@ export class AddTaskComponent {
   /**
    * Toggles the visibility of the user picker.
    */
-  toggleUserPicker() {
+  toggleUserPicker(event: Event) {
+    event.stopPropagation();
     this.userPickerOpen = !this.userPickerOpen;
   }
 
@@ -321,6 +325,7 @@ export class AddTaskComponent {
     this.selectedCategory = null;
     this.prio = '';
     this.subtasks = [];
+    this.selectedUsers = [];
   }
 
   /**
@@ -349,5 +354,26 @@ export class AddTaskComponent {
   closeOverlay() {
     this.dataManager.resetUsersChecked();
     this.closeOverlayEvent.emit();
+  }
+
+  /**
+   * Closes any open dropdowns in the current view.
+   * Specifically, it closes the user picker and category selection dropdowns.
+   */
+  closeDropdowns() {
+    this.userPickerOpen = false;
+    this.selectCategoryOpen = false;
+  }
+
+  /**
+   * Toggles the checked status of a user and updates the list of selected users.
+   * If the user's `checked` status is toggled to `true`, they are added to the list of selected users.
+   * If toggled to `false`, they are removed from the list.
+   *
+   * @param user - The user whose `checked` status needs to be toggled.
+   */
+  updateCheckedUsers(user: UserSummary) {
+    user.checked = !user.checked;
+    this.selectedUsers = this.users.filter((user) => user.checked);
   }
 }

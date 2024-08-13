@@ -1,7 +1,4 @@
-<main
-  (click)="$event.stopPropagation()"
-  [ngClass]="{ 'overlay-main': overlay }"
->
+<main (click)="closeDropdowns()" [ngClass]="{ 'overlay-main': overlay }">
   <section>
     <h1>Add Task</h1>
 
@@ -83,7 +80,7 @@
           }@else {
           <div id="category">
             @if (!selectedCategory) {
-            <div (click)="toggleCategoryPicker()">
+            <div (click)="toggleCategoryPicker($event)">
               <span>Select task category</span>
               <img
                 class="open-arrow"
@@ -92,7 +89,7 @@
               />
             </div>
             }@else {
-            <div (click)="toggleCategoryPicker()">
+            <div (click)="toggleCategoryPicker($event)">
               <div>
                 <span>{{ selectedCategory.name }}</span>
                 <div
@@ -137,8 +134,19 @@
           <span class="label">Assigned to</span>
           @if (!userPickerOpen) {
           <div id="assigned-to">
-            <div (click)="toggleUserPicker()">
-              <span>Select contacts to assign</span>
+            <div (click)="toggleUserPicker($event)">
+              @if (selectedUsers.length > 0) {
+              <div class="assigned-to-display-wrapper">
+                @for (user of selectedUsers; track $index) {
+                <span
+                  [style.background-color]="user.color"
+                  class="assigned-to-display"
+                  >{{ user.initials }}</span
+                >
+                }
+              </div>
+              } @else {<span>Select contacts to assign</span>}
+
               <img
                 class="open-arrow"
                 src="./assets/img/icons/open-select-arrow.svg"
@@ -149,8 +157,19 @@
 
           } @else {
           <div id="assigned-to">
-            <div (click)="toggleUserPicker()">
-              <span>Select contacts to assign</span>
+            <div (click)="toggleUserPicker($event)">
+              @if (selectedUsers.length > 0) {
+              <div class="assigned-to-display-wrapper">
+                @for (user of selectedUsers; track $index) {
+                <span
+                  [style.background-color]="user.color"
+                  class="assigned-to-display"
+                  >{{ user.initials }}</span
+                >
+                }
+              </div>
+              } @else {<span>Select contacts to assign</span>}
+
               <img
                 class="open-arrow"
                 src="./assets/img/icons/open-select-arrow.svg"
@@ -159,7 +178,10 @@
             </div>
             @for (user of users; track $index) {
 
-            <label (change)="user.checked = !user.checked">
+            <label
+              (click)="$event.stopPropagation()"
+              (change)="updateCheckedUsers(user)"
+            >
               {{ user.firstName + " " + user.lastName }}
               <input name="" type="checkbox" [checked]="user.checked" />
             </label>
