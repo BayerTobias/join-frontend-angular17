@@ -360,7 +360,8 @@ export class AddTaskComponent {
    * Closes any open dropdowns in the current view.
    * Specifically, it closes the user picker and category selection dropdowns.
    */
-  closeDropdowns() {
+  closeDropdowns(event: Event) {
+    event.stopPropagation();
     this.userPickerOpen = false;
     this.selectCategoryOpen = false;
   }
