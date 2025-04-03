@@ -1,8 +1,9 @@
 <button
   [type]="type"
   [ngClass]="[colorStyle, iconOnly ? 'icon-only-button' : '']"
-  [disabled]="diasbled"
+  [disabled]="disabled"
   [ngStyle]="getStyle()"
+  (click)="submit()"
 >
   @if (!iconOnly) {
   {{ content }}

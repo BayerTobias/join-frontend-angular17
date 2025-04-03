@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-button-wo-icon',
@@ -16,7 +16,13 @@ export class ButtonWoIconComponent {
   @Input() fontSize: string = '16px';
   @Input() fontWeight: string = '';
   @Input() type: string = 'button';
-  @Input() diasbled: boolean = false;
+  @Input() disabled: boolean = false;
+
+  @Output() submitEvent = new EventEmitter<void>();
+
+  submit() {
+    this.submitEvent.emit();
+  }
 
   /**
    * Returns the style object based on the component's properties.

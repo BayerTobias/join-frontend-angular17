@@ -1,4 +1,4 @@
-<app-auth-base>
+<app-auth-base [ngClass]="{ wait: loading }">
   <main>
     <h1>Log in</h1>
     <form
@@ -70,7 +70,8 @@
         [content]="'Log In'"
         [height]="buttonHeight"
         [width]="loginButtonWidth"
-        (click)="login()"
+        (submitEvent)="login()"
+        [disabled]="loading"
       ></app-button-wo-icon>
 
       <app-button-wo-icon
@@ -80,7 +81,8 @@
         [content]="'Guest Log In'"
         [height]="buttonHeight"
         [width]="guestLoginButtonWidth"
-        (click)="guestLogin()"
+        (submitEvent)="guestLogin()"
+        [disabled]="loading"
       ></app-button-wo-icon>
     </div>
   </main>

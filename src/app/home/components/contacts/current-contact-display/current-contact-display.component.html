@@ -75,7 +75,7 @@
         [imgSrc]="'./assets/img/icons/trash-bin.svg'"
         [imgWidth]="32"
         [imgHeight]="32"
-        (click)="deleteContactMobile()"
+        (submitEvent)="deleteContactMobile()"
       ></app-button-with-icon>
       <app-button-with-icon
         [iconOnly]="true"
@@ -83,7 +83,7 @@
         [imgSrc]="'./assets/img/icons/bord-overlay-edit-pencil.svg'"
         [imgWidth]="21"
         [imgHeight]="30"
-        (click)="emitEditContact()"
+        (submitEvent)="emitEditContact()"
       ></app-button-with-icon>
     </div>
   </div>

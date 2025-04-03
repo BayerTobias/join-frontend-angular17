@@ -68,14 +68,14 @@
             [content]="'Close'"
             [colorStyle]="'secondary-color-style'"
             [imgSrc]="'./assets/img/icons/cancel-icon.svg'"
-            (click)="closeOverlay(false, false, -1)"
+            (submitEvent)="closeOverlay(false, false, -1)"
           ></app-button-with-icon>
           }@else {
           <app-button-with-icon
             [content]="'Delete'"
             [colorStyle]="'secondary-color-style'"
             [imgSrc]="'./assets/img/icons/cancel-icon.svg'"
-            (click)="deleteContact()"
+            (submitEvent)="deleteContact()"
           ></app-button-with-icon>
           } @if (!edit) {
           <app-button-with-icon

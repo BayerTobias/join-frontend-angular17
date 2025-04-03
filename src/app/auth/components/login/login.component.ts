@@ -37,6 +37,7 @@ export class LoginComponent {
   endAnimation: boolean = false;
   passwordIsHidden: boolean = true;
   loginError: boolean = false;
+  public loading: boolean = false;
 
   loginButtonWidth: string = '145px';
   guestLoginButtonWidth: string = 'auto';
@@ -123,6 +124,7 @@ export class LoginComponent {
   async login() {
     this.setLocalStorage();
     this.loginError = false;
+    this.loading = true;
     try {
       const resp: LoginResponse = (await this.auth.loginWithEmailAndPassword(
         this.username?.value,
@@ -133,12 +135,14 @@ export class LoginComponent {
       this.loginError = true;
       console.error(err);
     }
+    this.loading = false;
   }
 
   /**
    * Attempts to log in the user as a guest.
    */
   async guestLogin() {
+    this.loading = true;
     try {
       const resp: LoginResponse = (await this.auth.loginWithEmailAndPassword(
         'TestUser',
@@ -149,6 +153,7 @@ export class LoginComponent {
     } catch (err) {
       console.error(err);
     }
+    this.loading = false;
   }
 
   /**
