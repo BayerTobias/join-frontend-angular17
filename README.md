@@ -1,27 +1,61 @@
-# JoinFrontend
+# 🧩 Join – Task Manager Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.2.
+**Join** is a task management web application inspired by tools like Jira. It allows users to create and manage tasks, collaborate with contacts, and stay organized with a clean and interactive UI.
 
-## Development server
+This repository contains the **Frontend** of Join, developed using Angular 17, modern JavaScript, HTML, and CSS.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+---
 
-## Code scaffolding
+## 🚀 Features
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- 📝 Create, edit, and delete tasks
+- ✅ Organize tasks by status (To Do, In Progress, Awaiting Feedback, Done)
+- 👥 Contact book to manage collaborators
+- 🔒 Login & registration with email and password
+- 📱 Responsive design for desktop and mobile
+- 🌐 Communication with a Django backend via REST API (see backend repository for more info)
 
-## Build
+---
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Installation
 
-## Running unit tests
+1. Clone the repository:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+   ```bash
+   git clone https://github.com/BayerTobias/join-frontend-angular17.git
+   cd join-frontend-angular17
 
-## Running end-to-end tests
+   ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+2. Install dependencies:
 
-## Further help
+   ```bash
+   npm install
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+   ```
+
+3. Create the environment file
+   Create a new file at: src/environments/environment.ts
+
+   Then paste the following content inside it, and replace the placeholder values with your actual credentials:
+
+   ```ts
+   export const environment = {
+     production: true,
+     baseUrl: "https://your-django-backend.example.com", // <-- Replace with your real backend URL
+   };
+   ```
+
+4. Start the development server:
+
+   ```bash
+   ng serve
+
+   ```
+
+5. Open the app in your browser: http://localhost:4200
+
+### 🔗 Backend
+
+This frontend is intended to work with the [Join Django backend](https://github.com/BayerTobias/join-backend).  
+Please make sure the backend is running and reachable at the `baseUrl` defined in `environment.ts`.### 🔗 Backend
